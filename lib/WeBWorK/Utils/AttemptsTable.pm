@@ -241,13 +241,23 @@ sub maketext {
 	return &{$self->{maketext}}(@_);
 }
 sub parseMessage {
+    my $self = shift;
     my $msg = shift;
     my @vals;
 
+    my $c = 1;
     while($msg  =~/\~\~\[(.*?)\](.*?)\~\~/g) {
        push  @vals, $2;
        my $var = $1;
        $msg =~s/\~\~\[(.*?)\](.*?)\~\~/\[$var\]/;
+       $c++;
+    }
+    while($msg =~/\(\((.*?)\)\)/) {
+       #my $txtTrnslt = $self->maketext($1);
+       push @vals,$self->maketext($1);
+       my $repl = "[_".$c."]";
+       $msg =~s/\(\(.*?\)\)/$repl/;
+       $c++;
     }
     return ($msg,@vals);
 
@@ -267,7 +277,8 @@ sub formatAnswerRow {
 	$answerMessage =~ s/\n/<BR>/g;
 
         my @vals;
-        ($answerMessage,@vals) = parseMessage($answerMessage);
+        ($answerMessage,@vals) = $self->parseMessage($answerMessage);
+print STDERR "$answerMessage\n";
         if(scalar(@vals) > 0) {
             $answerMessage = $self->maketext($answerMessage,@vals);
         } else {
