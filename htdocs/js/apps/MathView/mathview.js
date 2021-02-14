@@ -158,7 +158,7 @@ function MathViewer(field,button,container,userOptions) {
 			.append($('<ul>', {class : "nav"})
 				.append($('<li>', {class : "dropdown"})
 					.append('<a id="menu'+viewerIndex+'" class="dropdown-toggle" data-toggle="dropdown" role="menuitem">'
-						+ maketext("Operations")+' <b class="caret"></b></a>')
+						+ 'Operations <b class="caret"></b></a>')
 					.append(dropdown)))
 			.append($('<ul>', {class : "nav pull-right"})
 				.append($('<li>', {role:"menuitem"})

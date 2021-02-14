@@ -2395,7 +2395,7 @@ msgid "E-Mail"
 msgstr "Courriel"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Feedback.pm:358
-msgid "E-mail Instructor"
+msgid "Email WeBWorK TA"
 msgstr "Envoyer un courriel au professeur"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:399
@@ -7201,7 +7201,7 @@ msgid ""
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/FileManager.pm:165
-msgid "Unpack Archive"
+msgid "Unpack"
 msgstr "Décompresser"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/FileManager.pm:385

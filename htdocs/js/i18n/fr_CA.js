@@ -1,6 +1,6 @@
 var translate = {
 	"Make Archive" : "Archiver",
-	"Unpack Archive" : "Décompresser",
+	"Unpack" : "Décompresser",
 	"There are" : "Il y a",
 	"matching WeBWorK problems" : "problèmes WeBWorK correspondants",
 	"There is 1 matching WeBWorK problem" : "Il y a 1 problème WeBWorK correspondant",
