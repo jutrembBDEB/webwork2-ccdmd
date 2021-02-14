@@ -1,3 +1,10 @@
+var localize_basepath;
+$.getScript(localize_basepath+"localize.js", function(){
+
+	  console.log("Script localize loaded.");
+
+});
+
 define(['Backbone', 'underscore', './ProblemView','config'], function(Backbone, _, ProblemView,config){
 
     /******
@@ -68,7 +75,7 @@ define(['Backbone', 'underscore', './ProblemView','config'], function(Backbone, 
                 }
             });
             this.problems.on("reordered",function () {
-                self.hwManager.announce.addMessage({text: "Problem Set " + self.parent.problemSet.get("set_id") + " was reordered"});
+   		self.hwManager.announce.addMessage({text: maketext("Problem Set")+" " + self.parent.problemSet.get("set_id") + " " + maketext("was reordered"});
             });
             this.problems.on("add", this.addProblemView);
             this.render();
