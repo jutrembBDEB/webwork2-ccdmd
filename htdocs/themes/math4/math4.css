@@ -1112,7 +1112,7 @@ table caption{
 }
 
 #editor{
-	width: 750px;
+	max-width: 950px;
 }
 
 #editor .pg_editor_action_div {

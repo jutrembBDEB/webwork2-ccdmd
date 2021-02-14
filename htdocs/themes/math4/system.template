@@ -37,6 +37,24 @@
 <!--#if can="output_jquery_ui"-->
 	<link rel="stylesheet" type="text/css" href="<!--#url type="webwork" name="htdocs"-->/node_modules/jquery-ui-dist/jquery-ui.min.css"/>
 <!--#endif-->
+
+<style type="text/css" media="screen">
+.form_tags { margin-bottom: 10px; }
+
+/* Setting widget width example */
+.textboxlist { width: 400px; }
+
+/* Preloader for autocomplete */
+.textboxlist-loading { background: url('../img/spinner.gif') no-repeat 380px center; }
+			
+/* Autocomplete results styling */
+.form_friends .textboxlist-autocomplete-result { overflow: hidden; zoom: 1; }
+.form_friends .textboxlist-autocomplete-result img { float: left; padding-right: 10px; }
+			
+.note { color: #666; font-size: 90%; }
+#footer { margin: 50px; text-align: center; }
+</style>
+
 <!--#if can="output_achievement_CSS"-->
 <link rel="stylesheet" type="text/css" href="<!--#url type="webwork" name="theme"-->/achievements.css"/>
 <!--#endif-->
@@ -59,6 +77,11 @@
 	<script type="text/javascript" src="<!--#url type="webwork" name="htdocs"-->/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 <!--#endif-->
 <script type="text/javascript" src="<!--#url type="webwork" name="htdocs"-->/js/vendor/bootstrap/js/bootstrap.js"></script>
+<!--#if can="output_tabber_CSS"-->
+<script type="text/javascript">
+var tabberOptions = {manualStartup:true,'onClick':function(){alert("clicky!");}};
+</script>
+<!--#endif-->
 <!--#if can="output_JS"-->
 	<!--#output_JS-->
 <!--#endif-->

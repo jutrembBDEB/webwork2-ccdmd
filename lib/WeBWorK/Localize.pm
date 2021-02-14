@@ -212,7 +212,7 @@ my $ConfigStrings = [
 	[x('Optional Modules'),
     	{ var => 'achievementsEnabled',
 		  doc => x('Enable Course Achievements'),
-		  doc2 => x('Activiating this will enable Mathchievements for webwork.  Mathchievements can be managed by using the Achievement Editor link.'),
+		  doc2 => x('Activating this will enable Mathchievements for webwork.  Mathchievements can be managed by using the Achievement Editor link.'),
 		  type => 'boolean'
 		  },                
 		 { var => 'achievementPointsPerProblem',
@@ -222,7 +222,7 @@ my $ConfigStrings = [
 		  },
      	 { var => 'achievementItemsEnabled',
 		  doc => x('Enable Achievement Items'),
-		  doc2 => x('Activiating this will enable achievement items. This features rewards students who earn achievements with items that allow them to affect their homework in a limited way.'),
+		  doc2 => x('Activating this will enable achievement items. This features rewards students who earn achievements with items that allow them to affect their homework in a limited way.'),
 		  type => 'boolean'
 	 },
 	         { var => 'options{enableConditionalRelease}',
@@ -269,6 +269,11 @@ my $ConfigStrings = [
 	   doc => x('Enable Show Me Another button'),
 	   doc2 => x('Enables use of the Show Me Another button, which offers the student a newly-seeded version of the current problem, complete with solution (if it exists for that problem).'),
 	   type => 'boolean'
+	 },
+	 { var => 'pg{options}{showMeAnotherDefault}',
+	   doc => x('Default number of attempts before Show Me Another can be used (-1 => Never)'),
+	   doc2 => x('This is the default number of attempts before show me another becomes available to students.  It can be set to -1 to disable show me another by default.'),
+	   type => 'number'
 	 },
 	 { var => 'pg{options}{showMeAnotherMaxReps}',
 	   doc => x('Maximum times Show me Another can be used per problem (-1 => unlimited)'),
@@ -367,13 +372,13 @@ my $ConfigStrings = [
 
 		{ var => 'pg{options}{displayMode}',
 		  doc => x('The default display mode'),
-		  doc2 => 'Enter one of the allowed display mode types above.  See \'display modes entry\' for descriptions.',
+		  doc2 => x('Enter one of the allowed display mode types above. See \'display modes entry\' for descriptions.'),
 		  min  => 1,
 		  values => [qw(MathJax images plainText)],
 		  type => 'popuplist'
 		},
 	        { var  => 'pg{specialPGEnvironmentVars}{MathView}',
-                  doc  => 'Use MathView editor for answer entry',
+                  doc  => x('Use MathView editor for answer entry'),
                   doc2 => x('Set to true to display MathView equation editor icon next to each answer box'),
                   type => 'boolean'
                 }, 
@@ -406,7 +411,7 @@ my $ConfigStrings = [
 
 		{ var => 'pg{ansEvalDefaults}{numRelPercentTolDefault}',
 		  doc => x('Allowed error, as a percentage, for numerical comparisons'),
-		  doc2 => "When numerical answers are checked, most test if the student's answer is close enough to the programmed answer be computing the error as a percentage of the correct answer.  This value controls the default for how close the student answer has to be in order to be marked correct.<p>A value such as 0.1 means 0.1 percent error is allowed.",
+		  doc2 => x(q{When numerical answers are checked, most test if the student's answer is close enough to the programmed answer be computing the error as a percentage of the correct answer.  This value controls the default for how close the student answer has to be in order to be marked correct.<p>A value such as 0.1 means 0.1 percent error is allowed.}),
 		  type => 'number'
 		},
 	],

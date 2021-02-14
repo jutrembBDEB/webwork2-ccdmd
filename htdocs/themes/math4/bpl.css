@@ -1,0 +1,285 @@
+/*
+Ã‰ric Gaul
+*/
+
+/* Mis en commentaire par Veronique Pivetta - Raison : regles trop generales causant des problemes d'affichage...
+
+body {
+background: #FDFDFD;
+padding: 10px 10px 10px 10px;
+font-size: 14pt;
+font-family: "georgia", "times new roman", serif;
+color: #111111;
+}
+
+h1 {
+font-size: 16pt;
+}
+
+li {
+margin: 5px 0;
+}
+
+ul {
+list-style: none;
+margin-left: 2em;
+padding-left: 1em;
+text-indent: -1em;
+}
+
+VP-fin...
+*/
+
+
+/*
+a {
+color: #D98D20;
+}
+
+a:hover {
+text-decoration: none;
+}
+*/
+.menu {
+color: #2255AA;
+}
+
+.lilbutton {
+text-decoration: none;
+color: #111111;
+}
+.lilbutton:hover {
+text-decoration: none;
+color: #777777;
+}
+
+.subject {
+color: #B33C00;
+}
+
+.asubject {
+color: #B33C00;
+}
+
+.asubject:hover {
+text-decoration: none;
+}
+
+.buttonsubject  {
+color: #FFFFFF;
+font-size: 100%;
+background: #B33C00;
+text-decoration: none;
+border-radius: 4px;
+}
+
+.buttonsubject:hover  {
+color: #FFFFFF;
+font-size: 100%;
+background: #833C00;
+text-decoration: none;
+border-radius: 4px;
+}
+
+.chapter {
+color: #009900;
+}
+
+.achapter {
+color: #009900;
+}
+
+.achapter:hover {
+text-decoration: none;
+}
+
+.buttonchapter {
+color: #FFFFFF;
+font-size: 90%;
+background: #009900;
+text-decoration: none;
+border-radius: 4px;
+}
+
+.buttonchapter:hover {
+color: #FFFFFF;
+font-size: 90%;
+background: #006600;
+text-decoration: none;
+border-radius: 4px;
+}
+
+.keyword {
+line-height: 160%;
+color: #000000; /* #114499; */
+font-size: 90%;
+background: #E5E5E5; /*#FFFFFF;*/
+text-decoration: none;
+border-radius: 6px;
+padding: 0px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #E5E5E5;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+}
+
+.keyworden {
+line-height: 160%;
+color: #000000; /* #114499; */
+font-size: 90%;
+background: #E5E5E5; /*#FFFFFF;*/
+text-decoration: none;
+border-radius: 6px;
+padding: 0px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #E5E5E5;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+}
+
+.keyword2 {
+line-height: 160%;
+color: #990000;
+font-size: 90%;
+background: #CCCCCC;
+text-decoration: none;
+border-radius: 6px;
+padding: 0px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #CCCCCC;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+}
+
+.keyword:hover {
+line-height: 160%;
+color: #000000; /* #114499; */
+font-size: 90%;
+background: #CCCCCC;
+text-decoration: none;
+border-radius: 6px;
+padding: 0px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #CCCCCC;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+}
+
+.keyworden:hover {
+line-height: 160%;
+color: #000000; /* #114499; */
+font-size: 90%;
+background: #CCCCCC;
+text-decoration: none;
+border-radius: 6px;
+padding: 0px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #CCCCCC;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+}
+
+.keyword2:hover {
+line-height: 160%;
+color: #990000;
+font-size: 90%;
+background: #FFFFFF;
+text-decoration: none;
+border-radius: 6px;
+padding: 0px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #CCCCCC;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+}
+
+.keyword_group {
+white-space: nowrap;
+overflow: hidden;
+}
+
+.keyworden_group {
+white-space: nowrap;
+overflow: hidden;
+}
+
+.buttonkeyword {
+color: #FFFFFF;
+font-size: 90%;
+background: #114499;
+text-decoration: none;
+border-radius: 4px;
+}
+
+.buttonkeyword:hover {
+color: #FFFFFF;
+font-size: 90%;
+background: #001166;
+text-decoration: none;
+border-radius: 4px;
+}
+
+
+.button {
+color: #000000;
+}
+
+.button:hover {
+color: #AAAAAA;
+}
+
+/* The Modal (background) from w3 schools */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -3694,14 +3694,6 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:476
-msgid "Quiz with time limit"
-msgstr ""
-
-#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:477
-msgid "Quiz with time limit."
-msgstr ""
-
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Scoring.pm:34
 msgid "RECITATION"
 msgstr ""
@@ -6681,7 +6673,15 @@ msgstr ""
 msgid "for one <b>user</b>"
 msgstr ""
 
-#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UserList.pm:918
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:882
+msgid "for students"
+msgstr ""
+
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:1249
+msgid "from"
+msgstr ""
+
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UserList2.pm:916
 msgid "giving new passwords to all users"
 msgstr ""
 
