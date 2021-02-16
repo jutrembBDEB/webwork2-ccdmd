@@ -1,0 +1,853 @@
+/* This is the override file for math4.css.  If you copy 
+ * math4-overrides.css.dist to math4-overrides.css you can edit the
+ * values contained in this file and they will override the css values 
+ * normally used for math4.  This includes colors, padding, spacing, and
+ * so on.  
+ *
+ * If you upgrade your machine this file will not be overwritten, however, the 
+ * math4.css and math4-overrides.css.dist file may change.  If this happens it
+ * may cause problems with your theme until your reconcile the changes with 
+ * your modifactions here.  (Similar to how localOverrides.conf works.) 
+ */
+
+/*  These are the "main" colors of the theme.  Use search/replace to override
+ *  them.  
+ *  Dark Blue #003388		=> #389AC3 ou #333333
+ *  Light Blue #0157E8		=> #E3E3E3
+ *  Dark Green #519951		=> #118F76 
+ *  Light Green #88FF88		=> #EAF8F2
+ *  Dark Red #BF5454		=> #A94442
+ *  Light Red #D69191		=> #F2DEDE
+ *  Dark Yellow #7E7634		=> #8A6D3B
+ *  Light Yellow #EDE275	=> #F1EBB1 
+ */
+
+/* Gotchas:  By default using this file removes much of the "dynamic"
+ * elements of bootstrap, like grading on the buttons, or a slighlty different
+ * highlight color on the buttons. This is done for ease of configuratoin.  
+ * If you copy the code in htdocs/js/vendor/bootstrap/css/bootstrap.css
+ * you could get these features working again with effort.  
+ * 
+ * Using this file also changes some of the math4 colors to be more uniform.  
+ * This is to make as few colors as possible for ease of changing the
+ */
+
+
+/* CCDMD - Font Family et couleur */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700');
+
+body {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:14px;
+	line-height:22px;
+	color: #333333;
+}
+label,
+input,
+button,
+select,
+textarea {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+.navbar-search .search-query {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+/* Bootstrap et Math4 theme override - General */
+.container-fluid { 
+	padding:0px;
+}
+
+table {
+	border:none;
+}
+table {
+	border-color: #D9D9D9;
+	border-width: 1px;
+	border-collapse: collapse;
+}
+tr, td, th {
+	border-color: #D9D9D9;
+	border-width: 1px;
+}
+
+
+.table-bordered { 
+	border-radius:0px;
+	border-collapse: collapse;
+	border: 1px solid #dddddd;
+}
+.table-bordered th { 
+	background-color:#F6F6F6; 
+}
+.table-bordered th[scope=row] { 
+	background-color:#FFFFFF; 
+}
+table caption {
+	font-size:1.15em;
+	padding-bottom:8px;
+}
+table.FormLayout th {
+  font-size:1.15em;
+}
+table.library-browser-table {
+	width:100%;
+}
+/*table.library-browser-table .tab-content table {
+	width:100%;
+	max-width:100%;
+}*/
+table.library-browser-table .tab-content .tab-pane {
+	text-align:left;
+}
+table.library-browser-table td {
+  padding-bottom:0.5em;
+  padding-top:0.5em;
+  padding-right:0.25em;
+}
+table.library-browser-table input[type="submit"],
+table.library-browser-table input[type="reset"],
+table.library-browser-table input[type="button"],
+table.library-browser-table input[type="text"],
+table.library-browser-table select {
+	margin-right: 5px;
+}
+table.library-browser-table input[type="checkbox"] {
+	margin-bottom:4px;
+	margin-top:4px;
+}
+.lb-mlt-group {
+    border-width:0px;
+}
+
+.edit_form label {
+	margin-left:5px;
+	margin-right:5px;
+} 
+
+div.ScrollingRecordList {
+  border-color: #D9D9D9;
+  padding:1.15em;
+}
+
+
+h1#page-title {
+	padding-bottom:10px;
+	border-bottom: 1px solid #E3E3E3;
+}
+h2 {
+	margin-top:35px;
+}
+h2:first-child {
+	margin-top:20px;
+}
+.font-visible {
+	font-weight: normal;
+}
+.text-muted {
+  color: #777777 !important;
+}
+
+/* Bootstrap bootstrap-tagsinput.css override */
+.library-browser-table .bootstrap-tagsinput {
+ max-width: 98%;	
+}
+
+
+/* Users list - override */
+.set-list-form,
+.set-list-form label,
+.set-list-form input,
+.set-list-form select,
+.user-list-form,
+.user-list-form label,
+.user-list-form input,
+.user-list-form select {
+    font-size:normal;
+}
+.set-list-form input,
+.set-list-form select,
+.set-list-form button,
+.user-list-form input,
+.user-list-form select
+.user-list-form input,
+.user-list-form select {
+    margin-top: .30em;
+    margin-bottom: .50em;
+}
+.set-list-form select,
+.user-list-form select {
+    height:31px;
+}
+
+
+/* Color for links and link hover */
+.btn:focus,
+a:focus {
+    outline-color:transparent; /*#aaaa00;*/
+}
+
+a {
+  	color: #0199C1; /*#1080A0; /*#003388;*/
+}
+
+a:hover,
+a:focus {
+  	color: #0199C1; /*1080A0; /*#0157E8;*/
+	text-decoration: underline;
+}
+a:hover .icon,
+a:focus .icon {
+  	text-decoration: none;
+}
+
+/* Color for the dark blue buttons */
+.btn {
+	text-shadow:none;
+	border-color: transparent transparent transparent;
+	/*background-image: none;*/
+	background-color: #D3D3D3;
+	
+	background-color: #e5e5e5;
+  background-image: -moz-linear-gradient(top, #e5e5e5, #D3D3D3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5), to(#D3D3D3));
+  background-image: -webkit-linear-gradient(top, #e5e5e5, #D3D3D3);
+  background-image: -o-linear-gradient(top, #e5e5e5, #D3D3D3);
+  background-image: linear-gradient(to bottom, #e5e5e5, #D3D3D3);
+  background-repeat: repeat-x;
+
+	border:1px solid #cccccc;
+		
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow:  none;
+	font-weight: 600;
+	padding: 4px 14px;
+	font-size:13px;
+
+}
+.btn:hover,
+.btn:focus,
+.btn:active {
+	background-color: #bebebe;
+	color:#333333;
+	background-image:none;
+}
+.btn-primary {
+	color: #ffffff;
+	background-color: #389AC3; /*#003388;*/
+	/*background-image: none;*/
+	
+	 background-image: -moz-linear-gradient(top, #3da5d1, #389AC3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3da5d1), to(#389AC3));
+  background-image: -webkit-linear-gradient(top, #3da5d1, #389AC3);
+  background-image: -o-linear-gradient(top, #3da5d1, #389AC3);
+  background-image: linear-gradient(to bottom, #3da5d1, #389AC3);
+	font-weight: 600;
+	padding: 4px 14px;
+	font-size:13px;
+	border:1px solid #389AC3; 
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+	color: #ffffff;
+	background-color: #338bb0; /*276580; /*#003388;*/
+	background-image:none;
+}
+
+input[name="select_all"] {
+margin-left: 10px;
+}
+
+/* Colors for the light blue buttons */
+.btn-info {
+  	color: #333333; /*#ffffff;*/
+  	background-color: #e3e3e3; /*#0157E8;*/
+	
+	background-color: #e5e5e5;
+ background-image: -moz-linear-gradient(top, #e5e5e5, #D3D3D3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5), to(#D3D3D3));
+  background-image: -webkit-linear-gradient(top, #e5e5e5, #D3D3D3);
+  background-image: -o-linear-gradient(top, #e5e5e5, #D3D3D3);
+  background-image: linear-gradient(to bottom, #e5e5e5, #D3D3D3);
+  background-repeat: repeat-x;
+	border:1px solid #cccccc;
+  	/*background-image: none;*/
+	font-weight: 600;
+	padding: 4px 14px;
+	font-size:13px;
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.btn-info.disabled,
+.btn-info[disabled] {
+	color: #333333; /* #333333 CB*/
+	background-color: #bebebe; /*#0157E8;*/
+	font-weight: 600;
+	background-image:none;
+}
+
+#show_hide {
+	margin:0px 0px 2ex 0px;
+	/*font-weight: 400;*/
+}
+
+/* Tabs */
+.nav-tabs {
+	padding-left:10px;
+}
+
+.nav-tabs > li > a {
+	margin-top:5px;
+	
+}
+.nav-tabs > li > a {
+	background-color:#F6F6F6;
+	border:1px solid transparent;
+	border-bottom: 1px solid #ddd;
+	margin-right:5px;
+	
+}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+	color:#333333;
+
+}
+/* Well */
+.well {
+  background-color: #f6f6f6;
+  border: 1px solid #dddddd;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none ;
+}
+
+
+/* --- ENTETE --- */
+
+/* colors for the masthead */
+#masthead {
+    background-color: #333333; /*#003388;*/
+	background: #333333 url('/webwork2_files/themes/math4/images-custom/logo-ccdmd.png') no-repeat 99.25% 80%;
+	padding:55px 0px 25px 0px;
+	border-bottom:3px solid #389AC3;
+	
+}
+
+/* Color for the background of the webwork logo */
+
+.webwork_logo {
+    background-color: transparent; /*#003388;*/
+    border-color: transparent; /*#003388;*/
+	padding-right:6px;
+	font-size: 1.6em;
+}
+.webwork_logo img {
+   /* padding-right:0px;*/
+}
+
+.row-fluid .span4.maa_logo {
+	margin-left:0px;
+}
+.maa_logo img {
+	max-height:35px;
+}
+
+#masthead a {
+    color: white;
+}
+
+#loginstatus {
+	color: white;
+	background-color: #212121;
+	margin-left:0;
+	position:absolute;
+	top:0;
+	width:100%;
+	height:30px;
+
+}
+#loginstatus a {
+    /*color:black;*/
+}
+
+#loginstatus a.btn {
+	margin-left:0.5em;
+	background-color: #212121;
+	background-image:none;
+	color:#3399CC;
+	padding:2px 10px;
+	border:0px solid transparent;
+}
+#loginstatus a.btn:hover,
+#loginstatus a.btn:focus,
+#loginstatus a.btn:active {
+	text-decoration:underline;
+}
+
+
+/* --- MENU DE GAUCHE ---*/
+
+/* colors for the left hand nav list */
+#site-navigation {
+	padding: 15px 0px 15px 15px;
+}
+#site-links > ul {
+	border: 1px solid #dddddd; /*#e6e6e6;*/
+	background: #f6f6f6;
+	margin-top:0px;
+	padding-bottom:30px;
+}
+
+#site-links h2 {
+	margin-top:5px;
+	margin-bottom:10px;
+	color:#333333;
+}
+
+#site-links .nav-list > li > a {
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#site-links .nav-list a {
+	color:#333333;
+}
+
+#site-links .nav-list > .active > a,
+#site-links .nav-list > .active > a:hover,
+#site-links .nav-list > .active > a:focus,
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+    color: #ffffff;
+    background-color: #389AC3; /*#003388;*/
+}
+
+ul.nav li a:hover {
+	background: #E3E3E3; /*#e1e1e1;*/
+	color:#333333;
+}
+
+.nav-list > li > a,
+.nav-list .nav-header,
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+	text-shadow:none;
+}
+
+/* --- CONTENU DROIT --- */
+#content {
+	padding-top:15px;
+}
+.row-fluid #content.span10 {
+    padding-right: 2.564102564102564%;
+}
+
+/* The breadcrumb nav */
+#breadcrumb-row {
+	margin-top:0px;
+}
+.breadcrumb {
+	/*border: 1px solid #e6e6e6;*/
+	border: 1px solid transparent;
+	background-color:transparent;
+	padding-top:6px;
+	padding-botton:6px;
+}
+
+.btn#toggle-sidebar {
+	/*margin-left: -2.90%;*/
+    background-image: none;
+	background: #F6F6F6;
+}
+
+/* The courses list coloring */
+ul.courses-list {
+	padding-left:0px;
+}
+
+ul.courses-list a {
+	border: 1px solid #DDDDDD;
+	background: #F6F6F6;
+}
+
+ul.courses-list a:hover {
+	text-decoration: none;
+	background: #389AC3;
+	color: white;
+}
+
+/* Info box (right hand box) coloring */
+.info-box {
+	border: 1px solid #DDDDDD; /*#e6e6e6;*/
+	background: #f6f6f6;
+	border-radius:0px;
+	padding:30px;
+}
+
+.info-box h2, .info-box h3, .info-box h4, .info-box h5, .info-box h6 {
+	background: #3d4047; /*#003388;*/
+	color: white;
+	border-radius:0px;
+	margin:-30px -30px 30px -30px;
+	padding: 4px 0px;
+}
+.info-box h2 .btn, .info-box h3 .btn, .info-box h4 .btn, .info-box h5 .btn, .info-box h6 .btn {
+	margin-left:5px;
+	margin-top:-2px;
+	padding:2px 8px;
+}
+
+#InfoPanel {
+    background-color: #ffffff;
+}
+
+/* Problem rendering formatting */
+.lb-problem-header {
+	margin-top:20px;
+}
+.lb-problem-path {
+	color:#0199C1;
+}
+.lb-problem-path:hover {
+	color:#0199C1;
+	text-decoration: underline;
+}
+.lb-problem-icons {
+	font-size:16px;
+}
+
+div.RenderSolo { 
+    background-color: #F7F5F5; /* #E0E0E0; */
+    color: black;
+	border:1px solid #F0EDED;
+	padding:10px 10px ;
+}
+
+div.RenderSolo .section-div {
+    margin-left:-10px;
+    margin-right:-10px;
+}
+div.RenderSolo .section-div > div.ui-accordion-content {
+    background: #F7F5F5 !important;
+}
+div.RenderSolo .section-div > div.ui-accordion-content.ui-widget-content {
+    border: 1px solid #F7F5F5;
+}
+div.RenderSolo .section-div > h3.canopen {
+    background: #E9E9E9 !important;
+	border-color: #E0E0E0 !important;
+}
+
+
+
+/* problem tag blue color */
+div.AuthorComment { 
+    background-color: #E5EFF4; /*00E0E0; */
+    color: black;
+	padding:5px 10px;
+}
+
+.RenderSolo hr,
+.problem-content hr {
+  border-top-color: rgb(22,22,22);
+}
+
+/* Colors for "neutral" messages */
+div.WarningMessage { 
+    background-color: #F1EBB1; /*EDE275; */
+	padding:5px 10px;
+}
+
+div.showMeAnotherBox { 
+    background-color: #F1EBB1; /*EDE275; */ 
+    border-color: #F1EBB1; /*EDE275; */ 
+	padding:5px 10px;
+} 
+
+label.WarningMessage { 
+    background-color: #F1EBB1; /*EDE275; */ 
+	padding:5px 10px;
+}
+
+span.ResultsAlert { 
+    color: #8A6D3B; /*7E7634; */
+    background-color: inherit;
+	padding:5px 10px;
+} 
+
+div.ResultsAlert { 
+    color: #8A6D3B; /*7E7634; */
+    background-color: inherit;
+	padding:5px 10px;
+} 
+
+label.ResultsAlert {
+    color: #8A6D3B; /*7E7634; */ 
+    background-color: inherit; 
+} 
+
+span.WarningMessage { 
+    background-color: #F1EBB1; /*EDE275; */
+}
+
+span.unattempted { 
+    color: inherit; 
+    background-color: #F1EBB1; /*#EDE275; */
+}
+
+td.FeedbackMessage { 
+    background-color:#F1EBB1; /*EDE275; */
+} 
+
+div.gwMessage { 
+    background-color: #F1EBB1; /*EDE275; */
+}
+
+/* Colors for "green" messages */
+div.ResultsWithoutError { 
+    /*color: inherit;*/
+	color: #118F76; 
+    background-color: #EAF8F2; /*88FF88; */
+	padding:5px 10px;
+} 
+
+td.ResultsWithoutError { 
+    background-color:#EAF8F2; /*88FF88;*/
+}
+
+label.ResultsWithoutError { 
+    color: #118F76; /*#519951; */
+    background-color: inherit; 
+} 
+
+span.ResultsWithoutError { 
+    /*color: inherit;*/
+	color: #118F76; 
+    background-color:#EAF8F2; /*88FF88;*/
+} 
+
+span.correct { 
+    /*color: inherit;*/
+	color: #118F76; 
+    background-color: #EAF8F2; /*88FF88; */
+}
+
+div.gwCorrect { background-color: #EAF8F2; /*88FF88;*/ }
+
+/* Colors for "red" messages */
+div.ResultsWithError { 
+    color: #A94442; /*BF5454; */
+    background-color: inherit; 
+	background-color:#F2DEDE;
+	padding:5px 10px;
+} 
+
+label.ResultsWithError { 
+    color: #A94442; /*BF5454; */
+    /*background-color: inherit;*/
+	background-color:#F2DEDE;
+	padding:5px 10px;
+}
+
+td.ResultsWithError { 
+    background-color:#F2DEDE; /*D69191; */
+    /*color: black;*/
+	color: #A94442;
+}
+
+span.ResultsWithError { 
+    color: #A94442; /*BF5454; */ 
+    /*background-color: inherit; */
+
+	background-color:#F2DEDE;
+	padding:5px 10px;
+} 
+.ResultsWithError a { color: #A94442; }
+
+span.incorrect { 
+    color: #A94442; /*BF5454; */ 
+    background-color: inherit; 
+	background-color:#F2DEDE;
+	padding:5px 10px;
+}
+
+div.gwIncorrect { background-color: #F2DEDE; /*D69191;*/ }
+
+/* Other formatting for attempt results and the problem page */
+table.attemptResults th {
+	color: inherit;
+	background-color: #DDDDDD;
+}
+
+span.ResultsWithErrorInResultsTable { 
+    color: inherit; 
+    background-color: inherit;
+} 
+table.attemptResults td.FeedbackMessage { background-color:#F1EBB1;} 
+table.attemptResults td.ResultsWithoutError { background-color:#EAF8F2;}
+table.attemptResults td.ResultsWithError { background-color:#F2DEDE; color: #A94442} 
+table.attemptResults td { background-color: #FFFFFF; border-color:#D9D9D9; }
+/*table.attemptResults th { background-color: #F6F6F6; border-color:#D9D9D9; }
+*/
+
+/* Comment coloration */
+.answerComments {
+    border-color: gray;
+    background-color: #E8E8E8;
+}
+
+
+
+/* highlights mistakes */
+.parsehilight { 
+    color: inherit; 
+    background-color: #F1EBB1; /*EDE275; */ 
+}
+
+/* gw stuff */
+div#gwTimer {
+	background-color:#F1EBB1; /*EDE275; */
+}
+div#gwScoreSummary {
+	background-color:#F1EBB1; /*EDE275; */
+}
+
+/* Misc */
+.temporaryFile { 
+    color: #FF6600; b
+    background-color: inherit; 
+}
+
+#editor{
+    background-color: #FFFFFF;
+}
+
+.admin-messagebox {
+    background-color: #F1EBB1; /*EDE275; */
+}
+
+#library_count_line,
+#blibrary_count_line,
+#benlibrary_count_line,
+#slibrary_count_line {
+    color: #118F76; 
+    font-weight: bold; 
+	padding-top: 20px;
+	text-align: left;
+}
+
+/* Achievement bar coloring */
+.levelinnerbar {
+    background-color: #E3E3E3; /*#0157E8;*/
+}
+
+.cheevoinnerbar {
+    background-color: #E3E3E3; /*#0157E8;*/
+}
+/* --- knowlstyle.css - Overrides --- */
+*[knowl] {
+  border-bottom: 1px solid #0199C1; /*#00a;*/
+  color: #0199C1; /*00a;*/
+	text-decoration:none;
+}
+*[knowl]:hover,
+*[knowl].active {
+  border-bottom: 1px solid #0199C1; /*#00a;*/
+  background: #dbf1f6;
+  color: #0199C1;
+	text-decoration:none;
+}
+.knowl-output {
+  background: #dbf1f6;
+  border-left: 10px solid #dbf1f6;
+  border-right: 10px solid #dbf1f6;
+  border-bottom: 10px solid #dbf1f6;
+  border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  border-bottom-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+}
+.knowl-output h1 {
+  color: #333333;
+}
+.knowl-output h2 {
+  color: #333333;
+}
+.knowl-footer {
+   background: #dbf1f6;
+}
+
+
+/* Progress Bar */
+div.correct-progress {
+   background-color: #118F76; /*#8F8; /*same colour used as 'correct' */
+   border: 2px solid #DDDDDD; /*#00FF00; */
+}
+
+div.incorrect-progress {
+   background-color: #A94442; /*#FF9494; /* same colour used as 'incorrect' */
+   border: 2px solid #DDDDDD; /*#FF0000; */
+}
+
+div.inprogress-progress {
+   background-color: #FDF16C; /*#FFFF00; /* yellow */
+   border: 2px solid #DDDDDD; /*#FBB117; /* beer border*/
+}
+
+
+
+/* === RESPONSIVE === */
+@media (min-width:768px) {
+	/* --- Deux colonnes de meme hauteur --- */
+	/*#body-row { 
+		display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	/*	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	/*	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	/*	display: -webkit-flex;     /* NEW - Chrome */
+	/*	display: flex; 
+	}
+	#site-navigation { align-items:stretch; }
+	#content {  align-items:stretch; }*/
+}
+	
+@media (max-width:767px) {
+	body {
+		padding-left:0px;
+		padding-right:0px;
+	}
+	
+	.row-fluid #content.span10 {
+    	padding-right: 2.564102564102564%;
+		padding-left: 2.564102564102564%;
+	}
+	.row-fluid #content.span11 {
+    	padding-right: 2.564102564102564%;
+		padding-left: 2.564102564102564%;
+	}
+
+	/* Entete */
+	.maa_logo img {
+		margin-left:10px;
+		margin-top:3px;
+	}
+	/* Colonne gauche */	
+	#site-navigation {
+		padding: 0px 0px 0px 0px;
+	}
+		
+}
