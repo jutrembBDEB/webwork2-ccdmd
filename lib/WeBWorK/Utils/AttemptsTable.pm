@@ -325,7 +325,6 @@ print STDERR "$answerMessage\n";
 			  ($self->showAttemptPreviews)?  $self->formatToolTip($answerString, $answerPreview):"" ,
 			  ($self->showAttemptResults)?   $attemptResults : '' ,
 			  ($self->showCorrectAnswers)?  $self->formatToolTip($correctAnswer,$correctAnswerPreview):"" ,
-			  #($self->showMessages)?        CGI::td({class=>$feedbackMessageClass},$self->nbsp(  $self->maketext($answerMessage)   )):"",
 			  ($self->showMessages)?        CGI::td({class=>$feedbackMessageClass},$self->nbsp(  $answerMessage  )):"",
 			  "\n"
 			  );
