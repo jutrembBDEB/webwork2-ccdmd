@@ -1,0 +1,129 @@
+/*
+ * bootstrap-tagsinput v0.8.0
+ * 
+ */
+
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 50%;
+  width: 100% !important;
+  line-height: 28px;
+  cursor: text;
+}
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  vertical-align: middle;
+  outline: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 0;
+  width: auto;
+  max-width: inherit;
+}
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: #333;
+  opacity: 1;
+}
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: #333;
+}
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: #333;
+}
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput .tag {
+line-height: 160%;
+color: #000000; /* #114499; */
+  vertical-align: middle;
+font-size: 13px;
+background: #E5E5E5; /*#FFFFFF;*/
+text-decoration: none;
+border-radius: 6px;
+padding: 5px 5px 5px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #E5E5E5;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+  -webkit-transition: .13s ease-out;
+  -o-transition: .13s ease-out;
+  transition: .13s ease-out;
+  -webkit-animation: .3s tags--bump 1 ease-out;
+          animation: .3s tags--bump 1 ease-out;
+  background: #E5E5E5;
+  -webkit-box-shadow: 0 0 0 0 #D39494 inset;
+          box-shadow: 0 0 0 0 #D39494 inset;
+}
+
+.bootstrap-tagsinput .tag:hover {
+line-height: 160%;
+color: #000000; /* #114499; */
+font-size: 13px;
+background: #CCCCCC;
+text-decoration: none;
+  vertical-align: middle;
+border-radius: 6px;
+padding: 5px 5px 5px 5px; /*1px;*/
+border-style: solid; /*ridge;*/
+border-width: 2px;
+white-space: nowrap;
+overflow: hidden;
+border: 2px solid #CCCCCC;
+display: inline-block;
+margin: 2px 2px 2px 0px;
+  -webkit-transition: .13s ease-out;
+  -o-transition: .13s ease-out;
+  transition: .13s ease-out;
+  -webkit-animation: .3s tags--bump 1 ease-out;
+          animation: .3s tags--bump 1 ease-out;
+  background: #D3E2E2;
+  -webkit-box-shadow: 0 0 0 0 #D39494 inset;
+          box-shadow: 0 0 0 0 #D39494 inset;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 5px 5px;
+}
+
+
+.bootstrap-tagsinput .tag [data-role="remove"]:hover  {
+  color: white;
+  background: #c77777;
+  border-radius: 52px;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"]:hover:active { 
+  color: white;
+  background: #c77777;
+  border-radius: 52px;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+ 
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+
+}
+
