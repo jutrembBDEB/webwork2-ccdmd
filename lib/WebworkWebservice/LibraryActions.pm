@@ -405,6 +405,8 @@ sub searchLib {    #API for searching the NPL database
 		$self->{library_chapters} = $rh->{library_chapters};
 		$self->{blibrary_subjects} = $rh->{blibrary_subjects};
 		$self->{blibrary_chapters} = $rh->{blibrary_chapters};
+		$self->{benlibrary_subjects} = $rh->{benlibrary_subjects};
+		$self->{benlibrary_chapters} = $rh->{benlibrary_chapters};
 		$self->{library_sections} = $rh->{library_sections};
 		$self->{library_keywords} = $rh->{library_keywords};
 		$self->{library_textbook} = $rh->{library_textbook};

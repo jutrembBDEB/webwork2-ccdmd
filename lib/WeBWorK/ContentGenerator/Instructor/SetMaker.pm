@@ -837,7 +837,7 @@ sub browse_library_panel2t {
 	my $library_keywords = $r->param('library_keywords') || '';
 
 
-	my $view_problem_line = view_problems_line('lib_view', $r->maketext('View Problems'), $self->r, 1);
+	my $view_problem_line = view_problems_line('lib_view', $r->maketext('View Problems'), $self->r, 2);
 
 	# Formatting level checkboxes by hand
 	my @selected_levels_arr = $r->param('level');
@@ -947,13 +947,9 @@ sub browse_library_panel5t {
 	my @chaps = WeBWorK::Utils::ListingDB::getAllDBchapters($r,'BPL');
 	unshift @chaps, $r->maketext (  LIB2_DATA->{dbchapter}{all} );
 
-	my @sects=();
-	@sects = WeBWorK::Utils::ListingDB::getAllDBsections($r,'BPL');
-	unshift @sects, $r->maketext ( LIB2_DATA->{dbsection}{all} );
-
 	my $subject_selected = $r->param('blibrary_subjects') || $r->maketext ( LIB2_DATA->{dbsubject}{all} );
 	my $chapter_selected = $r->param('blibrary_chapters') || $r->maketext ( LIB2_DATA->{dbchapter}{all} );
-	my $section_selected =	$r->param('blibrary_sections') || $r->maketext ( LIB2_DATA->{dbsection}{all} );
+#	my $section_selected =	$r->param('blibrary_sections') || $r->maketext ( LIB2_DATA->{dbsection}{all} );
 	my $search_bpl       =	$r->param('search_bpl') || '';
 
 
@@ -1052,13 +1048,9 @@ sub browse_library_panel5ten {
 	my @chaps = WeBWorK::Utils::ListingDB::getAllDBchapters($r,'BPLEN');
 	unshift @chaps, $r->maketext (  LIB2_DATA->{dbchapter}{all} );
 
-	my @sects=();
-	@sects = WeBWorK::Utils::ListingDB::getAllDBsections($r,'BPLEN');
-	unshift @sects, $r->maketext ( LIB2_DATA->{dbsection}{all} );
-
 	my $subject_selected = $r->param('benlibrary_subjects') || $r->maketext ( LIB2_DATA->{dbsubject}{all} );
 	my $chapter_selected = $r->param('benlibrary_chapters') || $r->maketext ( LIB2_DATA->{dbchapter}{all} );
-	my $section_selected =	$r->param('benlibrary_sections') || $r->maketext ( LIB2_DATA->{dbsection}{all} );
+#	my $section_selected =	$r->param('benlibrary_sections') || $r->maketext ( LIB2_DATA->{dbsection}{all} );
 	my $search_bplen     =	$r->param('search_bplen') || '';
 
 
@@ -2193,11 +2185,6 @@ sub pre_header_initialize {
 		$self->{current_library_set} = "";
 		$use_previous_problems = 0; @pg_files = (); ## clear old problems
         } elsif ($r->param('browse_bplen_library')) {
-		$browse_which = 'browse_bplen_library';
-		$self->{current_library_set} = "";
-		$use_previous_problems = 0; @pg_files = (); ## clear old problems
-
-	} elsif ($r->param('browse_bplen_library')) {
 		$browse_which = 'browse_bplen_library';
 		$self->{current_library_set} = "";
 		$use_previous_problems = 0; @pg_files = (); ## clear old problems

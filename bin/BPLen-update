@@ -43,23 +43,23 @@ my $taxo={};
 ### Data for creating the database tables
 
 my %BPLtables = (
- dbsubject => 'BPL_DBsubject',
- dbchapter => 'BPL_DBchapter',
- dbsection => 'BPL_DBsection',
- author => 'BPL_author',
- path => 'BPL_path',
- pgfile => 'BPL_pgfile',
- keyword => 'BPL_keyword',
- pgfile_keyword => 'BPL_pgfile_keyword',
- keywordmap => 'BPL_keyword_chapters',
- keyworddim => 'BPL_keyword_dim',
- keywordrank => 'BPL_keyword_rank',
- textbook => 'BPL_textbook',
- chapter => 'BPL_chapter',
- section => 'BPL_section',
- problem => 'BPL_problem',
- morelt => 'BPL_morelt',
- pgfile_problem => 'BPL_pgfile_problem',
+ dbsubject => 'BPLen_DBsubject',
+ dbchapter => 'BPLen_DBchapter',
+ dbsection => 'BPLen_DBsection',
+ author => 'BPLen_author',
+ path => 'BPLen_path',
+ pgfile => 'BPLen_pgfile',
+ keyword => 'BPLen_keyword',
+ pgfile_keyword => 'BPLen_pgfile_keyword',
+ keywordmap => 'BPLen_keyword_chapters',
+ keyworddim => 'BPLen_keyword_dim',
+ keywordrank => 'BPLen_keyword_rank',
+ textbook => 'BPLen_textbook',
+ chapter => 'BPLen_chapter',
+ section => 'BPLen_section',
+ problem => 'BPLen_problem',
+ morelt => 'BPLen_morelt',
+ pgfile_problem => 'BPLen_pgfile_problem',
 );
 
 
@@ -95,7 +95,7 @@ $dbh->prepare("SET NAMES '$character_set'")->execute();
 
 print "using character set $character_set to build BPL database\n";
 
-my $libraryRoot = $ce->{problemLibrary}->{BPLroot};
+my $libraryRoot = $ce->{problemLibrary}->{BPLenroot};
 $libraryRoot =~ s|/+$||;
 print "using libraryRoot $libraryRoot\n";
 print "WEBWORK_ROOT $ENV{WEBWORK_ROOT}\n";
@@ -120,19 +120,8 @@ sub dbug {
 ##Figure out which set of tables to use
 
 my %tables;
-=comment
-if($libraryVersion >= 2) {
-	%tables = %OPLtables;
-	my $lib = 'OPL';
-	warn "Library version is $libraryVersion; using OPLtables!\n";
-} else {
-	%tables = %NPLtables;
-	my $lib = 'NPL';
-	print "Library version is $libraryVersion; NPLtables! \n";
-}
-=cut
 %tables = %BPLtables;
-my $lib = 'BPL';
+my $lib = 'BPLen';
 
 @create_tables = (
 [$tables{dbsubject}, '
@@ -245,7 +234,7 @@ sub safe_get_id {
 	for my $j (0..$#insertvalues) {
 		$insertvalues[$j] =~ s/"/\\\"/g;
 	}
-	
+
         my $query = "SELECT $idname FROM `$tablename` ".$whereclause ;
         my $sth = $dbh->prepare($query);
         $sth->execute(@$wherevalues);
@@ -260,9 +249,9 @@ sub safe_get_id {
                                 $insertvalues[$j] = NULL;
                         }
                 }
-                #print "INSERT INTO $tablename VALUES( ".join(',',@insertvalues).")\n";
-                $dbh->do("INSERT INTO `$tablename` VALUES(". join(',',@insertvalues) .")");
+                print "INSERT INTO $tablename VALUES( ".join(',',@insertvalues).")\n";
                 dbug "INSERT INTO $tablename VALUES( ".join(',',@insertvalues).")\n";
+                $dbh->do("INSERT INTO `$tablename` VALUES(". join(',',@insertvalues) .")");
                 $sth = $dbh->prepare($query);
                 $sth->execute(@$wherevalues);
                 @row = $sth->fetchrow_array();
@@ -274,7 +263,6 @@ sub safe_get_id {
 sub pgfiles {
 
         my $name = $File::Find::name;
-        return if($name =~/CCDMD-EN/);
         %textinfo=();
         my @textproblems = (-1);
 #print "\n$name";
@@ -299,6 +287,7 @@ sub pgfiles {
 			my $mathobj = $tags->{MO} || 0;
 			my $static  = $tags->{Static} || 0;
 			my $lang    = $tags->{Language} || "fr";
+                        return if($subject eq '' || $chapter eq '');
 
                         # path table
 			my $path_id = safe_get_id($tables{path}, 'path_id',
@@ -406,8 +395,8 @@ sub maybenewtext {
 }
 
 print "\nCreating master table for all keywords,subject,chapter,pgfile...\n";
-$dbh->do("INSERT INTO BPL_keyword_dim select distinct k.keyword_id,k.keyword,c.DBchapter_id,c.name as chapter,s.DBsubject_id,s.name as subject,pg.pgfile_id from BPL_keyword_chapters kc, BPL_keyword k, BPL_DBchapter c, BPL_DBsubject s, BPL_pgfile_keyword pg where kc.bplkeyword_id = k.keyword_id and c.DBchapter_id = kc.bpldbchapter_id and pg.keyword_id = k.keyword_id and s.DBsubject_id = c.DBsubject_id");
-$dbh->do("INSERT INTO BPL_keyword_rank select keyword_id,count(distinct pgfile_id) as kwrank from BPL_pgfile_keyword GROUP BY keyword_id");
+$dbh->do("INSERT INTO BPLen_keyword_dim select distinct k.keyword_id,k.keyword,c.DBchapter_id,c.name as chapter,s.DBsubject_id,s.name as subject,pg.pgfile_id from BPLen_keyword_chapters kc, BPLen_keyword k, BPLen_DBchapter c, BPLen_DBsubject s, BPLen_pgfile_keyword pg where kc.bplkeyword_id = k.keyword_id and c.DBchapter_id = kc.bpldbchapter_id and pg.keyword_id = k.keyword_id and s.DBsubject_id = c.DBsubject_id");
+$dbh->do("INSERT INTO BPLen_keyword_rank select keyword_id,count(distinct pgfile_id) as kwrank from BPLen_pgfile_keyword GROUP BY keyword_id");
 
 if ($ce->{problemLibrary}{showLibraryLocalStats} ||
     $ce->{problemLibrary}{showLibraryGlobalStats}) {

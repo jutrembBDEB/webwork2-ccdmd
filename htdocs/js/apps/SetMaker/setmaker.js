@@ -772,7 +772,7 @@ function lib_searchops() {
   var subcommand = "getAllKeywords";
 
   mydefaultRequestObject.command = subcommand;
-  // console.log(mydefaultRequestObject);
+   //console.log(mydefaultRequestObject);
     return $.ajax({type:'post',
 		   url: basicWebserviceURL,
 		   data: mydefaultRequestObject,
@@ -782,7 +782,7 @@ function lib_searchops() {
 		       	   reportWWerror(data);
 		       }
 		       var response = $.parseJSON(data);
-		       console.log(response);
+		       //console.log(response);
 		       var arr = response.result_data;
 		       arr.splice(0,0);
 		       f_tags(arr);
@@ -833,7 +833,7 @@ function enlib_searchops() {
 		       	   reportWWerror(data);
 		       }
 		       var response = $.parseJSON(data);
-		       console.log(response);
+		       //console.log(response);
 		       var arr = response.result_data;
 		       arr.splice(0,0);
 		       f_tagsen(arr);
@@ -903,7 +903,7 @@ function enlib_top20keywords () {
   var subcommand = "getTop20KeyWords_en";
 
   mydefaultRequestObject.command = subcommand;
-   console.log(mydefaultRequestObject);
+   //console.log(mydefaultRequestObject);
     return $.ajax({type:'post',
 		   url: basicWebserviceURL,
 		   data: mydefaultRequestObject,
@@ -914,7 +914,7 @@ function enlib_top20keywords () {
 		       }
 
 		       var response = $.parseJSON(data);
-		       console.log(response);
+		       //console.log(response);
 		       var arr = response.result_data;
 		       arr.splice(0,0);
 		       settop20keywordsen(arr);
