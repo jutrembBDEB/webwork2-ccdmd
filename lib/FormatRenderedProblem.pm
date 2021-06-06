@@ -439,9 +439,9 @@ EOS
 
 # With these values - things work, but the button text is English
 # with the localized values, or any answers in UTF-8 - thing break
-$STRING_Preview = "Preview My Answers";
-$STRING_ShowCorrect = "Show correct answers";
-$STRING_Submit = "Check Answers";
+# $STRING_Preview = "Preview My Answers";
+# $STRING_ShowCorrect = "Show correct answers";
+# $STRING_Submit = "Check Answers";
 
 ######################################################
 # Return interpolated problem template
