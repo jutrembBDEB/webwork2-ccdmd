@@ -527,7 +527,7 @@ sub setListRow {
 					$interactive = $display_name unless $preOpenSets;
 					$setIsOpen = 0;
 					$status .= restricted_progression_msg($r,0,$restriction,@restricted);
-				} elsif ($LTIRestricted) {
+				} elsif ($LTIRestricted && ! $authz->hasPermissions($user, "access_instructor_tools")) {
 					$status .= CGI::br().$r->maketext("You must log into this set via your Learning Management System ([_1]).", $ce->{LMS_name});
 					$control = "" unless $preOpenSets;
 					$interactive = $display_name unless $preOpenSets;
@@ -607,7 +607,7 @@ sub setListRow {
 	    $status .= restricted_progression_msg($r,0,$restriction, @restricted);
 	    
 	    $setIsOpen = 0;
-	  } elsif ($LTIRestricted) {
+	  } elsif ($LTIRestricted && ! $authz->hasPermissions($user, "access_instructor_tools")) {
 	    $status .= CGI::br().$r->maketext("You must log into this set via your Learning Management System ([_1]).", $ce->{LMS_name});
 	    $control = "" unless $preOpenSets;
 	    $interactive = $display_name unless $preOpenSets;

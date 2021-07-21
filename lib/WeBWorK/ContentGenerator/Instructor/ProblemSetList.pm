@@ -2761,6 +2761,7 @@ sub output_JS {
 	print CGI::Link({ rel => "stylesheet",  href => "$site_url/css/jquery-ui-timepicker-addon.css" });
 	print CGI::Link({ rel => "stylesheet",  href => "$site_url/js/apps/DatePicker/datepicker.css" });
 	print CGI::script({ src => "$site_url/js/apps/DatePicker/jquery-ui-timepicker-addon.js", defer => undef }, "");
+	print CGI::script({ src => "$site_url/js/apps/DatePicker/jquery-ui-timepicker-fr.js", defer => undef }, "");
 	print CGI::script({ src => "$site_url/js/apps/DatePicker/datepicker.js", defer => undef}, "");
 
 	print CGI::script({ src => "$site_url/js/apps/ActionTabs/actiontabs.js", defer => undef }, "");

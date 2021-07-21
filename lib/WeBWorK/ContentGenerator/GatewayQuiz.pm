@@ -2367,7 +2367,7 @@ sub output_JS{
 	print "localize_basepath = \"$site_url/js/i18n/\";";
 	print "lang = \"$lang\";";
 	print CGI::end_script();
-	print CGI::script({ src="$site_url/js/i18n/localize.js", defer => "" }, "");
+	print qq!<script src="$site_url/js/i18n/localize.js"></script>!;
 
 	# This is for MathView.
 	if ($self->{will}->{useMathView}) {

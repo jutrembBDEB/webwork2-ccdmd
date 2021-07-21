@@ -206,10 +206,10 @@ use constant FIELD_PROPERTIES => {
 		type      => "choose",
 		override  => "all",
 		choices   => [qw( default gateway proctored_gateway jitar)],
-		labels    => {	default => "homework",
-				gateway => "gateway/quiz",
-				proctored_gateway => "proctored gateway/quiz",
-				jitar => "just-in-time"
+		labels    => {	default => x("homework"),
+				gateway => x("gateway/quiz"),
+				proctored_gateway => x("proctored gateway/quiz"),
+				jitar => x("just-in-time")
 		},
 	},
 	version_time_limit => {
@@ -2583,6 +2583,8 @@ sub output_jquery_ui{
 
 sub output_JS {
 	my $self = shift;
+	my $r = $self->r;
+	my $ce = $r->ce;
 	my $site_url = $self->r->ce->{webworkURLs}{htdocs};
 
 	# Print javaScript and style for dateTimePicker	
@@ -2602,6 +2604,14 @@ sub output_JS {
 
 	print CGI::script({ src => "$site_url/node_modules/nestedSortable/jquery.mjs.nestedSortable.js" }, "");
 	print CGI::script({ src => "$site_url/node_modules/iframe-resizer/js/iframeResizer.min.js" }, "");
+	
+	# This is for translation of js files
+	my $lang = $ce->{language};
+	print CGI::start_script({type=>"text/javascript"});
+ 	print "localize_basepath = \"$site_url/js/i18n/\";";
+	print "lang = \"$lang\";";
+  	print CGI::end_script();
+  	print CGI::script({ src => "$site_url/js/i18n/localize.js" }, "");
 
 	print CGI::script({ src=>"$site_url/js/apps/ProblemSetDetail/problemsetdetail.js", defer => undef }, "");
 
