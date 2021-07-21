@@ -94,6 +94,20 @@ table caption {
 table.FormLayout th {
   font-size:1.15em;
 }
+
+.library-browser-table td.InfoPanel table {
+	text-align: left;
+	margin: unset;
+	max-width: 100%;
+}
+
+.library-browser-table td.InfoPanel {
+	text-align: left;
+	max-width: 100%;
+}
+
+
+
 table.library-browser-table {
 	width:100%;
 }
@@ -109,6 +123,12 @@ table.library-browser-table td {
   padding-top:0.5em;
   padding-right:0.25em;
 }
+
+.library-browser-table td {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
 table.library-browser-table input[type="submit"],
 table.library-browser-table input[type="reset"],
 table.library-browser-table input[type="button"],
@@ -362,7 +382,7 @@ margin-left: 10px;
 .row-fluid .span4.maa_logo {
 	margin-left:0px;
 }
-.maa_logo img {
+.institution_logo img {
 	max-height:35px;
 }
 
@@ -384,7 +404,7 @@ margin-left: 10px;
     /*color:black;*/
 }
 
-#loginstatus a.btn {
+/*#loginstatus a.btn {
 	margin-left:0.5em;
 	background-color: #212121;
 	background-image:none;
@@ -396,7 +416,7 @@ margin-left: 10px;
 #loginstatus a.btn:focus,
 #loginstatus a.btn:active {
 	text-decoration:underline;
-}
+}*/
 
 
 /* --- MENU DE GAUCHE ---*/
@@ -522,10 +542,6 @@ ul.courses-list a:hover {
 }
 .lb-problem-path {
 	color:#0199C1;
-}
-.lb-problem-path:hover {
-	color:#0199C1;
-	text-decoration: underline;
 }
 .lb-problem-icons {
 	font-size:16px;

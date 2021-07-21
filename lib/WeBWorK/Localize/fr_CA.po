@@ -2399,7 +2399,7 @@ msgstr "Adresse de courriel"
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator.pm:1635
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator.pm:1660
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator.pm:1684
-msgid "Email instructor"
+msgid "Email Instructor"
 msgstr "Envoyer un courriel au professeur"
 
 #. (scalar(@{$self->{ra_send_to}})

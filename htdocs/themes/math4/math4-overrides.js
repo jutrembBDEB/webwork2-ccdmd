@@ -17,7 +17,7 @@ $(function () {
 //    $('.webwork_logo a img').attr('src','new-path-here');
 
 /* This changes the MAA Logo on the top to a new image */
-$('.maa_logo a img').attr('src','/webwork2_files/themes/math4/images-custom/maa_logo_small_black.png');
+$('.institution_logo a img').attr('src','/webwork2_files/themes/math4/images-custom/maa_logo_small_black.png');
 
 $('#mainform input[type="reset"]').addClass('btn btn-small');
 $('#mainform input[name="edit_local"]').removeClass('btn-primary');
