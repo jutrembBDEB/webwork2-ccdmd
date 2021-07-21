@@ -105,7 +105,7 @@ $WeBWorK::PG::ImageGenerator::TexPreamble = <<'EOF';
 \nonstopmode
 \usepackage{amsmath,amsfonts,amssymb}
 \def\gt{>}
-\def\lt{<}
+\def\lt{<}	
 \usepackage[active,textmath,displaymath]{preview}
 \begin{document}
 EOF

@@ -37,6 +37,25 @@
 <!--#if can="output_jquery_ui"-->
 	<link rel="stylesheet" type="text/css" href="<!--#url type="webwork" name="htdocs"-->/node_modules/jquery-ui-dist/jquery-ui.min.css"/>
 <!--#endif-->
+
+
+<style type="text/css" media="screen">
+.form_tags { margin-bottom: 10px; }
+
+/* Setting widget width example */
+.textboxlist { width: 400px; }
+
+/* Preloader for autocomplete */
+.textboxlist-loading { background: url('../img/spinner.gif') no-repeat 380px center; }
+			
+/* Autocomplete results styling */
+.form_friends .textboxlist-autocomplete-result { overflow: hidden; transform: scale(1); transform-origin: 0 0; }
+.form_friends .textboxlist-autocomplete-result img { float: left; padding-right: 10px; }
+			
+.note { color: #666; font-size: 90%; }
+#footer { margin: 50px; text-align: center; }
+</style>
+
 <!--#if can="output_achievement_CSS"-->
 <link rel="stylesheet" type="text/css" href="<!--#url type="webwork" name="theme"-->/achievements.css"/>
 <!--#endif-->
@@ -59,6 +78,11 @@
 	<script type="text/javascript" src="<!--#url type="webwork" name="htdocs"-->/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 <!--#endif-->
 <script type="text/javascript" src="<!--#url type="webwork" name="htdocs"-->/js/vendor/bootstrap/js/bootstrap.js"></script>
+<!--#if can="output_tabber_CSS"-->
+<script type="text/javascript">
+var tabberOptions = {manualStartup:true,'onClick':function(){alert("clicky!");}};
+</script>
+<!--#endif-->
 <!--#if can="output_JS"-->
 	<!--#output_JS-->
 <!--#endif-->
@@ -87,6 +111,22 @@
 	</div>
 	<div id="loginstatus" class="span4">
 		<!--#loginstatus-->
+	</div>
+</div>
+
+<!-- Breadcrumb -->
+<div id="breadcrumb-row" class="row-fluid">
+	<div class="span12">
+		<a href="#" class="btn" id="toggle-sidebar">
+			<span id="toggle-sidebar-icon">
+				<i class="icon fas fa-chevron-left" aria-hidden="true" data-alt="close sidebar"></i>
+			</span>
+		</a>
+		<div id="breadcrumb-navigation" role="navigation" aria-label="breadcrumb navigation">
+			<ul class="breadcrumb">
+				<!--#path style="bootstrap" text="<li><span aria-hidden='true' class='divider'>/</span></li>"-->
+			</ul>
+		</div>
 	</div>
 </div>
 
@@ -131,25 +171,13 @@
 
 <!-- Main Content Area -->
 <div id="content" class="span10" >
-	<!-- Breadcrumb -->
-	<div id="breadcrumb-row" class="row-fluid">
-	  <div class="span12">
-	    <a href="#" class="btn btn-primary btn" id="toggle-sidebar">
-			<span id="toggle-sidebar-icon">
-				<i class="icon fas fa-chevron-left" aria-hidden="true" data-alt="close sidebar"></i>
-			</span>
-	    </a>
-	    <div id="breadcrumb-navigation" role="navigation" aria-label="breadcrumb navigation">
-	      <ul class="breadcrumb">
-			<!--#path style="bootstrap" text="<li><span aria-hidden='true' class='divider'>/</span></li>"-->
-	      </ul>
-	    </div>
-	</div></div>
-	<!-- Run breadcrumb js since it gets loaded early -->
-	<script type="text/javascript"> 
-	  $('#toggle-sidebar').removeClass('btn-primary')
-	</script>
-	
+	<!--#if can="nav"-->
+	<div class="problem-nav row-fluid sticky-nav" role="navigation" aria-label="problem navigation">
+		<!-- Question Navigation, e.g.: Prev, Up, Next for homeworks -->
+		<!--#nav style="buttons" imageprefix="/webwork2_files/images/nav" imagesuffix=".gif" separator="  "-->
+	</div>
+	<!--#endif-->
+
 	<!-- Page Title -->
 	<!--#if can="title"-->
 	<div class="row-fluid"><div class="span12">
@@ -157,21 +185,10 @@
 	</div></div>
 	<!--#endif-->
 
-	<!--#if can="nav" can="message"--> 
-	<div class="row-fluid">
-	  <div id="problem-nav" class="problem-nav span7" role="navigation" aria-label="problem navigation">
-	<!-- Question Navigation, e.g.: Prev, Up, Next for homeworks -->
-	<!--#if can="nav"-->
-		<!--#nav style="buttons" imageprefix="/webwork2_files/images/nav" imagesuffix=".gif" separator="  "-->
-	<!--#endif-->
-	  </div>
-	  
-	  <div id="Message" class="Message span4 offset1">
-	    <!-- Message for the user -->
-	    <!--#if can="message"-->
-	        <!--#message-->
-	<!--#endif-->
-	  </div>
+	<!--#if can="message"--> 
+	<div id="Message" class="Message row-fluid">
+		<!-- Message for the user -->
+		<!--#message-->
 	</div>
 	<!--#endif-->
 
@@ -197,6 +214,7 @@
 		<!--#output_tag_info-->
 	</div></div>
 	<!--#endif-->
+
 	 <!--#if can="output_problem_body"--> 
 	    <!-- ==== in this case print body parts ELSE print entire body -->		<div class="row-fluid">
 		  <div id="problem_body" class="Body span12">

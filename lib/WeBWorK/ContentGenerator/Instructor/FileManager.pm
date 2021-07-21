@@ -1,6 +1,6 @@
 ################################################################################
 # WeBWorK Online Homework Delivery System
-# Copyright © 2000-2007 The WeBWorK Project, http://openwebwork.sf.net/
+# Copyright &copy; 2000-2018 The WeBWorK Project, http://openwebwork.sf.net/
 # $CVSHeader: webwork2/lib/WeBWorK/ContentGenerator/Instructor/FileManager.pm,v 1.30 2007/09/08 21:15:16 dpvc Exp $
 # 
 # This program is free software; you can redistribute it and/or modify it under
@@ -242,11 +242,13 @@ sub HiddenFlags {
 sub Refresh {
  	my $self = shift;
 	my $r = $self->r;
+	my $ce = $r->ce;
 	my $pwd = shift || $self->{pwd};
 	my $isTop = $pwd eq '.' || $pwd eq '';
 
 	my ($dirs,$dirlabels) = directoryMenu($self->{courseName},$pwd);
 	my ($files,$filelabels) = directoryListing($self->{courseRoot},$pwd,$self->getFlag('dates'));
+	my $webwork_htdocs_url = $ce->{webwork_htdocs_url};
 
 	unless ($files) {
 		$self->addbadmessage($r->maketext("The directory you specified doesn't exist"));
@@ -290,12 +292,12 @@ sub Refresh {
 		}
 		function checkArchive(files,disabled) {
 			var button = document.getElementById('MakeArchive');
-			//button.value = 'Make Archive';
+			button.value = maketext("Make Archive");
 			if (disabled) return;
-			if (!files.childNodes[files.selectedIndex].value.match(/\\.(tar|tar\\.gz|tgz)\$/)) return;
+			if (!files[files.selectedIndex].value.match(/\\.(tar|tar\\.gz|tgz)\$/)) return;
 			for (var i = files.selectedIndex+1; i < files.length; i++)
-			  {if (files.childNodes[i].selected) return}
-			button.value = 'Unpack Archive';
+			  {if (files[i].selected) return;}
+			button.value = maketext("Unpack");
 		}
 EOF
 
@@ -394,8 +396,16 @@ EOF
 	#
 	# End the table
 	# 
+	
+	# This is for translation of js files
+	my $lang = $ce->{language};
 	print CGI::end_table();
 	print CGI::script("checkFiles(); checkFile();");
+	print CGI::start_script({type=>"text/javascript"});
+	print "localize_basepath = \"$webwork_htdocs_url/js/i18n/\";";
+	print "lang = \"$lang\";";
+	print CGI::end_script();
+	print qq!<script src="$webwork_htdocs_url/js/i18n/localize.js"></script>!;
 }
 
 ##################################################
@@ -457,7 +467,7 @@ sub View {
 	my $fileManagerPage = $urlpath->newFromModule($urlpath->module, $r, courseID => $self->{courseName});
 	my $fileManagerURL  = $self->systemLink($fileManagerPage, params => {download => $filename, pwd => $pwd});
 	print CGI::div({style=>"float:right"},
-		 CGI::a({href=>$fileManagerURL},"Download"));
+		 CGI::a({href=>$fileManagerURL},$r->maketext("Download")));
 	print CGI::p(),CGI::b($name),CGI::p();
 	print CGI::hr();
 
@@ -473,7 +483,7 @@ sub View {
 		print CGI::img({src=>$fileManagerURL, border=>0});
 	} else {
 		print CGI::div({class=>"ResultsWithError"},
-			"The file $file does not appear to be a text or image file.");
+			$r->maketext("The file does not appear to be a text file."));
 	}
 }
 
@@ -516,7 +526,7 @@ sub Edit {
 		my $data = readFile($file);
 		$self->RefreshEdit($data,$filename);
 	} else {
-		$self->addbadmessage($r->maketext("The file does not appear to be a text file"));
+		$self->addbadmessage($r->maketext("The file does not appear to be a text file."));
 		$self->Refresh; 
 	}	
 	return;
@@ -578,7 +588,7 @@ sub RefreshEdit {
 	my $pwd = shift || $self->{pwd};
 	my $name = "$pwd/$file"; $name =~ s!^\./?!!;
 
-	my %button = (type=>"submit",name=>"action",style=>"width:6em");
+	my %button = (type=>"submit",name=>"action",style=>"width:8em");
 
 	print CGI::p();
 	print CGI::start_table({border=>0,cellspacing=>0,cellpadding=>2, width=>"95%", align=>"center"});
@@ -739,14 +749,14 @@ sub Delete {
 			  CGI::p({style=>"color:red"},$r->maketext("There is no undo for deleting files or directories!")),
 			  CGI::p($r->maketext("Really delete the items listed above?")),
 			  CGI::div({style=>"float:left; padding-left:3ex"},
-			    CGI::input({type=>"submit",name=>"action",value=>"Cancel"})),
+			    CGI::input({type=>"submit",name=>"action",value=>$r->maketext("Cancel")})),
 			  CGI::div({style=>"float:right; padding-right:3ex"},
-			    CGI::input({type=>"submit",name=>"action",value=>"Delete"})),
+			    CGI::input({type=>"submit",name=>"action",value=>$r->maketext("Delete")})),
 			),
 		);
 		print CGI::end_table();
 
-		print CGI::hidden({name=>"confirmed",value=>"Delete"});
+		print CGI::hidden({name=>"confirmed",value=>$r->maketext("Delete")});
 		foreach my $file (@files) {print CGI::hidden({name=>"files",value=>$file})}
 		$self->HiddenFlags;
 	}
@@ -772,7 +782,7 @@ sub MakeArchive {
 	@files = readpipe $tar." 2>&1";
 	if ($? == 0) {
 		my $n = scalar(@files); 
-		$self->addgoodmessage($r->maketext("Archive '[_1]' created successfully ([quant, _2, file])",$archive, $n));
+		$self->addgoodmessage($r->maketext("Archive '[_1]' created successfully ([quant,_2,file])",$archive, $n));
 	} else {
 		$self->addbadmessage($r->maketext("Can't create archive '[_1]': command returned [_2]",$archive,systemError($?)));
 	}
@@ -908,7 +918,7 @@ sub Upload {
 			
 			$self->Confirm($r->maketext("File <b>[_1]</b> already exists. Overwrite it, or rename it as:",$name).CGI::p(),uniqueName($dir,$name),$r->maketext("Rename"),$r->maketext("Overwrite"));
 			#$self->Confirm("File ".CGI::b($name)." already exists. Overwrite it, or rename it as:".CGI::p(),uniqueName($dir,$name),"Rename","Overwrite");
-			print CGI::hidden({name=>"action",value=>"Upload"});
+			print CGI::hidden({name=>"action",value=>$r->maketext("Upload")});
 			print CGI::hidden({name=>"file",value=>$fileIDhash});
 			return;
 		}
@@ -1174,7 +1184,10 @@ sub checkFileLocation {
 	return if $dir =~ m/^$location$/;
 	$location =~ s!/\.\*!!;
 	return if $dir =~ m/^$location$/;
-	$self->addbadmessage($r->maketext("Files with extension '.[_1]' usually belong in '[_2]'",$extension,$location));
+	$self->addbadmessage(
+		$r->maketext("Files with extension '.[_1]' usually belong in '[_2]'",$extension,$location)
+		. (($extension eq 'csv') ? $r->maketext(". If this is a class roster, rename it to have extension '.lst'") : '')
+	);
 }
 
 ##################################################

@@ -282,13 +282,13 @@ sub body {
 
 	print CGI::start_table({ border=> 1,cellpadding=>5}),"\n";
 	print CGI::Tr(
-		CGI::th({align=>'center',colspan=>3}, "Sets assigned to $userName ($editForUserID)")
+		CGI::th({align=>'center',colspan=>3}, $r->maketext("Sets assigned to [_1] ([_2])",$userName,$editForUserID))
 	),"\n";
 	print CGI::Tr(
 		CGI::th({ -align => "center"}, [
-			"Assigned",
-			"Edit set for $editForUserID",
-			"Dates",
+			$r->maketext("Assigned"),
+			$r->maketext("Edit set for [_1]",$editForUserID),
+			$r->maketext("Dates"),
 		])
 	),"\n";
 
@@ -410,20 +410,20 @@ sub checkDates {
     	 due date |$due_date|, open_date |$open_date|");
 	}
 
-	if ($answer_date < $due_date || $answer_date < $open_date) {
-		$self->addbadmessage("Answers cannot be made available until on or after the due date in set $setID!");
+	if ($answer_date < $due_date || $answer_date < $open_date) {		
+		$self->addbadmessage($r->maketext("Answers cannot be made available until on or after the due date in set [_1]!",$setID));
 		$error = 1;
 	}
 
 	if ($due_date < $open_date) {
-		$self->addbadmessage("Answers cannot be due until on or after the open date in set $setID!");
+		$self->addbadmessage($r->maketext("Answers cannot be due until on or after the open date in set [_1]!",$setID));
 		$error = 1;
 	}
 
 	if ($ce->{pg}{ansEvalDefaults}{enableReducedScoring} &&
 	    $setRecord->enable_reduced_scoring &&
 	    ($reduced_scoring_date < $open_date || $reduced_scoring_date > $due_date)) {
-    		$self->addbadmessage("The reduced scoring date should be between the open date and the due date in set $setID!");
+    		$self->addbadmessage($r->maketext("The reduced scoring date should be between the open date and due date in set [_1]!",$setID));
 		$error = 1;
 }
 
@@ -433,21 +433,21 @@ sub checkDates {
 	my $seconds_per_year = 31_556_926;
 	my $cutoff = $curr_time + $seconds_per_year*10;
 	if ($open_date > $cutoff) {
-		$self->addbadmessage("Error: open date cannot be more than 10 years from now in set $setID");
+		$self->addbadmessage($r->maketext("Error: open date cannot be more than 10 years from now in set [_1]",$setID));
 		$error = 1;
 	}
 	if ($due_date > $cutoff) {
-		$self->addbadmessage("Error: due date cannot be more than 10 years from now in set $setID");
+		$self->addbadmessage($r->maketext("Error: due date cannot be more than 10 years from now in set [_1]",$setID));
 		$error = 1;
 	}
 	if ($answer_date > $cutoff) {
-		$self->addbadmessage("Error: answer date cannot be more than 10 years from now in set $setID");
+		$self->addbadmessage($r->maketext("Error: answer date cannot be more than 10 years from now in set [_1]",$setID));
 		$error = 1;
 	}
 
 
 	if ($error) {
-		$self->addbadmessage("No date changes were saved!");
+		$self->addbadmessage($r->maketext("No date changes were saved!"));
 	}
 	return {%dates,error=>$error};
 }
@@ -532,6 +532,7 @@ sub output_JS {
 	print CGI::Link({ rel => "stylesheet",  href => "$site_url/css/jquery-ui-timepicker-addon.css" });
 	print CGI::Link({ rel => "stylesheet",  href => "$site_url/js/apps/DatePicker/datepicker.css" });
 	print CGI::script({ src => "$site_url/js/apps/DatePicker/jquery-ui-timepicker-addon.js", defer => undef }, "");
+	print CGI::script({ src => "$site_url/js/apps/DatePicker/jquery-ui-timepicker-fr.js", defer => undef }, "");	
 	print CGI::script({ src => "$site_url/js/apps/DatePicker/datepicker.js", defer => undef}, "");
 
 	return "";

@@ -244,6 +244,28 @@ sub maketext {
 #	return 'xXx'.&{$self->{maketext}}(@_).'xXx';
 	return &{$self->{maketext}}(@_);
 }
+sub parseMessage {
+    my $self = shift;
+    my $msg = shift;
+    my @vals;
+
+    my $c = 1;
+    while($msg  =~/\~\~\[(.*?)\](.*?)\~\~/g) {
+       push  @vals, $2;
+       my $var = $1;
+       $msg =~s/\~\~\[(.*?)\](.*?)\~\~/\[$var\]/;
+       $c++;
+    }
+    while($msg =~/\(\((.*?)\)\)/) {
+       #my $txtTrnslt = $self->maketext($1);
+       push @vals,$self->maketext($1);
+       my $repl = "[_".$c."]";
+       $msg =~s/\(\(.*?\)\)/$repl/;
+       $c++;
+    }
+    return ($msg,@vals);
+
+}
 sub formatAnswerRow {
 	my $self          = shift;
 	my $rh_answer     = shift;
@@ -257,6 +279,17 @@ sub formatAnswerRow {
 	
 	my $answerMessage   = $rh_answer->{ans_message}//'';
 	$answerMessage =~ s/\n/<BR>/g;
+
+        my @vals;
+        ($answerMessage,@vals) = $self->parseMessage($answerMessage);
+print STDERR "$answerMessage\n";
+        if(scalar(@vals) > 0) {
+            $answerMessage = $self->maketext($answerMessage,@vals);
+        } else {
+            $answerMessage = $self->maketext($answerMessage) if($answerMessage ne "");
+        }
+
+
 	my $answerScore      = $rh_answer->{score}//0;
 	$self->{numCorrect}  += $answerScore >=1;
 	$self->{numEssay}    += ($rh_answer->{type}//'') eq 'essay';
@@ -292,7 +325,7 @@ sub formatAnswerRow {
 			  ($self->showAttemptPreviews)?  $self->formatToolTip($answerString, $answerPreview):"" ,
 			  ($self->showAttemptResults)?   $attemptResults : '' ,
 			  ($self->showCorrectAnswers)?  $self->formatToolTip($correctAnswer,$correctAnswerPreview):"" ,
-			  ($self->showMessages)?        CGI::td({class=>$feedbackMessageClass},$self->nbsp($answerMessage)):"",
+			  ($self->showMessages)?        CGI::td({class=>$feedbackMessageClass},$self->nbsp(  $answerMessage  )):"",
 			  "\n"
 			  );
 	$row;
