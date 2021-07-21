@@ -1,0 +1,41 @@
+use strict;
+use warnings;
+
+BEGIN {
+	die "WEBWORK_ROOT not found in environment.\n"
+		unless exists $ENV{WEBWORK_ROOT};
+}
+
+my $courseID = $ARGV[0];
+my @user_id = @ARGV[1..$#ARGV];
+
+usage("must specify a courseID.") unless $courseID;
+usage("must specify a least one user_id.") unless $#user_id>=0;
+
+sub usage {
+  my $error = shift;
+  print STDERR "$0 : $error\n"; 
+  print STDERR "usage: $0 courseID array of user_id1 user_id2 etc.\n";
+  exit;
+}
+
+
+eval qq{
+  use lib "$ENV{WEBWORK_ROOT}/lib";
+  use WeBWorK::CourseEnvironment;
+  use WeBWorK::DB;
+}; die $@ if $@;
+
+
+my $ce = WeBWorK::CourseEnvironment->new({
+	webwork_dir => $ENV{WEBWORK_ROOT},
+	courseName => $courseID
+});
+
+foreach my $user_id (@user_id) {
+
+my $db = new WeBWorK::DB($ce->{dbLayout});
+warn("Error: $user_id does not exist!") unless $db->existsUser($user_id);
+
+$db->deleteUser($user_id);
+}
