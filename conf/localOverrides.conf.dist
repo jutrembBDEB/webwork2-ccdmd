@@ -70,9 +70,9 @@ $mail{feedbackRecipients}    = [
 #$enableGitUpgradeNotifier = 1;
 
 #$gitWeBWorKRemoteName = "origin";
-#$gitWeBWorKBranchName = "master";
+#$gitWeBWorKBranchName = "main";
 #$gitPGRemoteName = "origin";
-#$gitPGBranchName = "master";
+#$gitPGBranchName = "main";
 #$gitLibraryRemoteName = "origin";
 #$gitLibraryBranchName = "master";
 
@@ -82,6 +82,11 @@ $mail{feedbackRecipients}    = [
 
 #$defaultTheme = "math4";
 #$defaultThemeTemplate = "system";
+
+# The institution logo should be an image file in the theme's images folder
+#$institutionLogo = 'my_school_logo.png';
+#$institutionURL  = 'http://www.myschool.edu';
+#$institutionName = 'My University';
 
 ################################################################################
 # Language
