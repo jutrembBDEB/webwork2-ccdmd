@@ -573,7 +573,7 @@ function settabprops(i) {
     var c = 'tabber';
     //setCookie(c, i);
 
-    f_reset(i);
+    //f_reset(i);
 
     setBrowseWhich(i);
 

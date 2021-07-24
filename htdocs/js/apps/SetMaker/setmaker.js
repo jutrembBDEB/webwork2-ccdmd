@@ -209,7 +209,8 @@
 
 	       $(".showResultsMenu").hide().css("visibility", "hidden");
 	       $('#showResults').hide().css("visibility", "hidden");
-	       $(".lb-problem-header").css("display", "none");
+		$(".well").css("display", "none");
+	       $(".psr_render_area").css("display", "none");
 	       $(".RenderSolo").css("display", "none");
 	       $(".lb-mlt-group").css("visibility", "hidden");
 	       $(".AuthorComment").css("display", "none");
@@ -230,6 +231,32 @@
 		} else {
 			$('a:contains('+maketext('Hint')+')').hide();
 		}
+	}
+	
+	function setBrowseWhich(i) {
+		if(i == 0)
+			document.getElementsByName('bbrowse_which')[0].value = 'browse_bpl_library';
+		if(i == 1)
+			document.getElementsByName('bbrowse_which')[0].value = 'browse_bplen_library';
+		if(i == 2)
+			document.getElementsByName('bbrowse_which')[0].value = 'browse_npl_library';
+		if(i == 3)
+			document.getElementsByName('bbrowse_which')[0].value = 'browse_local';
+		if(i == 4)
+			document.getElementsByName('bbrowse_which')[0].value = 'browse_mysets';
+		if(i == 5)
+			document.getElementsByName('bbrowse_which')[0].value = 'browse_setdefs';
+		if(i == 6)
+			document.getElementsByName('bbrowse_which')[0].value  = 'browse_spcf_library';
+		document.getElementsByName('lib_deftab')[0].value = i;
+		return;
+
+	}
+	
+	function settabprops(i) {
+		f_reset(i);
+		setBrowseWhich(i);
+		return;
 	}
 
 	// Messaging
@@ -1338,4 +1365,7 @@
 	$("select[name=local_sets]").on("change", markinset);
 	$("span[name=dont_show]").click(function() { delrow($(this).data('row-cnt')); });
 	$(".lb-mlt-parent").click(function() { togglemlt($(this).data('mlt-cnt'), $(this).data('mlt-noshow-class')); });
+	$("select[name=library_lib]").on("change", function() { dir_update('dir', 'get'); });
+	$("select[name=library_dir]").on("change", function() { dir_update('subdir', 'get'); });
+	$("select[name=library_subdir]").on("change", function() { dir_update('count', 'clear'); });
 })();

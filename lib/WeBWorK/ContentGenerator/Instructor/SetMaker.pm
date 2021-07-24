@@ -684,8 +684,8 @@ sub browse_library_panel1 {
 				CGI::td([$r->maketext("Chapter"),
 					CGI::popup_menu(-name=> 'library_chapters', 
 					                -values=>\@chaps,
-					                -default=> $chapter_selected,
-					                -onchange=>"lib_update('sections', 'get');return true"
+					                -default=> $chapter_selected
+					               # -onchange=>"lib_update('sections', 'get');return true"
 					),
 					CGI::submit(-name=>"lib_select_chapter", -value=>"Update Section List")])),
 			CGI::Tr({},
@@ -737,8 +737,8 @@ sub browse_library_panel2 {
 			CGI::td([$r->maketext("Subject"),
 				CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,
-					            -default=> $subject_selected,
-					            -onchange=>"lib_update('chapters', 'get');return true"
+					            -default=> $subject_selected
+					     #       -onchange=>"lib_update('chapters', 'get');return true"
 				)]),
 #			CGI::td({-colspan=>2, -align=>"right"},
 #				CGI::submit(-name=>"lib_select_subject", -value=>"Update Chapter/Section Lists"))
@@ -749,16 +749,16 @@ sub browse_library_panel2 {
 			CGI::td([$r->maketext("Chapter"),
 				CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
-					            -default=> $chapter_selected,
-					            -onchange=>"lib_update('sections', 'get');return true"
+					            -default=> $chapter_selected
+					      #      -onchange=>"lib_update('sections', 'get');return true"
 		    )]),
 		),
 		CGI::Tr({},
 			CGI::td([$r->maketext("Section"),
 			CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
-					        -default=> $section_selected,
-						-onchange=>"lib_update('count', 'clear');return true"
+					        -default=> $section_selected
+					#	-onchange=>"lib_update('count', 'clear');return true"
 		    )]),
 		 ),
 		 CGI::Tr(CGI::td({-colspan=>3}, $view_problem_line)),
@@ -848,7 +848,7 @@ sub browse_library_panel2t {
 		my $selected = '';
 		$selected = ' checked' if(defined($selected_levels{$j}));
 		$mylevelline .= "<td><label><input type='checkbox' name='level' value='$j' ";
-		$mylevelline .= q/onchange="lib_update('count', 'clear');return true" /;
+	#	$mylevelline .= q/onchange="lib_update('count', 'clear');return true" /;
 		$mylevelline .= "$selected />$j</label></td>";
 	}
 	$mylevelline .= "<td>".$self->helpMacro("Levels")."</td>";
@@ -873,24 +873,27 @@ sub browse_library_panel2t {
 	           CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,
                                                     -style=>"width:800px;",
-					            -default=> $subject_selected,
-					            -onchange=>"lib_update('chapters', 'get');return true")),
+					            -default=> $subject_selected
+					   #         -onchange=>"lib_update('chapters', 'get');return true"
+					   )),
                   ),
 		CGI::Tr({},
 			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Chapter")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
                                                     -style=>"width:800px;",
-					            -default=> $chapter_selected,
-					            -onchange=>"lib_update('sections', 'get');return true"))
+					            -default=> $chapter_selected
+					  #          -onchange=>"lib_update('sections', 'get');return true"
+					  )),
 		),
 		CGI::Tr({},
 			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Section")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
                                                 -style=>"width:800px;",
-					        -default=> $section_selected,
-						-onchange=>"lib_update('count', 'clear');return true")),
+					        -default=> $section_selected
+					#	-onchange=>"lib_update('count', 'clear');return true"
+					)),
 		 ),
 
                  CGI::Tr({-class=>'opladvsrch'},
@@ -1205,7 +1208,7 @@ sub browse_library_panel2adv {
 		my $selected = '';
 		$selected = ' checked' if(defined($selected_levels{$j}));
 		$mylevelline .= "<td><label><input type='checkbox' name='level' value='$j' ";
-		$mylevelline .= q/onchange="lib_update('count', 'clear');return true" /;
+		#$mylevelline .= q/onchange="lib_update('count', 'clear');return true" /;
 		$mylevelline .= "$selected />$j</label></td>";
 	}
 	$mylevelline .= "<td>".$self->helpMacro("Levels")."</td>";
@@ -1221,8 +1224,8 @@ sub browse_library_panel2adv {
 			CGI::td([$r->maketext("Subject"),
 				CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,	
-					            -default=> $selected{dbsubject},
-					            -onchange=>"lib_update('chapters', 'get');return true"
+					            -default=> $selected{dbsubject}
+					       #     -onchange=>"lib_update('chapters', 'get');return true"
 				)]),
 			CGI::td({-colspan=>2, -align=>"right"},
 				CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),
@@ -1231,8 +1234,8 @@ sub browse_library_panel2adv {
 			CGI::td([$r->maketext("Chapter"),
 				CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
-					            -default=> $selected{dbchapter},
-					            -onchange=>"lib_update('sections', 'get');return true"
+					            -default=> $selected{dbchapter}
+					     #       -onchange=>"lib_update('sections', 'get');return true"
 		    )]),
 			CGI::td({-colspan=>2, -align=>"right"},
 					CGI::submit(-name=>"library_reset", -value=>$r->maketext("Reset"),
@@ -1242,8 +1245,8 @@ sub browse_library_panel2adv {
 			CGI::td([$r->maketext("Section"),
 			CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
-					        -default=> $selected{dbsection},
-							-onchange=>"lib_update('count', 'clear');return true"
+					        -default=> $selected{dbsection}
+						#	-onchange=>"lib_update('count', 'clear');return true"
 		    )]),
 			CGI::td({-colspan=>2, -align=>"right"},
 					CGI::submit(-name=>"library_basic", -value=>$r->maketext("Basic Search"),
@@ -1328,20 +1331,20 @@ sub browse_specific_panel {
 	my $view_problem_line = view_problems_line_bpl('lib_view_spcf', $r->maketext('View Problems'),undef, $self->r);
 	my $popupetc = CGI::popup_menu(-name=> 'library_lib',
                                 -values=>\@libs,
-				-onchange=>"dir_update('dir','get');return true",
-                                -default=> $library_selected,
+		#		-onchange=>"dir_update('dir','get');return true",
+                                -default=> $library_selected
                                 ).
 		CGI::hidden(-name=>"library_topdir", -default=>$topdir,-override=>1,-value=>$topdir).
 		CGI::br();
 
 	my $popupetc2 = CGI::popup_menu(-name=> 'library_dir',
                                 -values=>\@list_of_reps,
-				-onchange=>"dir_update('subdir','get');return true",
+		#		-onchange=>"dir_update('subdir','get');return true",
                                 -default=> $dir_selected).
 		CGI::br();
 	my $popupetc3 = CGI::popup_menu(-name=> 'library_subdir',
                                 -values=>\@list_of_sub_reps,
-				-onchange=>"dir_update('count','clear');return true",
+		#		-onchange=>"dir_update('count','clear');return true",
                                 -default=> $subdir_selected).
 		CGI::br().CGI::br().  $view_problem_line;
 
@@ -1410,20 +1413,20 @@ sub browse_specific_panelt {
 
 	my $popupetc = CGI::popup_menu(-name=> 'library_lib',
                                 -values=>\@libs,
-				-onchange=>"dir_update('dir','get');return true",
-                                -default=> $library_selected,
+	#			-onchange=>"dir_update('dir','get');return true",
+                                -default=> $library_selected
                                 ).
 		CGI::hidden(-name=>"library_topdir", -default=>$topdir,-override=>1,-value=>$topdir).
 		CGI::br();
 
 	my $popupetc2 = CGI::popup_menu(-name=> 'library_dir',
                                 -values=>\@list_of_reps,
-				-onchange=>"dir_update('subdir','get');return true",
+	#			-onchange=>"dir_update('subdir','get');return true",
                                 -default=> $dir_selected).
 		CGI::br();
 	my $popupetc3 = CGI::popup_menu(-name=> 'library_subdir',
                                 -values=>\@list_of_sub_reps,
-				-onchange=>"dir_update('count','clear');return true",
+	#			-onchange=>"dir_update('count','clear');return true",
                                 -default=> $subdir_selected).
                 CGI::br();
         my $popupetc4 =  $view_problem_line;
@@ -1586,7 +1589,7 @@ sub make_top_row {
                                     CGI::popup_menu(-name=> 'local_sets',
                                                 -values=>$list_of_local_sets,
                                                 -default=> $set_selected,
-                                                -onchange=> "return markinset()",
+                                           #     -onchange=> "return markinset()",
                                                 -override=>1).
                                     CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"),-onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);" )
                                   ])     ),
@@ -1697,7 +1700,7 @@ sub make_top_row {
                 
 
 		$show_hide_path_button .= CGI::button(-name=>"select_all", -style=>"width:29ex",
-                                                       -onClick=>"return addme(\"\", \'all\', \"$stringalert\" )",
+                                                     #  -onClick=>"return addme(\"\", \'all\', \"$stringalert\" )",
 			                               -value=>$r->maketext("Add All"));
 		$show_hide_path_button .= $displayMax;
 		$show_hide_path_button .= "<input type=\"checkbox\" id=\"showHintt\" name=\"showHintt\" value=\"on\" onclick=\"toggleHint(\$(this));\" $chk_hintt />".$r->maketext("Hints")."&nbsp;<input type=\"checkbox\" id=\"showSolutiont\" name=\"showSolutiont\" value=\"on\" onclick=\"toggleSolution(\$(this));\" $chk_solnt />".$r->maketext("Solutions")."&nbsp;";
@@ -2627,7 +2630,7 @@ sub body {
 			" ".$r->maketext("shown").".", $prev_button, " ", $next_button,
 		);
 		print "</div>";
-		print CGI::p($r->maketext('Some problems shown above represent multiple similar problems from the database.  If the (top) information line for a problem has a letter M for "More", hover your mouse over the M  to see how many similar problems are hidden, or click on the M to see the problems.  If you click to view these problems, the M becomes an L, which can be clicked on to hide the problems again.'));
+		#print CGI::p($r->maketext('Some problems shown above represent multiple similar problems from the database.  If the (top) information line for a problem has a letter M for "More", hover your mouse over the M  to see how many similar problems are hidden, or click on the M to see the problems.  If you click to view these problems, the M becomes an L, which can be clicked on to hide the problems again.'));
 	}
 	#	 }
 	print CGI::end_form(), "\n";
@@ -2662,7 +2665,8 @@ sub output_JS {
 	print qq!<script src="$webwork_htdocs_url/js/apps/ImageView/imageview.js"></script>!;
 	print CGI::script({ src => "$webwork_htdocs_url/node_modules/iframe-resizer/js/iframeResizer.min.js" }, "");
 	print CGI::script({ src => "$webwork_htdocs_url/js/apps/SetMaker/setmaker.js", defer => "" }, "");
-	print CGI::start_script({type=>"text/javascript", src=>"$webwork_htdocs_url/js/legacy/vendor/tabbert.js"}), CGI::end_script();
+	print qq!<script src="$webwork_htdocs_url/js/legacy/vendor/tabbert.js"></script>!;
+#	print CGI::start_script({type=>"text/javascript", src=>"$webwork_htdocs_url/js/legacy/vendor/tabbert.js"}), CGI::end_script();
 	if ($self->r->authz->hasPermissions(scalar($self->r->param('user')), "modify_tags")) {
 		my $site_url = $ce->{webworkURLs}->{htdocs};
 		print qq!<script src="$site_url/js/apps/TagWidget/tagwidget.js"></script>!;
