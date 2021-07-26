@@ -620,12 +620,10 @@
 		if(dirind == 0) { dir = '';};
 		if(subdirind == 0) { subdir = '';};
 
-		topdir = topdir+'/'+lib+'/'+dir+'/'+subdir;
-
 		mydefaultRequestObject.library_topdir = topdir;
-		//mydefaultRequestObject.library_lib = lib;
-		//mydefaultRequestObject.library_dir = dir;
-		//mydefaultRequestObject.library_subdir = subdir;
+		mydefaultRequestObject.library_lib = lib;
+		mydefaultRequestObject.library_dir = dir;
+		mydefaultRequestObject.library_subdir = subdir;
 		if(who == 'dir' && what == 'get' && $('[name="library_lib"] option:selected').index() > 0) {
 			$("#lib_view_spcf").removeAttr("disabled");
 		} else {
@@ -647,7 +645,7 @@
 					}
 
 					var response = $.parseJSON(data);
-					// console.log(response);
+					//console.log(response);
 					var arr = response.result_data;
 					arr = arr[0];
 					var line = maketext("There are") + " " + arr + " " + maketext("matching WeBWorK problems")
@@ -692,7 +690,7 @@
 				}
 
 				var response = $.parseJSON(data);
-				// console.log(response);
+				//console.log(response);
 				var arr = response.result_data;
 				arr.splice(0,0,all);
 				setselect('library_'+who, arr);

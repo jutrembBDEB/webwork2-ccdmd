@@ -1312,10 +1312,7 @@ sub getDirListings {
     my $amcounter = shift;
     my $topdir = $r->param('library_topdir');
     my $libraryRoot = $topdir; #$r->param('library_dir')."/".$r->param('library_subdir');
-    my $topdir .= "/".$r->param('library_lib') if($r->param('library_lib') ne $r->maketext("Select Library"));
-
-
-
+    
     $libraryRoot = $libraryRoot."/".$r->param('library_lib') if($r->param('library_lib') ne $r->maketext("Select Library"));
     $libraryRoot = $libraryRoot."/".$r->param('library_dir') if($r->param('library_dir') ne $r->maketext("All Directories"));
     $libraryRoot = $libraryRoot."/".$r->param('library_subdir') if($r->param('library_subdir') ne $r->maketext("All Subdirectories"));
@@ -1479,12 +1476,15 @@ sub getAllDirs {
     my $r = shift;
     my $lib = $r->param('library_lib');
     my $topdir = $r->param('library_topdir');
+    my $dir = $r->param('library_dir');
+    my $subdir = $r->param('library_subdir');
     my @dirs = ();
 
-    my @lis = eval { readDirectory($topdir) };
+    my $path = $topdir.'/'.$lib.'/'.$dir;
+    my @lis = eval { readDirectory($path) };
     foreach (sort @lis) {
      next if /^\.+/;
-     if(-d "$topdir/$_") {
+     if(-d "$path/$_") {
        push @dirs, $_ ;
      }
     }
