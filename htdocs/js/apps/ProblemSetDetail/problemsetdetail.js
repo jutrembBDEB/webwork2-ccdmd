@@ -177,7 +177,8 @@
 		set_prob_num_fields();
 	});
 
-	var basicWebserviceURL = "/webwork2/html2xml";
+	var language = $('#hidden_language').val();
+	var basicWebserviceURL = "/webwork2/html2xml?&language=" + language;
 
 	// Render all problems on page load if requested.
 	if ($('#auto_render').is(':checked')) {

@@ -1200,7 +1200,8 @@
 		return true;
 	}
 
-	var basicRendererURL = "/webwork2/html2xml";
+	var language = $('#hidden_language').val();
+	var basicRendererURL = "/webwork2/html2xml?&language=" + language;
 
 	async function render(id) {
 		return new Promise(function(resolve, reject) {
