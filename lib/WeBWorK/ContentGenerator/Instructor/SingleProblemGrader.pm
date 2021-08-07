@@ -174,7 +174,7 @@ sub insertGrader {
 						data_version_id => $self->{version_id},
 						data_problem_id => $self->{problem_id},
 						data_past_answer_id => $self->{past_answer_id},
-						value => "Save" }),
+						value => $self->maketext("Save") }),
 				CGI::div({ id => "grader_messages_problem$self->{problem_id}" , class => "problem-grader-message" } , "")])
 	);
 	print CGI::end_table();

@@ -249,7 +249,7 @@ msgstr "1 étudiant"
 #. (wwRound(2, $weights[$part] * 100)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SingleProblemGrader.pm:124
 msgid "<b>Weight:</b> %1%"
-msgstr ""
+msgstr "<b>Pond.:</b> %1%"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:240
 msgid ""
@@ -915,7 +915,7 @@ msgstr ""
 #. ($part + 1)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SingleProblemGrader.pm:103
 msgid "Answer %1 Score (%):"
-msgstr "Résultat Réponse %1 (%)"
+msgstr "Note de la réponse %1 (%)"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:479
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:783
@@ -2308,7 +2308,7 @@ msgid "Edit Target Set"
 msgstr "Modifier ce devoir"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UserList.pm:849
-msgid "Edit Which Users?"
+msgid "Edit which users?"
 msgstr "Sélectionner les utilisateurs à modifier "
 
 #. ($user)
@@ -4470,11 +4470,11 @@ msgstr "Numéro du problème"
 #: /opt/webwork/webwork2/lib/WeBWorK/AchievementItems.pm:710
 #: /opt/webwork/webwork2/lib/WeBWorK/AchievementItems.pm:823
 msgid "Problem Number "
-msgstr "Numéro du problème"
+msgstr "Numéro du problème "
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SingleProblemGrader.pm:132
 msgid "Problem Score (%):"
-msgstr "Résultat Problème (%)"
+msgstr "Note totale (%)"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/PGProblemEditor.pm:490
 msgid "Problem Techniques"
@@ -4490,7 +4490,7 @@ msgstr "Ce problème est tiré d'un regroupement de plusieurs problèmes."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Problem.pm:1507
 msgid "ProblemGrader"
-msgstr "Évaluation de Problème"
+msgstr "Pondération du problème"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Grades.pm:465
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:2323
@@ -4930,7 +4930,7 @@ msgstr "ID ÉTUDIANT"
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemGrader.pm:385
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SendMail.pm:781
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UsersAssignedToSet.pm:209
-msgid "Save"
+msgid "Save" 
 msgstr "Enregistrer"
 
 #. (CGI::b($self->shortPath($self->{sourceFilePath})
