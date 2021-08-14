@@ -40,9 +40,6 @@
 	      $("#lib_view_spcf").attr("disabled","disabled");
 	   }
 
-	   $('a:contains("'+maketext('Solution')+'")').hide();
-	   $('a:contains("'+maketext('Hint')+'")').hide();
-
 	   $("#blibrary_subjects").change ( function() {
 
 	       blib_update('chapters', 'get');
@@ -105,39 +102,34 @@
 	       return false;
 	  });
 
-	  if($("input[name='showSolutiont']").is(':checked') ) {
-	      $('a:contains("'+maketext('Solution')+'")').show();
-	  } else {
-	      $('a:contains("'+maketext('Solution')+'")').hide();
-	  }
-	  if($("input[name='showHintt']").is(':checked')) {
-	      $('a:contains("'+maketext('Hint')+'")').show();
-	  } else {
-	      $('a:contains("'+maketext('Hint')+'")').hide();
-	  }
-
-
 	  //OPL Advanced search handle
 	  $("#library_advanced").click(function (event) {
-	        var txt = $(this).val();
-	        if(txt == maketext('Basic Search')) {
+	        adv = $('[name="library_adv_btn"]').val();
+	        if(adv == 2) {
 	            $(this).val(maketext('Advanced Search'));
-	            $('[name="library_adv_btn"]').val('');
+	            $('[name="library_adv_btn"]').val('1');
 	            //change index
 	            $('[name="library_textbook"]').prop("selectedIndex",0);
-	            $('[name="library_textbook"]').trigger( "change" );
-
-	            //lib_update('count','clear');
+	            $('#opladv tr.opladvsrch').toggle(false);
+	            $('#opladv span.opladvsrch').toggle(false);
+	            lib_update('count','clear');
 	        } else {
-	            $('[name="library_adv_btn"]').val('1');
+	            $('[name="library_adv_btn"]').val('2');
 	            $(this).val(maketext('Basic Search'));
+	            $('#opladv tr.opladvsrch').toggle(true);
+	            $('#opladv span.opladvsrch').toggle(true);
 	        }
-	        $('#opladv tr.opladvsrch').toggle();
-	        $('#opladv td.opladvsrch').toggle();
-	        $('#opladv span.opladvsrch').toggle();
 	        event.preventDefault();
 	   });
-
+	   
+	   $('.nav-tabs a').on('show.bs.tab', function(e) {
+	   	localStorage.setItem('activeTab', $(e.target).attr('href'));
+	   	k = $(e.target).closest('li').index();
+	   	$('[name="lib_deftab"]').val(k);
+	   	setBrowseWhich(k);
+	   	toggleAdvSrch();
+	   	f_reset(k);
+	   });  
 	});
 
 	function f_tags(arr) {
@@ -167,21 +159,21 @@
 	function f_reset(v) {
 	       nomsg();
      
-	       $('#showHintt').prop('checked', false);
-	       $('#showSolutiont').prop('checked', false);
+	       $('[name="showHints"]').prop('checked', 0);
+	       $('[name="showSolutions"]').prop('checked', 0);
 	       $('#max_shownt').prop("selectedIndex",20);
 
 	       $('[name="library_subjects"]').prop("selectedIndex",0);
 	       lib_update('chapters', 'clear');
 	       lib_update('count', 'clear' );
+	       $('[name="library_textbook"]').prop("selectedIndex",0);
+	       $('[name="library_textchapter"]').prop("selectedIndex",0);
+	       $('[name="library_textsection"]').prop("selectedIndex",0);
 	       $('[name="llibrary_sets"]').prop("selectedIndex",0);
 	       $('[name="mlibrary_sets"]').prop("selectedIndex",0);
 	       $('[name="slibrary_sets"]').prop("selectedIndex",0);
        
-	       if(v > 0 && v < 5) {
-	          $('#showHints_'+v).attr('checked', false);
-	          $('#showSolutions_'+v).attr('checked', false);
-	       }
+	       if(v != 2) {$('[name="library_adv_btn"]').val(1);}
 
 	       $('[name="blibrary_subjects"]').prop("selectedIndex",0);
 	       blib_update('chapters', 'clear');
@@ -217,22 +209,6 @@
 	       $('#showResultsEnd').hide().css("visibility", "hidden");
 	}
 
-	function toggleSolution(t) {
-		if (t.is(':checked')) {
-			$('a:contains('+maketext('Solution')+')').show();
-		} else {
-			$('a:contains('+maketext('Solution')+')').hide();
-		}
-	}
-
-	function toggleHint(t) {
-		if (t.is(':checked')) {
-			$('a:contains('+maketext('Hint')+')').show();
-		} else {
-			$('a:contains('+maketext('Hint')+')').hide();
-		}
-	}
-	
 	function setBrowseWhich(i) {
 		if(i == 0)
 			document.getElementsByName('bbrowse_which')[0].value = 'browse_bpl_library';
@@ -248,17 +224,22 @@
 			document.getElementsByName('bbrowse_which')[0].value = 'browse_setdefs';
 		if(i == 6)
 			document.getElementsByName('bbrowse_which')[0].value  = 'browse_spcf_library';
-		document.getElementsByName('lib_deftab')[0].value = i;
 		return;
-
 	}
 	
-	function settabprops(i) {
-		f_reset(i);
-		setBrowseWhich(i);
-		return;
+	function toggleAdvSrch() {
+		var advbt = $('[name="library_adv_btn"]').val();
+		if(advbt == 2) {
+			$("#library_advanced").val(maketext('Basic Search'));
+			$('#opladv tr.opladvsrch').toggle(true);
+			$('#opladv span.opladvsrch').toggle(true);
+		} else {
+			$("#library_advanced").val(maketext('Advanced Search'));
+			$('#opladv tr.opladvsrch').toggle(false);
+			$('#opladv span.opladvsrch').toggle(false);
+		}
 	}
-
+	
 	// Messaging
 
 	function nomsg() {
@@ -1010,8 +991,9 @@
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 
-	function addme(path, who, selectsetstring) {
+	function addme(path, who) {
 		nomsg();
+		var selectsetstring = maketext("Select a Set from this Course");
 		var target = $('[name="local_sets"] option:selected').val();
 		if(target == selectsetstring) {
 			alert(maketext("You need to pick a target set above so we know what set to which we should add this problem."));
@@ -1069,7 +1051,7 @@
 				timeout: 100000, //milliseconds
 				success: addemcallback(wsURL, ro2, probarray, count+1),
 				error: function (data) {
-					alert('1048 setmaker.js: '+wsURL+': '+data.statusText);
+					alert('1088 setmaker.js: '+wsURL+': '+data.statusText);
 				},
 			});
 
@@ -1344,7 +1326,7 @@
 
 	// Add the loading message to all render areas.
 	for (var renderArea of renderAreas) {
-		$(renderArea).html('Loading Please Wait...');
+		$(renderArea).html(maketext('Loading Please Wait...'));
 	}
 
 	// Render all visible problems on the page
@@ -1367,4 +1349,12 @@
 	$("select[name=library_lib]").on("change", function() { dir_update('dir', 'get'); });
 	$("select[name=library_dir]").on("change", function() { dir_update('subdir', 'get'); });
 	$("select[name=library_subdir]").on("change", function() { dir_update('count', 'clear'); });
+	
+	$("input[name=lib_view_bpl]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
+	$("input[name=lib_view_bplen]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
+	$("input[name=lib_view]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
+	$("input[name=view_local_set]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
+	$("input[name=view_mysets_set]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
+	$("input[name=view_setdef_set]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
+	$("input[name=lib_view_spcf]").click(function() { setBrowseWhich($('[name="lib_deftab"]').val()); });
 })();

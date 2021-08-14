@@ -499,7 +499,7 @@ sub DBFieldTable {
 							value => $userValue ? $self->formatDateTime($userValue,'','%m/%d/%Y at %I:%M%P') : "",
 							onchange => "\$('input[id=\"$recordType.$recordID.$field.override_id\"]').prop('checked', this.value != '')",
 							onkeyup => "\$('input[id=\"$recordType.$recordID.$field.override_id\"]').prop('checked', this.value != '')",
-							placeholder => x("None Specified"),
+							placeholder => $r->maketext("None Specified"),
 							onblur => "if (this.value == '') \$('input[id=\"$recordType.$recordID.$field.override_id\"]').prop('checked',false);",
 							size => 25,
 							class => $field eq "open_date" ? "datepicker-group" : "",

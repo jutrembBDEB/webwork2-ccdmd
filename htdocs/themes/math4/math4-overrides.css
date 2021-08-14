@@ -540,11 +540,15 @@ ul.courses-list a:hover {
 .lb-problem-header {
 	margin-top:20px;
 }
-/*.lb-problem-path {
-	color:#0199C1;
-}*/
+.lb-problem-path {
+	font-size:14px;
+}
 .lb-problem-icons {
 	font-size:16px;
+}
+
+.lb-inset {
+	font-size:14px;
 }
 
 div.RenderSolo { 

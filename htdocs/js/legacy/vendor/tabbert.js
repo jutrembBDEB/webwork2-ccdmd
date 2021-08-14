@@ -289,14 +289,14 @@ tabberObj.prototype.init = function(e)
 
   /* Activate the default tab, and do not call the onclick handler */
 
-  this.cookie = 'tabber';
-  var i = parseInt(getCookie(this.cookie));
-  if (!isNaN(i)) { 
-       defaultTab = i; 
-       setBrowseWhich(i);
-       setCookie('tabber', 0);
+  //this.cookie = 'tabber';
+  //var i = parseInt(getCookie(this.cookie));
+  //if (!isNaN(i)) { 
+  //     defaultTab = i; 
+  //     setBrowseWhich(i);
+  //     setCookie('tabber', 0);
 
-  }
+  //}
 
   this.tabShow(defaultTab);
   toggleAdvSrch();
@@ -358,7 +358,7 @@ tabberObj.prototype.navClick = function(event)
     if (rVal === false) { return false; }
   }
 
-  settabprops(tabberIndex);
+  //settabprops(tabberIndex);
 
 
 
@@ -582,60 +582,60 @@ function settabprops(i) {
 }
 
 
-function setCookie(name, value, expires, path, domain, secure) {
-    document.cookie= name + "=" + escape(value) +
-        ((expires) ? "; expires=" + expires.toGMTString() : "") +
-        ((path) ? "; path=" + path : "") +
-        ((domain) ? "; domain=" + domain : "") +
-        ((secure) ? "; secure" : "");
-}
+//function setCookie(name, value, expires, path, domain, secure) {
+//    document.cookie= name + "=" + escape(value) +
+//        ((expires) ? "; expires=" + expires.toGMTString() : "") +
+//        ((path) ? "; path=" + path : "") +
+//        ((domain) ? "; domain=" + domain : "") +
+//        ((secure) ? "; secure" : "");
+//}
 
-function getCookie(name) {
-    var dc = document.cookie;
-    var prefix = name + "=";
-    var begin = dc.indexOf("; " + prefix);
-    if (begin == -1) {
-        begin = dc.indexOf(prefix);
-        if (begin != 0) return null;
-    } else {
-        begin += 2;
-    }
-    var end = document.cookie.indexOf(";", begin);
-    if (end == -1) {
-        end = dc.length;
-    }
-    return unescape(dc.substring(begin + prefix.length, end));
-}
-function deleteCookie(name, path, domain) {
-    if (getCookie(name)) {
-        document.cookie = name + "=" +
-            ((path) ? "; path=" + path : "") +
-            ((domain) ? "; domain=" + domain : "") +
-            "; expires=Thu, 01-Jan-70 00:00:01 GMT";
-    }
-}
+//function getCookie(name) {
+//    var dc = document.cookie;
+//    var prefix = name + "=";
+//    var begin = dc.indexOf("; " + prefix);
+//    if (begin == -1) {
+//        begin = dc.indexOf(prefix);
+//        if (begin != 0) return null;
+//    } else {
+//        begin += 2;
+//    }
+//    var end = document.cookie.indexOf(";", begin);
+//    if (end == -1) {
+//        end = dc.length;
+//    }
+//    return unescape(dc.substring(begin + prefix.length, end));
+//}
+//function deleteCookie(name, path, domain) {
+//    if (getCookie(name)) {
+ //       document.cookie = name + "=" +
+ //           ((path) ? "; path=" + path : "") +
+//            ((domain) ? "; domain=" + domain : "") +
+//            "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+//    }
+//}
 
-function setBrowseWhich(i) {
+//function setBrowseWhich(i) {
 
-    if(i == 0)
-      document.getElementsByName('bbrowse_which')[0].value = 'browse_bpl_library';
-    if(i == 1)
-      document.getElementsByName('bbrowse_which')[0].value = 'browse_bplen_library';
-    if(i == 2)
-      document.getElementsByName('bbrowse_which')[0].value = 'browse_npl_library';
-    if(i == 3)
-      document.getElementsByName('bbrowse_which')[0].value = 'browse_local';
-    if(i == 4)
-      document.getElementsByName('bbrowse_which')[0].value = 'browse_mysets';
-    if(i == 5)
-      document.getElementsByName('bbrowse_which')[0].value = 'browse_setdefs';
-    if(i == 6)
-      document.getElementsByName('bbrowse_which')[0].value  = 'browse_spcf_library';
+//    if(i == 0)
+//      document.getElementsByName('bbrowse_which')[0].value = 'browse_bpl_library';
+//    if(i == 1)
+//      document.getElementsByName('bbrowse_which')[0].value = 'browse_bplen_library';
+//    if(i == 2)
+ //     document.getElementsByName('bbrowse_which')[0].value = 'browse_npl_library';
+ //   if(i == 3)
+ //     document.getElementsByName('bbrowse_which')[0].value = 'browse_local';
+  //  if(i == 4)
+  //    document.getElementsByName('bbrowse_which')[0].value = 'browse_mysets';
+  //  if(i == 5)
+  //    document.getElementsByName('bbrowse_which')[0].value = 'browse_setdefs';
+  //  if(i == 6)
+  //    document.getElementsByName('bbrowse_which')[0].value  = 'browse_spcf_library';
 
-    document.getElementsByName('lib_deftab')[0].value = i;
-    return;
+//    document.getElementsByName('lib_deftab')[0].value = i;
+//    return;
 
-}
+//}
 function toggleAdvSrch() {
   var advbt = $('[name="library_adv_btn"]').val();
   if(advbt == 1) {

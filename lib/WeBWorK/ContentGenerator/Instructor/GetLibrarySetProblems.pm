@@ -631,7 +631,7 @@ sub pre_header_initialize {
 					$selfassign = "" if($selfassign =~ /false/i); # deal with javascript false
 					if($selfassign) {
 						$self->assignSetToUser($userName, $newSetRecord);
-						$self->addgoodmessage("Set $newSetName was assigned to $userName.");
+						$self->addgoodmessage($r->maketext("Set [_1] was assigned to [_2].", $newSetName, $userName));
 					}
 				}
 			}

@@ -27,6 +27,7 @@ var translate = {
         "All Directories" : "Tous les répertoires",
         "All Subdirectories" : "Tous les sous-répertoires",
         "Select Library" : "Choisir une banque",
+        "Select a Set from this Course" : "Choisir un devoir",
         "Hint" : "Indice",
         "Solution" : "Solution",
 	"Basic Search" : "Recherche de base",

@@ -275,9 +275,9 @@ msgstr ""
 "grâce pour un devoir, il vous faut le modifier à l'aide de l'<b>Éditeur de "
 "devoir</b> en activant la période de grâce d'évaluation et en choisissant "
 "une date de début.</p><p>Cela fonctionne avec l' <i>avg_problem_grader</i> "
-"(évaluateur par défaut) et l' <i>std_problem_grader</i> (évaluateur tout ou "
-"rien). Cela fonctionne aussi avec les évaluateurs optionnels s'ils sont "
-"paramétrés de façon appropriée.</p>"
+"(notation par défaut) et l' <i>std_problem_grader</i> (notation tout ou "
+"rien). Cela fonctionne aussi avec les notations optionnelles si elles sont "
+"paramétrées de façon appropriée.</p>"
 
 # Leave HTML in place
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:362
@@ -1177,10 +1177,12 @@ msgstr ""
 msgid "Browse"
 msgstr "Parcourir"
 
-#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:456
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:805
 msgid "Browse from:"
 msgstr "Parcourir dans : "
+
+msgid "Browse from"
+msgstr "Parcourir dans"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:447
 msgid ""
@@ -1434,7 +1436,7 @@ msgstr ""
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:597
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:722
 msgid "Chapter:"
-msgstr "Chapitre :"
+msgstr "Chapitre"
 
 #: /opt/webwork/webwork2/lib/FormatRenderedProblem.pm:249
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Problem.pm:1679
@@ -3015,6 +3017,10 @@ msgstr "Paramètres généraux"
 msgid "General Information"
 msgstr "Informations générales"
 
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Hardcopy.pm:477 /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:266 /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:267 /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:279 /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:280
+msgid "Generate Hardcopy"
+msgstr "Générer une copie imprimable"
+
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Hardcopy.pm:478
 msgid "Generate Hardcopy for Select Sets"
 msgstr "Générer une copie imprimable de devoirs sélectionnés"
@@ -3099,7 +3105,7 @@ msgstr "Soumettre le test"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSet.pm:424
 msgid "Grader"
-msgstr "Évaluateur"
+msgstr "Notation"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/URLPath.pm:254
 msgid "Grades"
@@ -3420,7 +3426,7 @@ msgstr "Paramètres de l'évaluation Juste-à-temps"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:765
 msgid "Keywords:"
-msgstr "Mots clés :"
+msgstr "Mots clés"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Scoring.pm:34
 msgid "LAST NAME"
@@ -3489,7 +3495,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:761
 msgid "Level:"
-msgstr "Niveau :"
+msgstr "Niveau"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator.pm:833
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:1580
@@ -3636,11 +3642,11 @@ msgstr ""
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Stats.pm:695
 #: /opt/webwork/webwork2/lib/WeBWorK/URLPath.pm:404
 msgid "Manual Grader"
-msgstr "Évaluateur manuel"
+msgstr "Notation manuel"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemGrader.pm:210
 msgid "Mark All"
-msgstr "Corriger tout"
+msgstr "Noter tout"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemGrader.pm:215
 msgid "Mark Correct"
@@ -4490,7 +4496,7 @@ msgstr "Ce problème est tiré d'un regroupement de plusieurs problèmes."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Problem.pm:1507
 msgid "ProblemGrader"
-msgstr "Pondération du problème"
+msgstr "Notation du problème"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Grades.pm:465
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:2323
@@ -5076,7 +5082,7 @@ msgstr "Groupe "
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:604
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:732
 msgid "Section:"
-msgstr "Section :"
+msgstr "Section"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:364
 msgid "Seed"
@@ -5226,6 +5232,13 @@ msgstr "Le devoir %1 a été créé."
 #. ($newSetName,$userName)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:1461
 msgid "Set %1 was assigned to %2"
+msgstr "Le devoir %1 a été attribué à %2."
+
+#. ($newSetName,$userName)
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/GetLibrarySetProblems.pm:634
+#. ($newSetID,$userName)
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:1193
+msgid "Set %1 was assigned to %2."
 msgstr "Le devoir %1 a été attribué à %2."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/URLPath.pm:426
@@ -5428,7 +5441,7 @@ msgstr "Montrer un autre problème %1"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/GatewayQuiz.pm:2185
 msgid "Show problem graders"
-msgstr "Permettre de voir les évaluateurs de problème"
+msgstr "Voir les notations du problème"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Options.pm:278
 msgid "Show saved answers?"
@@ -5664,7 +5677,7 @@ msgstr "Réponses de l'étudiant"
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:586
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:713
 msgid "Subject:"
-msgstr "Sujet :"
+msgstr "Sujet"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SendMail.pm:697
 msgid "Subject: "
@@ -5786,15 +5799,15 @@ msgstr "Texte"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:745
 msgid "Text chapter:"
-msgstr "Chapitre du livre :"
+msgstr "Chapitre du livre"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:753
 msgid "Text section:"
-msgstr "Section du livre :"
+msgstr "Section du livre"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SetMaker.pm:742
 msgid "Textbook:"
-msgstr "Livre :"
+msgstr "Livre"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:275
 msgid ""
@@ -6437,12 +6450,6 @@ msgstr ""
 
 #. ($achievementID)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/AchievementUserEditor.pm:224
-#, fuzzy
-#| msgid ""
-#| "There is NO undo for this function.  Do not use it unless you know what "
-#| "you are doing!  When you unassign a student using this button, or by "
-#| "unchecking their name, you destroy all of the data for homework set %1 "
-#| "for this student."
 msgid ""
 "There is NO undo for this function.  Do not use it unless you know what you "
 "are doing!  When you unassign a student using this button, or by unchecking "
@@ -6453,18 +6460,9 @@ msgstr ""
 "décochant la case de l'étudiant, vous détruisez toutes les données relatives "
 "à cet étudiant pour %1."
 
+#. $setID 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UsersAssignedToSet.pm:212
-#, fuzzy
-#| msgid ""
-#| "There is NO undo for this function.  Do not use it unless you know what "
-#| "you are doing!  When you unassign a student using this button, or by "
-#| "unchecking their name, you destroy all of the data for homework set %1 "
-#| "for this student."
-msgid ""
-"There is NO undo for this function.  Do not use it unless you know what you "
-"are doing!  When you unassign a student using this button, or by unchecking "
-"their name, you destroy all of the data for homework set $setID for this "
-"student."
+msgid "There is NO undo for this function.  Do not use it unless you know what you are doing!  When you unassign a student using this button, or by unchecking their name, you destroy all of the data for homework set %1 for this student."
 msgstr ""
 "Cette action est irréversible. Ne pas cliquer à moins de bien s'y connaître! "
 "Lorsque vous retirez un étudiant d'un devoir en cliquant sur ce bouton ou en "
@@ -7929,7 +7927,7 @@ msgstr "Vous ne pouvez pas modifier votre mot de passe ici!"
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/FileManager.pm:1014
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/FileManager.pm:436
 msgid "You may not follow symbolic links"
-msgstr ""
+msgstr "Vous ne pouvez pas suivre les liens symboliques "
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/GatewayQuiz.pm:1933
 msgid "You may still check your answers."
@@ -9429,17 +9427,11 @@ msgstr ""
 #~ "est supprimé, il manquera un numéro dans la série, sauf si la case ci-"
 #~ "contre est cochée."
 
-#~ msgid "Browse from"
-#~ msgstr "Parcourir dans"
-
 msgid "French Problem Library"
 msgstr "Banque de problèmes libres - FR"
 
 msgid "English Problem Library"
 msgstr "Banque de problèmes libres - EN"
-
-msgid "Chapter"
-msgstr "Chapitre"
 
 msgid "Create a New Set"
 msgstr "Créer un nouveau devoir vide"
@@ -9460,8 +9452,8 @@ msgstr "Créer un nouveau devoir vide"
 #~ msgid "Edit All Set Data"
 #~ msgstr "Modifier les données de tous les devoirs"
 
-#~ msgid "Edit it"
-#~ msgstr "Modifier"
+msgid "Edit it"
+msgstr "Modifier"
 
 msgid "Enter keywords"
 msgstr "Indiquer les mots clés"
@@ -9494,9 +9486,6 @@ msgstr "Importer"
 
 msgid "Keywords"
 msgstr "Mots clés"
-
-msgid "Level"
-msgstr "Niveau"
 
 msgid "Library"
 msgstr "Banque"
@@ -9559,23 +9548,11 @@ msgstr "Recherche"
 #~ msgid "Secondary sort"
 #~ msgstr "Tri secondaire"
 
-#~ msgid "Section "
-#~ msgstr "Section"
-
-#~ msgid "Select all sets"
-#~ msgstr "Sélectionner tous les devoirs"
-
-#~ msgid "Select all users"
-#~ msgstr "Sélectionner tous les utilisateurs"
-
 msgid "Select an Existing Set"
 msgstr "Choisir un devoir existant"
 
 msgid "Select Library"
 msgstr "Choisir une banque"
-
-#~ msgid "Set Detail 2 for set %2"
-#~ msgstr "Données du devoir %2"
 
 msgid "Show"
 msgstr "Afficher"
@@ -9595,9 +9572,6 @@ msgstr "Statistiques pour"
 msgid "SubDirectory"
 msgstr "Sous-répertoire"
 
-msgid "Subject"
-msgstr "Sujet"
-
 msgid "Take %1 test"
 msgstr "Effectuer le test %1"
 
@@ -9607,32 +9581,12 @@ msgstr "Effectuer le test %1."
 msgid "Test Score"
 msgstr "Note du test"
 
-msgid "Text chapter"
-msgstr "Chapitre du livre"
-
-msgid "Text section"
-msgstr "Section du livre"
-
-msgid "Textbook"
-msgstr "Livre"
-
 #~ msgid "That symbolic link takes you outside your course directory"
 #~ msgstr ""
 #~ "Ce lien symbolique vous amène à l'extérieur de votre répertoire de cours."
 
 #~ msgid "The answer will be graded later."
 #~ msgstr "La réponse sera enregistrée plus tard."
-
-#~ msgid ""
-#~ "There is NO undo for this function.  Do not use it unless you know what "
-#~ "you are doing!  When you unassign a student using this button, or by "
-#~ "unchecking their name, you destroy all of the data for achievement "
-#~ "$achievementID for this student."
-#~ msgstr ""
-#~ "Cette action est irréversible. Ne pas cliquer à moins de bien s'y "
-#~ "connaître! Lorsque vous retirez un étudiant d'un devoir (achievement) en "
-#~ "cliquant sur ce bouton ou en décochant la case de l'étudiant, vous "
-#~ "détruisez toutes les données relatives à cet étudiant pour $achievementID."
 
 msgid "This answer is NOT completely correct."
 msgstr "Cette réponse n'est PAS complètement bonne."
@@ -9668,11 +9622,10 @@ msgstr "Voir"
 #~ msgid "You are not authorized to access the Instructor tools"
 #~ msgstr "Vous n'êtes pas autorisé à accéder aux outils de l'enseignant."
 
-#
-#~ msgid "In order to get credit for this problem all answers must be correct."
-#~ msgstr ""
-#~ "Afin d'obtenir 100 % pour ce problème, toutes les réponses doivent être "
-#~ "correctes."
+msgid "In order to get credit for this problem all answers must be correct."
+msgstr ""
+"Afin d'obtenir 100 % pour ce problème, toutes les réponses doivent être "
+"correctes."
 
 # Context is "Save to a new file named:"
 #~ msgid "a new file named:"
@@ -10611,77 +10564,77 @@ msgstr "Voir"
 #~ msgid "Your set should have no repeated elements"
 #~ msgstr "Votre ensemble ne devrait pas avoir d'éléments se répétant"
 
-#~ msgid "Your %1 union contains overlapping intervals"
-#~ msgstr "Votre %1 union contient des intervalles se chevauchant"
+msgid "Your %1 union contains overlapping intervals"
+msgstr "Votre %1 union contient des intervalles se chevauchant"
 
-#~ msgid "Your %1 union contains sets and intervals that overlap"
-#~ msgstr ""
-#~ "Votre %1 union contient des ensembles et des intervalles se chevauchant"
+msgid "Your %1 union contains sets and intervals that overlap"
+msgstr ""
+"Votre %1 union contient des ensembles et des intervalles se chevauchant"
 
-#~ msgid "Your %1 union can be simplified by combining intervals"
-#~ msgstr "Votre %1 peut être simplifiée en combinant des intervalles"
+msgid "Your %1 union can be simplified by combining intervals"
+msgstr "Votre %1 peut être simplifiée en combinant des intervalles"
 
-#~ msgid "Your %1 union can be simplified by combining some sets"
-#~ msgstr "Votre %1 peut être simplifiée en combinant des ensembles"
+msgid "Your %1 union can be simplified by combining some sets"
+msgstr "Votre %1 peut être simplifiée en combinant des ensembles"
 
-#~ msgid "Your %1 union contains sets with repeated elements"
-#~ msgstr "Votre %1 contient des ensembles avec des éléments se répétant"
+msgid "Your %1 union contains sets with repeated elements"
+msgstr "Votre %1 contient des ensembles avec des éléments se répétant"
 
-#~ msgid "Your %1 set should have no repeated elements"
-#~ msgstr "Votre %1 ensemble ne devrait pas avoir d'éléments se répétant"
+msgid "Your %1 set should have no repeated elements"
+msgstr "Votre %1 ensemble ne devrait pas avoir d'éléments se répétant"
 
-#~ msgid "Your left endpoint is incorrect"
-#~ msgstr "Votre extrémité inférieure est incorrecte"
+msgid "Your left endpoint is incorrect"
+msgstr "Votre extrémité inférieure est incorrecte"
 
-#~ msgid "Your right endpoint is incorrect"
-#~ msgstr "Votre extrémité supérieure est incorrecte"
+msgid "Your right endpoint is incorrect"
+msgstr "Votre extrémité supérieure est incorrecte"
 
-#~ msgid "Your left endpoint is incorrect<BR>Your right endpoint is incorrect"
-#~ msgstr ""
-#~ "Votre extrémité inférieure est incorrecte<BR>Votre extrémité supérieure "
-#~ "est incorrecte"
+msgid "Your left endpoint is incorrect<BR>Your right endpoint is incorrect"
+msgstr ""
+"Votre extrémité inférieure est incorrecte<BR>Votre extrémité supérieure "
+"est incorrecte"
 
-#~ msgid "The type of interval is incorrect"
-#~ msgstr "Le type d'intervalle est incorrect"
+msgid "The type of interval is incorrect"
+msgstr "Le type d'intervalle est incorrect"
 
-#~ msgid "# Variable will be having values as first, second, third etc."
-#~ msgstr ""
-#~ "# La variable aura des valeurs telles que premier, deuxième, troisième, "
-#~ "etc."
+msgid "# Variable will be having values as first, second, third etc."
+msgstr ""
+"# La variable aura des valeurs telles que premier, deuxième, troisième, "
+"etc."
 
-#~ msgid "The %1 coordinate is incorrect"
-#~ msgstr "La %1 coordonnée est incorrecte"
+msgid "The %1 coordinate is incorrect"
+msgstr "La %1 coordonnée est incorrecte"
 
-#~ msgid "The parentheses for your %1 are of the wrong type"
-#~ msgstr "Les parenthèses de votre %1 sont du mauvais type"
+msgid "The parentheses for your %1 are of the wrong type"
+msgstr "Les parenthèses de votre %1 sont du mauvais type"
 
-#~ msgid "The parentheses for your %1 should be removed"
-#~ msgstr "Les parenthèses de votre %1 devraient être enlevées"
+msgid "The parentheses for your %1 should be removed"
+msgstr "Les parenthèses de votre %1 devraient être enlevées"
 
-#~ msgid "The parentheses for your %1 seem to be missing"
-#~ msgstr "Les parenthèses de votre %1 semblent être manquantes"
+msgid "The parentheses for your %1 seem to be missing"
+msgstr "Les parenthèses de votre %1 semblent être manquantes"
 
-#~ msgid "There should be more %1 in your %2"
-#~ msgstr "Il devrait y avoir plus de %1 dans votre %2"
+msgid "There should be more %1 in your %2"
+msgstr "Il devrait y avoir plus de %1 dans votre %2"
 
-#~ msgid ""
-#~ "<SMALL>There is a problem with your %1 %2:</SMALL><BR><DIV STYLE=\"margin-"
-#~ "left:1em\">%3</DIV>"
-#~ msgstr ""
-#~ "<SMALL>Il y a un problème avec votre %1 %2 :</SMALL><BR><DIV STYLE="
-#~ "\"margin-left:1em\">%3</DIV>"
+msgid ""
+"<SMALL>There is a problem with your %1 %2:</SMALL><BR><DIV STYLE=\"margin-"
+"left:1em\">%3</DIV>"
+msgstr ""
+"<SMALL>Il y a un problème avec votre %1 %2 :</SMALL><BR><DIV STYLE="
+"\"margin-left:1em\">%3</DIV>"
 
-#~ msgid "Your%1 %2 is incorrect<BR>Your%3 %4 is incorrect"
-#~ msgstr "Votre %1 %2 est incorrect(e)<BR>Votre %3 %4 est incorrect(e)"
+msgid "Your%1 %2 is incorrect<BR>Your%3 %4 is incorrect"
+msgstr "Votre %1 %2 est incorrect(e)<BR>Votre %3 %4 est incorrect(e)"
 
-#~ msgid "Your %1 isn't %2 (it looks like %3)"
-#~ msgstr "Votre %1 n'est pas %2 (cela semble être %3)"
+msgid "Your %1 isn't %2 (it looks like %3)"
+msgstr "Votre %1 n'est pas %2 (cela semble être %3)"
 
-#~ msgid "a list of numbers"
-#~ msgstr "une liste de nombres"
+msgid "a list of numbers"
+msgstr "une liste de nombres"
 
-#~ msgid "a union of intervals"
-#~ msgstr "une union d'intervalles"
+msgid "a union of intervals"
+msgstr "une union d'intervalles"
 
 msgid "Delete which users?"
 msgstr "Supprimer quels utilisateurs?"

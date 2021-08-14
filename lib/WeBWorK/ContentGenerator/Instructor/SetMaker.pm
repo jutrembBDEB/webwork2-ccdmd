@@ -62,8 +62,6 @@ use constant ALL_LIBS => 'Select Library';
 use constant ALL_DIRS => 'All Directories';
 use constant ALL_SUBDIRS => 'All Subdirectories';
 use constant VIEW_FORMS  => [ qw(frenchProblemLibrary englishProblemLibrary openProblemLibrary localProblems fromThisCourse setDefinitionFiles specificDirectories)];
-
-#use constant VIEW_FORMS  => [qw(bpl opl blp ftc setdef spcf)];
 use constant ACTION_FORMS  => {frenchProblemLibrary  => 'browse_library_panel5t',englishProblemLibrary  => 'browse_library_panel5ten', openProblemLibrary => 'browse_library_panel2t', localProblems => 'browse_local_panelt', fromThisCourse => 'browse_mysets_panelt', setDefinitionFiles => 'browse_setdef_panelt', specificDirectories => 'browse_specific_panelt'};
 use constant FORMS_TAB  => {'browse_bpl_library' => 0,'browse_bplen_library' => 1, 'browse_npl_library' => 2, 'browse_local' => 3, 'browse_mysets' => 4, 'browse_setdefs' => 5, 'browse_spcf_library' => 6};
 
@@ -397,7 +395,8 @@ sub view_problems_line {
 	my $label = shift;
 	my $r = shift; # so we can get parameter values
         my $t = shift;
-	my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label, -onclick=>"setCookie('tabber',$t);");
+	#my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label, -onclick=>"setCookie('tabber',$t);");
+	my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label);
 	$result .= CGI::reset(-id=>"reset",-name=>"reset", -value=> $r->maketext('Reset'));
 
 	my %display_modes = %{WeBWorK::PG::DISPLAY_MODES()};
@@ -407,12 +406,12 @@ sub view_problems_line {
 	# We have our own displayMode since its value may be None, which is illegal
 	# in other modules.
 	my $mydisplayMode = $r->param('mydisplayMode') || $r->ce->{pg}->{options}->{displayMode};
-	#$result .= ' '.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
-	#                                                            -values=>\@active_modes,
-	#                                                            -default=> $mydisplayMode);
-	$result .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
+	$result .= ' '.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
 	                                                            -values=>\@active_modes,
 	                                                            -default=> $mydisplayMode);
+	#$result .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
+	#                                                            -values=>\@active_modes,
+	#                                                            -default=> $mydisplayMode);
 	# Now we give a choice of the number of problems to show
 	#my $defaultMax = $r->param('max_shown') || MAX_SHOW_DEFAULT;
 	#$result .= ' '.$r->maketext('Max. Shown:').' '.
@@ -420,10 +419,10 @@ sub view_problems_line {
 	#	                -values=>[5,10,15,20,25,30,50,$r->maketext("All")],
 	#	                -default=> $defaultMax);
 	# Option of whether to show hints and solutions
-	#my $defaultHints = $r->param('showHints') || SHOW_HINTS_DEFAULT;
-	#$result .= "&nbsp;".CGI::checkbox(-name=>"showHints",-checked=>$defaultHints,-label=>$r->maketext("Hints"));
-	#my $defaultSolutions = $r->param('showSolutions') || SHOW_SOLUTIONS_DEFAULT;
-	#$result .= "&nbsp;".CGI::checkbox(-name=>"showSolutions",-checked=>$defaultSolutions,-label=>$r->maketext("Solutions"));
+	my $defaultHints = $r->param('showHints') || SHOW_HINTS_DEFAULT;
+	$result .= "&nbsp;".CGI::checkbox(-name=>"showHints",-id=>"showHints",-checked=>$defaultHints,-label=>$r->maketext("Hints"));
+	my $defaultSolutions = $r->param('showSolutions') || SHOW_SOLUTIONS_DEFAULT;
+	$result .= "&nbsp;".CGI::checkbox(-name=>"showSolutions",-id=>"showSolutions", -checked=>$defaultSolutions,-label=>$r->maketext("Solutions"));
 	$result .= "\n".CGI::hidden(-name=>"original_displayMode", -default=>$mydisplayMode)."\n";
 	
 	return($result);
@@ -437,7 +436,8 @@ sub view_problems_line_bpl {
         my $j = 0;
         $j = 1 if($internal_name eq "lib_view_bplen");
         $j = 6 if($internal_name eq "lib_view_spcf");
-	my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label, -onclick=>"setCookie('tabber',$j);");
+	#my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label, -onclick=>"setCookie('tabber',$j);");
+	my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label);
         $result .= CGI::reset(-id=>"reset",-name=>"reset", -value=> $r->maketext('Reset'));
 
 	my %display_modes = %{WeBWorK::PG::DISPLAY_MODES()};
@@ -447,12 +447,23 @@ sub view_problems_line_bpl {
 	# We have our own displayMode since its value may be None, which is illegal
 	# in other modules.
 	my $mydisplayMode = $r->param('mydisplayMode') || $r->ce->{pg}->{options}->{displayMode};
-	$result .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
-	                                                            -values=>\@active_modes,
-	                                                            -default=> $mydisplayMode);
+	#$result .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
+	#                                                            -values=>\@active_modes,
+	#                                                            -default=> $mydisplayMode);
+	$result .= ' '.$r->maketext('Display Mode:').' '.CGI::popup_menu(-name=> 'mydisplayMode',
+									   -values=>\@active_modes,
+									   -default=> $mydisplayMode);
 
-	$result .= "\n".CGI::hidden(-name=>"showSolutions", -default=>1)."\n";
-	$result .= "\n".CGI::hidden(-name=>"showHints", -default=>1)."\n";
+	#$result .= "\n".CGI::hidden(-name=>"showSolutions", -default=>1)."\n";
+	#$result .= "\n".CGI::hidden(-name=>"showHints", -default=>1)."\n";
+
+	my $defaultHints = $r->param('showHints') || SHOW_HINTS_DEFAULT;
+	$result .= "&nbsp;".CGI::checkbox(-name=>"showHints",-checked=>$defaultHints,-label=>$r->maketext("Hints"));
+	my $defaultSolutions = $r->param('showSolutions') || SHOW_SOLUTIONS_DEFAULT;
+	$result .= "&nbsp;".CGI::checkbox(-name=>"showSolutions",-checked=>$defaultSolutions,-label=>$r->maketext("Solutions"));
+	$result .= "\n".CGI::hidden(-name=>"original_displayMode", -default=>$mydisplayMode)."\n";
+
+
 =comment
 	# Now we give a choice of the number of problems to show
 	my $defaultMax = $r->param('max_shown') || MAX_SHOW_DEFAULT;
@@ -734,7 +745,7 @@ sub browse_library_panel2 {
 		CGI::hidden(-name=>"library_is_basic", -default=>1,-override=>1),
 		CGI::start_table({-width=>"100%"}),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Subject"),
+			CGI::td([$r->maketext("Subject:"),
 				CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,
 					            -default=> $subject_selected
@@ -746,7 +757,7 @@ sub browse_library_panel2 {
 					CGI::submit(-name=>"library_advanced", -value=>$r->maketext("Advanced Search")))
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Chapter"),
+			CGI::td([$r->maketext("Chapter:"),
 				CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
 					            -default=> $chapter_selected
@@ -754,7 +765,7 @@ sub browse_library_panel2 {
 		    )]),
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Section"),
+			CGI::td([$r->maketext("Section:"),
 			CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
 					        -default=> $section_selected
@@ -826,12 +837,13 @@ sub browse_library_panel2t {
 
 	my $text_popup = CGI::popup_menu(-name => 'library_textbook',
 									 -values =>\@textarray,
-                                                                         -style=>"width:800px;",
 									 -labels => \%textlabels,
+									 -style=>"width:800px;",
 									 -default=>$selected{textbook},
-									 -onchange=>"setCookie('tabber',1);submit();return true");
+									 -onchange=>"submit();return true"
+									 );
 
-	
+
 	my $library_keywords = $r->param('library_keywords') || '';
 
 
@@ -853,7 +865,10 @@ sub browse_library_panel2t {
 	}
 	$mylevelline .= "<td>".$self->helpMacro("Levels")."</td>";
 	$mylevelline .= '</tr></table>';
-        my $defAdv = $r->param('library_adv_btn') || '';
+        my $defAdv = $r->param('library_adv_btn') || '1';
+        my $btnText = $r->maketext("Advanced Search");
+        
+        $btnText = $r->maketext("Basic Search") if($defAdv == 2);
         my $right_button_style = "width: 18ex";
 
         return CGI::start_table({-align=>"left",-width=>"80%",-id=>"opladv"}),
@@ -865,11 +880,11 @@ sub browse_library_panel2t {
                CGI::Tr({},
                     CGI::td({-colspan=>"2",-width=>"60%",-align=>"left",-style=>"font-weight:bold;"}, $r->maketext('All Selected Constraints Joined by "And"')),
                     CGI::td({-colspan=>"2",-width=>"40%", -align=>"right"},
-                                "<span class='opladvsrch'>".CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),-onclick=>"setCookie('tabber',1);", -style=> $right_button_style)."</span>".
-				CGI::submit(-id=>"library_advanced",-class=>"OPLAdvSearch",-name=>"library_advanced", -value=>$r->maketext("Advanced Search")))
+                                "<span class='opladvsrch'>".CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),-style=> $right_button_style)."</span>".
+				CGI::submit(-id=>"library_advanced",-class=>"OPLAdvSearch",-name=>"library_advanced", -value=>$btnText))
                ),
 	       CGI::Tr({},
-	           CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Subject")),
+	           CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Subject:")),
 	           CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,
                                                     -style=>"width:800px;",
@@ -878,7 +893,7 @@ sub browse_library_panel2t {
 					   )),
                   ),
 		CGI::Tr({},
-			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Chapter")),
+			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Chapter:")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
                                                     -style=>"width:800px;",
@@ -887,7 +902,7 @@ sub browse_library_panel2t {
 					  )),
 		),
 		CGI::Tr({},
-			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Section")),
+			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Section:")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
                                                 -style=>"width:800px;",
@@ -897,32 +912,34 @@ sub browse_library_panel2t {
 		 ),
 
                  CGI::Tr({-class=>'opladvsrch'},
-			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Textbook")), 
+			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Textbook:")), 
                         CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},$text_popup),
 		 ),
 		 CGI::Tr({-class=>'opladvsrch'},
-			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Text chapter")),
+			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Text chapter:")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_textchapter', 
 					        -values=>\@textchaps,
-                                                -style=>"width:800px;",
+					        -style=>"width:800px;",
 					        -default=> $selected{textchapter},
-							-onchange=>"setCookie('tabber',1);submit();return true")),
+					        -onchange=>"submit();return true"
+					)),
 		 ),
 		 CGI::Tr({-class=>'opladvsrch'},
-			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Text section")),
+			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Text section:")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_textsection', 
 					        -values=>\@textsecs,
-                                                -style=>"width:800px;",
+					        -style=>"width:800px;",
 					        -default=> $selected{textsection},
-							-onchange=>"setCookie('tabber',1);submit();return true")),
+					        -onchange=>"submit();return true"
+					)),
 		 ),
 		 CGI::Tr({-class=>'opladvsrch'},
-				 CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Level")),
+				 CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Level:")),
 				 "<td colspan='3' align='left' width='85%'>$mylevelline</td>"
 		 ),
 		 CGI::Tr({-class=>'opladvsrch'},
-		     CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Keywords")),
-                     CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},
+		     CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Keywords:")),
+		     CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},
 			 CGI::textfield(-name=>"library_keywords",
 							-default=>$library_keywords,
 							-override=>1,
@@ -932,7 +949,7 @@ sub browse_library_panel2t {
 		 CGI::Tr(CGI::td({-colspan=>"4",-width=>"100%"}, $view_problem_line)),
 		 CGI::end_table()
 	 )),
-                 CGI::end_table();
+        CGI::end_table();
 	
 }
 
@@ -1001,7 +1018,7 @@ sub browse_library_panel5t {
                                                                                         ).CGI::br()."<small class=\"text-muted\">".$r->maketext("Use the minus (-) signe before a keyword to tell the search to exclude problems with that term")."</small>",])
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Subject"),
+			CGI::td([$r->maketext("Subject:"),
 				CGI::popup_menu(-name=> 'blibrary_subjects', 
 					            -values=>\@subjs,
                                                     -id=>'blibrary_subjects',
@@ -1009,7 +1026,7 @@ sub browse_library_panel5t {
 				)]),
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Chapter"),
+			CGI::td([$r->maketext("Chapter:"),
 				CGI::popup_menu(-name=> 'blibrary_chapters', 
                                                     -id=>'blibrary_chapters',
 					            -values=>\@chaps,
@@ -1096,7 +1113,7 @@ sub browse_library_panel5ten {
                                                                                         ).CGI::br()."<small class=\"text-muted\">".$r->maketext("Use the minus (-) signe before a keyword to tell the search to exclude problems with that term")."</small>",])
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Subject"),
+			CGI::td([$r->maketext("Subject:"),
 				CGI::popup_menu(-name=> 'benlibrary_subjects', 
 					            -values=>\@subjs,
                                                     -id=>'benlibrary_subjects',
@@ -1104,7 +1121,7 @@ sub browse_library_panel5ten {
 				)]),
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Chapter"),
+			CGI::td([$r->maketext("Chapter:"),
 				CGI::popup_menu(-name=> 'benlibrary_chapters', 
                                                     -id=>'benlibrary_chapters',
 					            -values=>\@chaps,
@@ -1221,7 +1238,7 @@ sub browse_library_panel2adv {
 		# Html done by hand since it is temporary
 		CGI::Tr(CGI::td({-colspan=>4, -align=>"center"}, $r->maketext('All Selected Constraints Joined by "And"'))),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Subject"),
+			CGI::td([$r->maketext("Subject:"),
 				CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,	
 					            -default=> $selected{dbsubject}
@@ -1231,7 +1248,7 @@ sub browse_library_panel2adv {
 				CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),
 					-style=> $right_button_style))),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Chapter"),
+			CGI::td([$r->maketext("Chapter:"),
 				CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
 					            -default=> $selected{dbchapter}
@@ -1242,7 +1259,7 @@ sub browse_library_panel2adv {
 					-style=>$right_button_style))
 		),
 		CGI::Tr({},
-			CGI::td([$r->maketext("Section"),
+			CGI::td([$r->maketext("Section:"),
 			CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
 					        -default=> $selected{dbsection}
@@ -1556,8 +1573,10 @@ sub make_top_row {
         #Tusar - 3/25/17
         print CGI::Tr(CGI::td({-class =>"InfoPanel", -align=>"left", -colspan =>"2"},CGI::h2($r->maketext("Homework set to add problems to")).' ', 
            ));
+           
         my $c = 0;
 	my $btn_click = "lib_view_bpl";
+
         if($self->{browse_which} eq 'browse_bplen_library') {
            $c = 1;
 	   $btn_click = "lib_view_bplen";
@@ -1589,9 +1608,10 @@ sub make_top_row {
                                     CGI::popup_menu(-name=> 'local_sets',
                                                 -values=>$list_of_local_sets,
                                                 -default=> $set_selected,
-                                           #     -onchange=> "return markinset()",
+                                                -onchange=> "return markinset()",
                                                 -override=>1).
-                                    CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"),-onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);" )
+                                    #CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"),-onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);" )
+                                    CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"))
                                   ])     ),
                                 CGI::Tr(CGI::td({-class =>"InfoPanel", -align=>"left"},[
                                        $r->maketext("Create a New Set"),
@@ -1600,7 +1620,7 @@ sub make_top_row {
                                            -placeholder=>$r->maketext("Name for new set here"),
                                            -override=>1, -size=>30).
                                         CGI::submit(-name=>"new_local_set", -value=>$r->maketext("Create"),
-                                                    -onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);document.mainform.selfassign.value=1"      #       $myjs
+                                                    #-onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);document.mainform.selfassign.value=1"      #       $myjs
                                                    )
                                   ])       ),
                              CGI::end_table(),
@@ -1622,35 +1642,53 @@ sub make_top_row {
                         CGI::h2($r->maketext("Library in which to search for existing problems")),
 	));
         my @formsToShow = @{ VIEW_FORMS() };
-        my $i = 0;
         my @divArr = ();
-
-        foreach my $actionID (@formsToShow) {
+        my @tabArr = ();
+        
+        
+        #foreach my $actionID (@formsToShow) {
                 # Check permissions
-                my $actionForm = %{ ACTION_FORMS() }{$actionID};
-                #my $onChange = "document.problemsetlist.action[$i].checked=true";
-                my $onChange = "";
-                my %actionParams = $self->getActionParams($actionID);
+        #        my $actionForm = %{ ACTION_FORMS() }{$actionID};
+        #        my $onChange = "";
+        #        my %actionParams = $self->getActionParams($actionID);
+                
+        #        push @divArr, join("",
+	#		CGI::h3($r->maketext(ucfirst(WeBWorK::split_cap($actionID)))),
+        #                CGI::span({-class=>"radio_span"}, WeBWorK::CGI_labeled_input(-type=>"radio", -id=>$actionID."_id", -label_text=>$r->maketext(ucfirst(WeBWorK::split_cap($actionID))), -input_attr=>{-name=>"action", -value=>$actionID}, -label_attr=>{-class=>"radio_label"})),
+        #                $self->$actionForm($onChange, %actionParams),
+        #        );
+        #}
 
-                # print CGI::Tr({-valign=>"top"},
-                        # CGI::td({}, CGI::input({-type=>"radio", -name=>"action", -value=>$actionID})),
-                        # CGI::td({}, $self->$actionForm($onChange, %actionParams))
-                # );
+        #my $divArrRef = \@divArr;
+	#print CGI::Tr(CGI::td({-class=>"InfoPanel", -align=>"center"},
+        #      CGI::div({-class=>"tabber"},
+        #        CGI::div({-class=>"tabbertab"},$divArrRef))
+	#));
 
-                push @divArr, join("",
-			CGI::h3($r->maketext(ucfirst(WeBWorK::split_cap($actionID)))),
-                        # "<h3 onClick=\"javascript:alert('click here');\">".$r->maketext(ucfirst(WeBWorK::split_cap($actionID)))."</h3>",
-                        CGI::span({-class=>"radio_span"}, WeBWorK::CGI_labeled_input(-type=>"radio", -id=>$actionID."_id", -label_text=>$r->maketext(ucfirst(WeBWorK::split_cap($actionID))), -input_attr=>{-name=>"action", -value=>$actionID}, -label_attr=>{-class=>"radio_label"})),
-                        $self->$actionForm($onChange, %actionParams),
-                );
-                $i++;
-        }
+	my $default_choice = $formsToShow[$c];
+	
+	foreach my $actionID (@formsToShow) {
+		
+		my $actionForm = %{ ACTION_FORMS() }{$actionID};
 
-        my $divArrRef = \@divArr;
+		my $active = "";
+		$active = "active" if( $default_choice eq $actionID );
+
+		push(@tabArr, CGI::li({ class => $active },
+				CGI::a({ href => "#$actionID", data_toggle => "tab", class => "action-link", data_action => $actionID },
+					$r->maketext(ucfirst(WeBWorK::split_cap($actionID))))));
+		push(@divArr, CGI::div({ class => "tab-pane $active", id => $actionID },
+				$self->$actionForm($self->getActionParams($actionID))));
+	}
+	
+	print CGI::hidden(-name => 'action', -id => 'current_action', -value => $default_choice);
 	print CGI::Tr(CGI::td({-class=>"InfoPanel", -align=>"center"},
               CGI::div({-class=>"tabber"},
-                CGI::div({-class=>"tabbertab"},$divArrRef))
+              CGI::ul({-class => "nav nav-tabs"}, @tabArr),
+               CGI::div({-class=>"tab-content"},@divArr))
 	));
+
+	
 
 	print CGI::Tr(CGI::td({class=>'table-separator'}));
 
@@ -1662,16 +1700,18 @@ sub make_top_row {
 	my $first_index = $self->{first_index};
 	my $last_index = $self->{last_index}; 
 	my @pg_files = @{$self->{pg_files}};
-	my $stringalert = $r->maketext(SELECT_SET_STRING);
+	#my $stringalert = $r->maketext(SELECT_SET_STRING);
 
 	if ($first_index > 0) {
 		$prev_button = CGI::submit(-name=>"prev_page", -style=>"width:18ex",
-						 -value=>$r->maketext("Previous page"), -onclick=>"setCookie('tabber',$c);");
+						 -value=>$r->maketext("Previous page")
+						 );
 	}
 	# This will have to be trickier with MLT
 	if ((1+$last_index)<scalar(@pg_files)) {
 		$next_button = CGI::submit(-name=>"next_page", -style=>"width:18ex",
-						 -value=>$r->maketext("Next page"),-onclick=>"setCookie('tabber',$c);");
+						 -value=>$r->maketext("Next page")
+						 );
 	}
         my $clear_prob_btn = "";
 	if (scalar(@pg_files)) {
@@ -1679,40 +1719,26 @@ sub make_top_row {
                 my $bbrowse_which = $r->param('bbrowse_which') || 'browse_bpl_library';
 
                 my $defaultMax = $r->param('max_shownt') || MAX_SHOW_DEFAULT;
-
-                #my $t = 0;
-                #$t = 5 if($bbrowse_which eq "browse_spcf_library");
-				
-				#my $btn_click = "lib_view";
-                #$btn_click = "lib_view_spcf" if($bbrowse_which eq "browse_spcf_library");
                 my $displayMax = ' '.$r->maketext('Max. Shown:').' '.
                 CGI::popup_menu(-name=> 'max_shownt',id=>'max_shownt',
                                 -values=>[5,10,15,20,25,30,50,$r->maketext("All")],
-                                -onchange => "setCookie('tabber',$c);document.getElementById(\"$btn_click\").click();",
+                                -onchange => "document.getElementById(\"$btn_click\").click();",
                                 -default=> $defaultMax);
-                my ($chk_hintt,$chk_solnt) = ("","");
-                if($r->param('showHintt')) {
-                   $chk_hintt = " checked";
-                }
-                if($r->param('showSolutiont')) {
-                   $chk_solnt = " checked";
-                }
+                #my ($chk_hintt,$chk_solnt) = ("","");
+                #if($r->param('showHintt')) {
+                #   $chk_hintt = " checked";
+                #}
+                #if($r->param('showSolutiont')) {
+                #   $chk_solnt = " checked";
+                #}
                 
 
 		$show_hide_path_button .= CGI::button(-name=>"select_all", -style=>"width:29ex",
                                                      #  -onClick=>"return addme(\"\", \'all\', \"$stringalert\" )",
 			                               -value=>$r->maketext("Add All"));
 		$show_hide_path_button .= $displayMax;
-		$show_hide_path_button .= "<input type=\"checkbox\" id=\"showHintt\" name=\"showHintt\" value=\"on\" onclick=\"toggleHint(\$(this));\" $chk_hintt />".$r->maketext("Hints")."&nbsp;<input type=\"checkbox\" id=\"showSolutiont\" name=\"showSolutiont\" value=\"on\" onclick=\"toggleSolution(\$(this));\" $chk_solnt />".$r->maketext("Solutions")."&nbsp;";
+		#$show_hide_path_button .= "<input type=\"checkbox\" id=\"showHintt\" name=\"showHintt\" value=\"on\" onclick=\"toggleHint(\$(this));\" $chk_hintt />".$r->maketext("Hints")."&nbsp;<input type=\"checkbox\" id=\"showSolutiont\" name=\"showSolutiont\"/>".$r->maketext("Solutions")."&nbsp;";
                 $show_hide_path_button .= $prev_button."&nbsp;".$next_button;
-
-
-
-		#$show_hide_path_button = CGI::submit(-id=>"toggle_paths", -style=>"width:25ex",
-		#$show_hide_path_button .= CGI::submit(-id=>"toggle_paths", -style=>"width:29ex", -value=>$r->maketext("Show all paths"), -id =>"toggle_paths", -onClick=>'return togglepaths()');
-		#$show_hide_path_button .= " ".CGI::hidden(-name=>"toggle_path_current", -id=>"toggle_path_current", -default=>'show');
-		#$show_hide_path_button .= " ".CGI::hidden(-name=>"hidetext", -id=>"hidetext", -default=>$r->maketext("Hide all paths"));
-		#$show_hide_path_button .= " ".CGI::hidden(-name=>"showtext", -id=>"showtext", -default=>$r->maketext("Show all paths"));
 	}
 	
         my $divtag =  "<div id='ShowResultsMenu' name='showResultsMenu' class='showResultsMenu'>";
@@ -1723,12 +1749,6 @@ sub make_top_row {
 			CGI::start_table({-border=>"0"}),
 			CGI::Tr({}, CGI::td({ -align=>"center"},
 			$divtag,$show_hide_path_button."</div>"
-#					CGI::button(-name=>"select_all", -style=>$these_widths,
-#						-value=>$r->maketext("Add All")),
-#					CGI::submit(-name=>"cleardisplay",
-#						-style=>$these_widths,
-#						-value=>$r->maketext("Clear Problem Display")),
-#					$prev_button, " ", $next_button
 				)),
 			CGI::end_table()));
 }
@@ -2619,11 +2639,15 @@ sub body {
 
 	if ($first_index > 0) {
 		$prev_button = CGI::submit(-name=>"prev_page", -style=>"width:18ex",
-						 -value=>$r->maketext("Previous page"),-onclick=>"setCookie('tabber',$c);");
+						 -value=>$r->maketext("Previous page")
+						 #,-onclick=>"setCookie('tabber',$c);"
+						 );
 	}
 	if ((1+$last_index)<scalar(@pg_files)) {
 		$next_button = CGI::submit(-name=>"next_page", -style=>"width:18ex",
-						 -value=>$r->maketext("Next page"),-onclick=>"setCookie('tabber',$c);");
+						 -value=>$r->maketext("Next page")
+						 #,-onclick=>"setCookie('tabber',$c);"
+						 );
 	}
 	if (scalar(@pg_files)>0) {
 		print "<div id='showResultsEnd'>\n";
@@ -2644,6 +2668,16 @@ sub output_JS {
 	my $ce = $self->r->ce;
 	my $webwork_htdocs_url = $ce->{webwork_htdocs_url};
 
+
+	# This is for translation of js files
+	my $lang = $ce->{language};
+
+	print CGI::start_script({type=>"text/javascript"});
+	print "localize_basepath = \"$webwork_htdocs_url/js/i18n/\";";
+	print "lang = \"$lang\";";
+	print CGI::end_script();
+	
+	print qq!<script src="$webwork_htdocs_url/js/i18n/localize.js"></script>!;
 	print qq!<script src="$webwork_htdocs_url/js/vendor/jquery/modules/jquery.ui.touch-punch.js"></script>!;
 	print qq!<script src="$webwork_htdocs_url/js/vendor/jquery/modules/jquery.watermark.min.js"></script>!;
 	print qq!<script src="$webwork_htdocs_url/js/vendor/underscore/underscore.js"></script>!;
@@ -2653,21 +2687,13 @@ sub output_JS {
 
 	print qq{<script type="text/javascript" src="$webwork_htdocs_url/js/legacy/vendor/knowl.js"></script>};
 
-	# This is for translation of js files
-	my $lang = $ce->{language};
-
-	print CGI::start_script({type=>"text/javascript"});
-	print "localize_basepath = \"$webwork_htdocs_url/js/i18n/\";";
-	print "lang = \"$lang\";";
-	print CGI::end_script();
-	print qq!<script src="$webwork_htdocs_url/js/i18n/localize.js"></script>!;
-
 	print qq!<script src="$webwork_htdocs_url/js/vendor/bootstrap/js/bootstrap-tagsinput.js"></script>!;
 	print qq!<script src="$webwork_htdocs_url/js/apps/ImageView/imageview.js"></script>!;
 	print CGI::script({ src => "$webwork_htdocs_url/node_modules/iframe-resizer/js/iframeResizer.min.js" }, "");
+	#print qq!<script src="$webwork_htdocs_url/js/legacy/vendor/tabbert.js"></script>!;
+	print CGI::script({ src => "$webwork_htdocs_url/js/apps/ActionTabs/actiontabs.js", defer => undef }, "");
 	print CGI::script({ src => "$webwork_htdocs_url/js/apps/SetMaker/setmaker.js", defer => "" }, "");
-	print qq!<script src="$webwork_htdocs_url/js/legacy/vendor/tabbert.js"></script>!;
-#	print CGI::start_script({type=>"text/javascript", src=>"$webwork_htdocs_url/js/legacy/vendor/tabbert.js"}), CGI::end_script();
+		
 	if ($self->r->authz->hasPermissions(scalar($self->r->param('user')), "modify_tags")) {
 		my $site_url = $ce->{webworkURLs}->{htdocs};
 		print qq!<script src="$site_url/js/apps/TagWidget/tagwidget.js"></script>!;

@@ -698,7 +698,7 @@ sub FieldHTML {
 				id   => "$recordType.$recordID.${field}_id",
 				value => $r->param("$recordType.$recordID.$field") || ($forUsers ? $userValue : $globalValue),
 				size => $properties{size} || 5,
-				placeholder => $field =~ /_date/ ? x("None Specified") : '',
+				placeholder => $field =~ /_date/ ? $r->maketext("None Specified") : '',
 				onChange => $onChange,
 				onkeyup => $onKeyUp,
 				onblur => $uncheckBox,
