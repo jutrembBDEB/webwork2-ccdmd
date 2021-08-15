@@ -485,6 +485,7 @@ sub add_course_form {
 	
 	my @existingCourses = listCourses($ce);
 	@existingCourses = sort { lc($a) cmp lc ($b) } @existingCourses; #make sort case insensitive 
+	unshift( @existingCourses, @{$ce->{modelCoursesForCopy}});
 	
 	print CGI::h2($r->maketext("Add Course"));
 	
