@@ -3023,7 +3023,7 @@ msgstr "Générer une copie imprimable"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Hardcopy.pm:478
 msgid "Generate Hardcopy for Select Sets"
-msgstr "Générer une copie imprimable de devoirs sélectionnés"
+msgstr "Générer une copie imprimable des devoirs sélectionnés"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Hardcopy.pm:478
 msgid "Generate hardcopy for selected sets and selected users"

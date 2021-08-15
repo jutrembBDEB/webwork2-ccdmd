@@ -215,7 +215,7 @@ sub body {
 						CGI::br(),
 						CGI::checkbox({ -name=>'includePercentEachSet',
 										-value=>1,
-										-label=>'Include percentage grades columns for all sets', # should use maketext and add to POT file
+										-label=>$r->maketext('Include percentage grades columns for all sets'), # should use maketext and add to POT file
 										-checked=>1,
 									},
 									'Include percentage grades columns for all sets'

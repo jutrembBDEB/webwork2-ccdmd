@@ -1428,7 +1428,7 @@ sub browse_specific_panelt {
 		$popupetc = $r->maketext("there are no set problem libraries course to look at.");
 	}
 
-	return CGI::start_table({-width=>"60%",-align=>"left"}),
+	return CGI::start_table({-width=>"80%",-align=>"left"}),
 
         CGI::Tr(CGI::td([$r->maketext("Library"), $popupetc])),
         CGI::Tr(CGI::td([$r->maketext("Directory"), $popupetc2])),

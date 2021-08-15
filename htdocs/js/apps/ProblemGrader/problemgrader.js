@@ -99,7 +99,7 @@ $(function(){
 					});
 				} else {
 					messageArea.addClass('ResultsWithoutError');
-					messageArea.text("Score saved.");
+					messageArea.text(maketext("Score saved."));
 					messageArea.removeClass('ResultsWithoutError', 3000);
 				}
 			},
