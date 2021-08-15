@@ -3081,13 +3081,13 @@ msgstr "Continuer"
 
 #: /opt/webwork/pg/macros/compoundProblem.pl:470
 msgid "Go back to Part 1"
-msgstr ""
+msgstr "Revenir à la Partie 1"
 
 #: /opt/webwork/pg/macros/compoundProblem.pl:291
 #: /opt/webwork/pg/macros/compoundProblem.pl:480
 #: /opt/webwork/pg/macros/compoundProblem.pl:491
 msgid "Go on to next part"
-msgstr ""
+msgstr "Passer à la partie suivante"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:2429
 msgid "Grade"
@@ -5702,7 +5702,7 @@ msgstr "Soumettre les réponses pour %1"
 
 #: /opt/webwork/pg/macros/compoundProblem.pl:502
 msgid "Submit your answers again to go on to the next part."
-msgstr ""
+msgstr "Soumettre à nouveau vos réponses pour passer à la partie suivante."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:1581
 msgid "Success"
@@ -7918,7 +7918,7 @@ msgstr ""
 
 #: /opt/webwork/pg/macros/compoundProblem.pl:610
 msgid "You may not change your answers when going on to the next part!"
-msgstr ""
+msgstr "Vous ne pouvez pas modifier vos réponses lorsque vous passez à la partie suivante!"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UserList.pm:1709
 msgid "You may not change your own password here!"
@@ -8192,7 +8192,7 @@ msgstr "Votre résultat enregistré pour ce test (version %1) est %2/%3."
 
 #: /opt/webwork/pg/macros/compoundProblem.pl:603
 msgid "Your score for this attempt is for this part only;"
-msgstr ""
+msgstr "Votre résultat pour cette tentative est seulement pour cette partie;"
 
 # $testNounNum is either "test (#)" or "submission (#)"
 #. ($testNounNum)
@@ -9184,7 +9184,7 @@ msgstr "utilisateurs affichés"
 #: /opt/webwork/pg/macros/compoundProblem.pl:470
 #: /opt/webwork/pg/macros/compoundProblem.pl:480
 msgid "when you submit your answers"
-msgstr ""
+msgstr "lorsque vous soumettez vos réponses"
 
 #. ($dir, $fileName)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:1657
@@ -9195,7 +9195,7 @@ msgstr ""
 
 #: /opt/webwork/pg/macros/compoundProblem.pl:604
 msgid "your overall score is for all the parts combined."
-msgstr ""
+msgstr "votre résultat total est pour toutes les parties combinées."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Index.pm:411
 msgid "your students"
