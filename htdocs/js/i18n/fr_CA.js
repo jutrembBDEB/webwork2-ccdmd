@@ -31,6 +31,7 @@ var translate = {
         "Hint" : "Indice",
         "Solution" : "Solution",
 	"Basic Search" : "Recherche de base",
-	"Advanced Search" : "Recherche avancée"
+	"Advanced Search" : "Recherche avancée",
+	"There was an error rendering this problem!" : "Une erreur s'est produite lors de l'affichage de ce problème!",
         
 }

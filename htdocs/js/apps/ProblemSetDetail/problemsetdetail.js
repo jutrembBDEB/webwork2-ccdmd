@@ -271,7 +271,7 @@
 				if (/error caught by translator while processing problem/i.test(data) ||
 					/error message for command: renderproblem/i.test(data)) {
 					renderArea.html($('<div/>',{ style: 'font-weight:bold', 'class': 'ResultsWithError' })
-						.text('There was an error rendering this problem!'));
+						.text(maketext('There was an error rendering this problem!')));
 					resolve();
 					return;
 				}

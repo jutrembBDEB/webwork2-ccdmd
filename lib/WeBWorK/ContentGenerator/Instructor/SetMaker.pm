@@ -395,7 +395,6 @@ sub view_problems_line {
 	my $label = shift;
 	my $r = shift; # so we can get parameter values
         my $t = shift;
-	#my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label, -onclick=>"setCookie('tabber',$t);");
 	my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label);
 	$result .= CGI::reset(-id=>"reset",-name=>"reset", -value=> $r->maketext('Reset'));
 
@@ -436,7 +435,6 @@ sub view_problems_line_bpl {
         my $j = 0;
         $j = 1 if($internal_name eq "lib_view_bplen");
         $j = 6 if($internal_name eq "lib_view_spcf");
-	#my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label, -onclick=>"setCookie('tabber',$j);");
 	my $result = CGI::submit(-name=>"$internal_name",-id=>"$internal_name", -value=>$label);
         $result .= CGI::reset(-id=>"reset",-name=>"reset", -value=> $r->maketext('Reset'));
 
@@ -520,7 +518,6 @@ sub browse_local_panelt {
 	#my $library_selected = $self->{llibrary_set};
 	my $library_selected = $self->{current_library_set};
 	my $lib = shift || ''; $lib =~ s/^browse_//;
-	#my $lib = shift || 'browse_local'; $lib =~ s/^browse_//;
 	my $name = ($lib eq '')? $r->maketext('Local') : Encode::decode_utf8($problib{$lib});
     
 	my $list_of_prob_dirs= get_problem_directories($r,$lib);
@@ -696,7 +693,6 @@ sub browse_library_panel1 {
 					CGI::popup_menu(-name=> 'library_chapters', 
 					                -values=>\@chaps,
 					                -default=> $chapter_selected
-					               # -onchange=>"lib_update('sections', 'get');return true"
 					),
 					CGI::submit(-name=>"lib_select_chapter", -value=>"Update Section List")])),
 			CGI::Tr({},
@@ -749,7 +745,6 @@ sub browse_library_panel2 {
 				CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,
 					            -default=> $subject_selected
-					     #       -onchange=>"lib_update('chapters', 'get');return true"
 				)]),
 #			CGI::td({-colspan=>2, -align=>"right"},
 #				CGI::submit(-name=>"lib_select_subject", -value=>"Update Chapter/Section Lists"))
@@ -761,7 +756,6 @@ sub browse_library_panel2 {
 				CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
 					            -default=> $chapter_selected
-					      #      -onchange=>"lib_update('sections', 'get');return true"
 		    )]),
 		),
 		CGI::Tr({},
@@ -769,7 +763,6 @@ sub browse_library_panel2 {
 			CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
 					        -default=> $section_selected
-					#	-onchange=>"lib_update('count', 'clear');return true"
 		    )]),
 		 ),
 		 CGI::Tr(CGI::td({-colspan=>3}, $view_problem_line)),
@@ -860,7 +853,6 @@ sub browse_library_panel2t {
 		my $selected = '';
 		$selected = ' checked' if(defined($selected_levels{$j}));
 		$mylevelline .= "<td><label><input type='checkbox' name='level' value='$j' ";
-	#	$mylevelline .= q/onchange="lib_update('count', 'clear');return true" /;
 		$mylevelline .= "$selected />$j</label></td>";
 	}
 	$mylevelline .= "<td>".$self->helpMacro("Levels")."</td>";
@@ -889,7 +881,6 @@ sub browse_library_panel2t {
 					            -values=>\@subjs,
                                                     -style=>"width:800px;",
 					            -default=> $subject_selected
-					   #         -onchange=>"lib_update('chapters', 'get');return true"
 					   )),
                   ),
 		CGI::Tr({},
@@ -898,7 +889,6 @@ sub browse_library_panel2t {
 					            -values=>\@chaps,
                                                     -style=>"width:800px;",
 					            -default=> $chapter_selected
-					  #          -onchange=>"lib_update('sections', 'get');return true"
 					  )),
 		),
 		CGI::Tr({},
@@ -907,7 +897,6 @@ sub browse_library_panel2t {
 					        -values=>\@sects,
                                                 -style=>"width:800px;",
 					        -default=> $section_selected
-					#	-onchange=>"lib_update('count', 'clear');return true"
 					)),
 		 ),
 
@@ -1225,7 +1214,6 @@ sub browse_library_panel2adv {
 		my $selected = '';
 		$selected = ' checked' if(defined($selected_levels{$j}));
 		$mylevelline .= "<td><label><input type='checkbox' name='level' value='$j' ";
-		#$mylevelline .= q/onchange="lib_update('count', 'clear');return true" /;
 		$mylevelline .= "$selected />$j</label></td>";
 	}
 	$mylevelline .= "<td>".$self->helpMacro("Levels")."</td>";
@@ -1242,7 +1230,6 @@ sub browse_library_panel2adv {
 				CGI::popup_menu(-name=> 'library_subjects', 
 					            -values=>\@subjs,	
 					            -default=> $selected{dbsubject}
-					       #     -onchange=>"lib_update('chapters', 'get');return true"
 				)]),
 			CGI::td({-colspan=>2, -align=>"right"},
 				CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),
@@ -1252,7 +1239,6 @@ sub browse_library_panel2adv {
 				CGI::popup_menu(-name=> 'library_chapters', 
 					            -values=>\@chaps,
 					            -default=> $selected{dbchapter}
-					     #       -onchange=>"lib_update('sections', 'get');return true"
 		    )]),
 			CGI::td({-colspan=>2, -align=>"right"},
 					CGI::submit(-name=>"library_reset", -value=>$r->maketext("Reset"),
@@ -1263,7 +1249,6 @@ sub browse_library_panel2adv {
 			CGI::popup_menu(-name=> 'library_sections', 
 					        -values=>\@sects,
 					        -default=> $selected{dbsection}
-						#	-onchange=>"lib_update('count', 'clear');return true"
 		    )]),
 			CGI::td({-colspan=>2, -align=>"right"},
 					CGI::submit(-name=>"library_basic", -value=>$r->maketext("Basic Search"),
@@ -1342,13 +1327,10 @@ sub browse_specific_panel {
         unshift @list_of_sub_reps,$r->maketext( ALL_SUBDIRS );
 
         my $count_line;
-        #my $count_line = WeBWorK::Utils::ListingDB::countDirListings($r);
-
 
 	my $view_problem_line = view_problems_line_bpl('lib_view_spcf', $r->maketext('View Problems'),undef, $self->r);
 	my $popupetc = CGI::popup_menu(-name=> 'library_lib',
                                 -values=>\@libs,
-		#		-onchange=>"dir_update('dir','get');return true",
                                 -default=> $library_selected
                                 ).
 		CGI::hidden(-name=>"library_topdir", -default=>$topdir,-override=>1,-value=>$topdir).
@@ -1356,12 +1338,10 @@ sub browse_specific_panel {
 
 	my $popupetc2 = CGI::popup_menu(-name=> 'library_dir',
                                 -values=>\@list_of_reps,
-		#		-onchange=>"dir_update('subdir','get');return true",
                                 -default=> $dir_selected).
 		CGI::br();
 	my $popupetc3 = CGI::popup_menu(-name=> 'library_subdir',
                                 -values=>\@list_of_sub_reps,
-		#		-onchange=>"dir_update('count','clear');return true",
                                 -default=> $subdir_selected).
 		CGI::br().CGI::br().  $view_problem_line;
 
@@ -1416,7 +1396,6 @@ sub browse_specific_panelt {
         }
         unshift @list_of_sub_reps,$r->maketext(ALL_SUBDIRS);
 
-        #my $count_line  = "";
         my $count_line = WeBWorK::Utils::ListingDB::countDirListings($r);
         if($count_line==0) {
                 $count_line = $r->maketext("There are no matching WeBWorK problems");
@@ -1430,7 +1409,6 @@ sub browse_specific_panelt {
 
 	my $popupetc = CGI::popup_menu(-name=> 'library_lib',
                                 -values=>\@libs,
-	#			-onchange=>"dir_update('dir','get');return true",
                                 -default=> $library_selected
                                 ).
 		CGI::hidden(-name=>"library_topdir", -default=>$topdir,-override=>1,-value=>$topdir).
@@ -1438,12 +1416,10 @@ sub browse_specific_panelt {
 
 	my $popupetc2 = CGI::popup_menu(-name=> 'library_dir',
                                 -values=>\@list_of_reps,
-	#			-onchange=>"dir_update('subdir','get');return true",
                                 -default=> $dir_selected).
 		CGI::br();
 	my $popupetc3 = CGI::popup_menu(-name=> 'library_subdir',
                                 -values=>\@list_of_sub_reps,
-	#			-onchange=>"dir_update('count','clear');return true",
                                 -default=> $subdir_selected).
                 CGI::br();
         my $popupetc4 =  $view_problem_line;
@@ -1610,7 +1586,6 @@ sub make_top_row {
                                                 -default=> $set_selected,
                                                 -onchange=> "return markinset()",
                                                 -override=>1).
-                                    #CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"),-onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);" )
                                     CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"))
                                   ])     ),
                                 CGI::Tr(CGI::td({-class =>"InfoPanel", -align=>"left"},[
@@ -1620,7 +1595,6 @@ sub make_top_row {
                                            -placeholder=>$r->maketext("Name for new set here"),
                                            -override=>1, -size=>30).
                                         CGI::submit(-name=>"new_local_set", -value=>$r->maketext("Create"),
-                                                    #-onclick=>"setCookie('tabber',  document.mainform.lib_deftab.value);document.mainform.selfassign.value=1"      #       $myjs
                                                    )
                                   ])       ),
                              CGI::end_table(),
@@ -1644,29 +1618,9 @@ sub make_top_row {
         my @formsToShow = @{ VIEW_FORMS() };
         my @divArr = ();
         my @tabArr = ();
-        
-        
-        #foreach my $actionID (@formsToShow) {
-                # Check permissions
-        #        my $actionForm = %{ ACTION_FORMS() }{$actionID};
-        #        my $onChange = "";
-        #        my %actionParams = $self->getActionParams($actionID);
-                
-        #        push @divArr, join("",
-	#		CGI::h3($r->maketext(ucfirst(WeBWorK::split_cap($actionID)))),
-        #                CGI::span({-class=>"radio_span"}, WeBWorK::CGI_labeled_input(-type=>"radio", -id=>$actionID."_id", -label_text=>$r->maketext(ucfirst(WeBWorK::split_cap($actionID))), -input_attr=>{-name=>"action", -value=>$actionID}, -label_attr=>{-class=>"radio_label"})),
-        #                $self->$actionForm($onChange, %actionParams),
-        #        );
-        #}
 
-        #my $divArrRef = \@divArr;
-	#print CGI::Tr(CGI::td({-class=>"InfoPanel", -align=>"center"},
-        #      CGI::div({-class=>"tabber"},
-        #        CGI::div({-class=>"tabbertab"},$divArrRef))
-	#));
-
-	my $default_choice = $formsToShow[$c];
-	
+  	my $default_choice = $formsToShow[$c];
+  	
 	foreach my $actionID (@formsToShow) {
 		
 		my $actionForm = %{ ACTION_FORMS() }{$actionID};
@@ -1700,7 +1654,6 @@ sub make_top_row {
 	my $first_index = $self->{first_index};
 	my $last_index = $self->{last_index}; 
 	my @pg_files = @{$self->{pg_files}};
-	#my $stringalert = $r->maketext(SELECT_SET_STRING);
 
 	if ($first_index > 0) {
 		$prev_button = CGI::submit(-name=>"prev_page", -style=>"width:18ex",
@@ -1734,7 +1687,6 @@ sub make_top_row {
                 
 
 		$show_hide_path_button .= CGI::button(-name=>"select_all", -style=>"width:29ex",
-                                                     #  -onClick=>"return addme(\"\", \'all\', \"$stringalert\" )",
 			                               -value=>$r->maketext("Add All"));
 		$show_hide_path_button .= $displayMax;
 		#$show_hide_path_button .= "<input type=\"checkbox\" id=\"showHintt\" name=\"showHintt\" value=\"on\" onclick=\"toggleHint(\$(this));\" $chk_hintt />".$r->maketext("Hints")."&nbsp;<input type=\"checkbox\" id=\"showSolutiont\" name=\"showSolutiont\"/>".$r->maketext("Solutions")."&nbsp;";
@@ -2141,7 +2093,7 @@ sub pre_header_initialize {
 
 	############# Default of which problem selector to display
 
-	my $browse_which = $r->param('bbrowse_which') || 'browse_bpl_library';
+	$browse_which = $r->param('bbrowse_which') || 'browse_bpl_library';
 
 	## check for problem lib buttons
 	my $browse_lib = '';
@@ -2640,13 +2592,11 @@ sub body {
 	if ($first_index > 0) {
 		$prev_button = CGI::submit(-name=>"prev_page", -style=>"width:18ex",
 						 -value=>$r->maketext("Previous page")
-						 #,-onclick=>"setCookie('tabber',$c);"
 						 );
 	}
 	if ((1+$last_index)<scalar(@pg_files)) {
 		$next_button = CGI::submit(-name=>"next_page", -style=>"width:18ex",
 						 -value=>$r->maketext("Next page")
-						 #,-onclick=>"setCookie('tabber',$c);"
 						 );
 	}
 	if (scalar(@pg_files)>0) {
@@ -2690,7 +2640,6 @@ sub output_JS {
 	print qq!<script src="$webwork_htdocs_url/js/vendor/bootstrap/js/bootstrap-tagsinput.js"></script>!;
 	print qq!<script src="$webwork_htdocs_url/js/apps/ImageView/imageview.js"></script>!;
 	print CGI::script({ src => "$webwork_htdocs_url/node_modules/iframe-resizer/js/iframeResizer.min.js" }, "");
-	#print qq!<script src="$webwork_htdocs_url/js/legacy/vendor/tabbert.js"></script>!;
 	print CGI::script({ src => "$webwork_htdocs_url/js/apps/ActionTabs/actiontabs.js", defer => undef }, "");
 	print CGI::script({ src => "$webwork_htdocs_url/js/apps/SetMaker/setmaker.js", defer => "" }, "");
 		

@@ -346,6 +346,31 @@ margin-left: 10px;
 	color:#333333;
 
 }
+
+.config-tabs {
+	line-height: 45px;
+}
+
+.config-tabs span {
+	margin-right: 5px;
+	background-color: #F6F6F6;
+	border: 1px solid transparent;
+	border-bottom: 1px solid #ddd;
+	font-weight: lighter;
+}
+
+.config-tabs > span > a {
+	color: #0199C1;
+}
+
+.config-tabs span.current {
+	background-color: #FFF;
+	color: #333;
+	border: 1px solid #ddd;
+	border-bottom: 1px solid transparent;
+}
+
+
 /* Well */
 .well {
   background-color: #f6f6f6;

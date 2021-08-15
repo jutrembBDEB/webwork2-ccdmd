@@ -1247,7 +1247,7 @@
 					/error caught by translator while processing problem/i.test(data.html) ||
 					/error message for command: renderproblem/i.test(data.html)) {
 					renderArea.html($('<div/>',{ style: 'font-weight:bold', 'class': 'ResultsWithError' })
-						.text('There was an error rendering this problem!'));
+						.text(maketext('There was an error rendering this problem!')));
 					resolve();
 					return;
 				}
@@ -1326,7 +1326,7 @@
 
 	// Add the loading message to all render areas.
 	for (var renderArea of renderAreas) {
-		$(renderArea).html(maketext('Loading Please Wait...'));
+		$(renderArea).html('Loading Please Wait...');
 	}
 
 	// Render all visible problems on the page
