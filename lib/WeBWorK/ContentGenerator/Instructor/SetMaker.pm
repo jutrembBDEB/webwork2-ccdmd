@@ -1585,18 +1585,21 @@ sub make_top_row {
                                                 -values=>$list_of_local_sets,
                                                 -default=> $set_selected,
                                                 -onchange=> "return markinset()",
-                                                -override=>1).
-                                    CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set"))
-                                  ])     ),
+                                                -override=>1),
+                                    CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set")),
+                                    CGI::hidden(-name=>"selfassign", -default=>0,-override=>1),
+                                ])),
                                 CGI::Tr(CGI::td({-class =>"InfoPanel", -align=>"left"},[
                                        $r->maketext("Create a New Set"),
                                        CGI::textfield(-name=>"new_set_name",
                                            -example=>$r->maketext("Name for new set here"),
                                            -placeholder=>$r->maketext("Name for new set here"),
                                            -override=>1, -size=>30).
-                                        CGI::submit(-name=>"new_local_set", -value=>$r->maketext("Create"),
-                                                   )
-                                  ])       ),
+                                       CGI::submit(-name=>"new_local_set", -value=>$r->maketext("Create"),
+                                       -onclick=>"document.mainform.selfassign.value=1"      #       $myjs
+                                       #-onclick=>"createNewSet()"      #       $myjs)
+                                       ),
+                                ])),
                              CGI::end_table(),
         ));
 
