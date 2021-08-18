@@ -1603,8 +1603,7 @@ sub make_top_row {
                              CGI::end_table(),
         ));
 
-	print CGI::hidden(-name=>"selfassign", -default=>0,-override=>1).
-		CGI::hidden(-name=>"lib_deftab", -default=>$c,-override=>1);
+	print CGI::hidden(-name=>"lib_deftab", -default=>$c,-override=>1);
 
 
 	print CGI::Tr(CGI::td({class=>'table-separator'}));
