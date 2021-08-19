@@ -870,8 +870,8 @@ sub browse_library_panel2t {
 	       CGI::hidden(-name=>"library_adv_btn", -default=>$defAdv),
 	       CGI::start_table({-width=>"100%"}),
                CGI::Tr({},
-                    CGI::td({-colspan=>"2",-width=>"60%",-align=>"left",-style=>"font-weight:bold;"}, $r->maketext('All Selected Constraints Joined by "And"')),
-                    CGI::td({-colspan=>"2",-width=>"40%", -align=>"right"},
+                    CGI::td({-colspan=>"3",-width=>"60%",-align=>"left",-style=>"font-weight:bold;"}, $r->maketext('All Selected Constraints Joined by "And"')),
+                    CGI::td({-colspan=>"1",-width=>"40%", -align=>"right"},
                                 "<span class='opladvsrch'>".CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),-style=> $right_button_style)."</span>".
 				CGI::submit(-id=>"library_advanced",-class=>"OPLAdvSearch",-name=>"library_advanced", -value=>$btnText))
                ),
