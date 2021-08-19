@@ -1053,6 +1053,10 @@ msgid ""
 "will be destroyed. There is no undo available."
 msgstr ""
 
+#: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:381
+msgid "Assist with the student answer entry process."
+msgstr "Aider à la saisie des réponses des étudiants."
+
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Index.pm:407
 msgid "Assign"
 msgstr "Attribuer"
@@ -3153,7 +3157,7 @@ msgstr "Entête de la copie imprimable"
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Hardcopy.pm:637
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:170
 msgid "Hardcopy Theme"
-msgstr "Thème du document"
+msgstr "Thème de la copie imprimable"
 
 #: /opt/webwork/pg/macros/problemRandomize.pl:409
 msgid "Hardcopy will always print the original version of the problem."
@@ -3663,6 +3667,10 @@ msgstr "Nom(s) du ou des devoirs (les séparer par des virgules) "
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/PGProblemEditor.pm:496
 msgid "Math Objects"
 msgstr "Math Objects"
+
+#: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:382
+msgid "MathQuill renders students answers in real-time as they type on the keyboard. <BR><BR> MathView allows students to choose from a variety of common math structures (such as fractions and square roots) as they attempt to input their answers. <BR><BR> WIRIS provides a separate workspace for students to construct their response in a WYSIWYG environment."
+msgstr "MathQuill affiche l'entrée des réponses des étudiants en temps réel au fur et à mesure qu'ils tapent sur le clavier. <BR><BR> MathView permet aux étudiants de choisir parmi une variété de structures mathématiques communes, comme des fractions et des racines carrées, lorsque qu'ils tentent d'entrer leur réponse. <BR><BR> WIRIS fournit un espace de saisi séparé pour que les étudiants construisent leur réponse dans un environnement WYSIWYG."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:330
 msgid "Max attempts"
