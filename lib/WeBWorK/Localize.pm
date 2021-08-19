@@ -377,11 +377,13 @@ my $ConfigStrings = [
 		  values => [qw(MathJax images plainText)],
 		  type => 'popuplist'
 		},
-	        { var  => 'pg{specialPGEnvironmentVars}{MathView}',
-                  doc  => x('Use MathView editor for answer entry'),
-                  doc2 => x('Set to true to display MathView equation editor icon next to each answer box'),
-                  type => 'boolean'
-                }, 
+	        { var => 'pg{specialPGEnvironmentVars}{entryAssist}',
+		  doc => x('Assist with the student answer entry process.'),
+		  doc2 => x('MathQuill renders students answers in real-time as they type on the keyboard. <BR><BR> MathView allows students to choose from a variety of common math structures (such as fractions and square roots) as they attempt to input their answers. <BR><BR> WIRIS provides a separate workspace for students to construct their response in a WYSIWYG environment.'),
+		  min  => 1,
+		  values => [qw(None MathQuill MathView WIRIS)],
+		  type => 'popuplist'
+		}, 
 		{ var => 'pg{options}{showEvaluatedAnswers}',
 		  doc => x('Display the evaluated student answer'),
 		  doc2 => x('Set to true to display the "Entered" column which automatically shows the evaluated student answer, e.g. 1 if student input is sin(pi/2). If this is set to false, e.g. to save space in the response area, the student can still see their evaluated answer by hovering the mouse pointer over the typeset version of their answer.'),
