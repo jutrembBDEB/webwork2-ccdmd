@@ -1061,7 +1061,7 @@ sub nav {
 
 	# Set up a student navigation for those that have permission to act as a student.
 	my $userNav = "";
-	if ($authz->hasPermissions($userID, "become_student") && $eUserID ne $userID) {
+	if ($authz->hasPermissions($userID, "become_student") && $eUserID ne $userID && $setID ne 'Undefined_Set') {
 		# Find all users for this set (except the current user).
 		my @userRecords = $db->getUsers(grep { $_ ne $userID } $db->listSetUsers($setID));
 
