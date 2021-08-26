@@ -1182,8 +1182,7 @@
 		return true;
 	}
 
-	var language = $('#hidden_language').val();
-	var basicRendererURL = "/webwork2/html2xml?&language=" + language;
+	var basicRendererURL = "/webwork2/html2xml";
 
 	async function render(id) {
 		return new Promise(function(resolve, reject) {
@@ -1220,6 +1219,7 @@
 			ro.send_pg_flags = 1;
 			ro.extra_header_text = "<style>html{overflow-y:hidden;}body{padding:0;background:#f5f5f5;.container-fluid{padding:0px;}</style>";
 			if (window.location.port) ro.forcePortNumber = window.location.port;
+			if (document.documentElement.lang !== 'en-US') ro.language = document.documentElement.lang;
 
 			$.ajax({type:'post',
 				url: basicRendererURL,

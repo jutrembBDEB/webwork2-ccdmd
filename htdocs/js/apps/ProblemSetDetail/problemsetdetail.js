@@ -246,6 +246,7 @@
 			ro.displayMode = $('#problem_displaymode').val();
 			ro.extra_header_text = "<style>html{overflow-y:hidden;}body{padding:0;background:#f5f5f5;.container-fluid{padding:0px;}</style>";
 			if (window.location.port) ro.forcePortNumber = window.location.port;
+			if (document.documentElement.lang !== 'en-US') ro.language = document.documentElement.lang;
 
 			$.ajax({type:'post',
 				url: basicWebserviceURL,
