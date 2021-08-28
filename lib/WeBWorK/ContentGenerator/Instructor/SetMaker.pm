@@ -2535,7 +2535,6 @@ sub body {
 	print CGI::start_form({-method=>"POST", -action=>$r->uri, -name=>'mainform', -id=>'mainform'}),
 		$self->hidden_authen_fields,
                 CGI::hidden({id=>'hidden_courseID',name=>'courseID',default=>$courseID }),
-		CGI::hidden({id=>'hidden_language',name=>'language',value=>$ce->{language} }),
 			'<div id="ShowResults" align="center">';
 	print CGI::hidden(-name=>'bbrowse_which', -value=>$browse_which,-override=>1),
 		CGI::hidden(-name=>'problem_seed', -value=>$problem_seed, -override=>1);
