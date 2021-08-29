@@ -1,5 +1,5 @@
 #!/bin/sh
-sed -i .bak '/Copyright/c\
+sed -i.bak '/Copyright/c\
 # Copyright &copy; 2000-2019. The WeBWorK Project. https://github.com/openwebwork/webwork2\
 ' $1
 
