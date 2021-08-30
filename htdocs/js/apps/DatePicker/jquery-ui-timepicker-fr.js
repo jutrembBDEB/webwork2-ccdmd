@@ -11,7 +11,7 @@
 	monthNamesShort: ['JAN', 'FÉV', 'MAR', 'AVR', 'MAI', 'JUN', 'JUL', 'AOÛ', 'SEP', 'OCT', 'NOV', 'DÉC'],
 	dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
 	dayNamesShort: ['DIM','LUN','MAR','MER','JEU','VEN','SAM'],
-	dayNamesMin: ['S','L','M','M','J','V','S'],
+	dayNamesMin: ['D','L','M','M','J','V','S'],
 	weekHeader: 'Sem.',
 	dateFormat: 'mm/dd/yy',
 	firstDay: 1,
