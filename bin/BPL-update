@@ -409,11 +409,11 @@ $dbh->do("INSERT INTO BPL_keyword_rank select keyword_id,count(distinct pgfile_i
 
 if ($ce->{problemLibrary}{showLibraryLocalStats} ||
     $ce->{problemLibrary}{showLibraryGlobalStats}) {
-  print "\nUpdating BPL Library Statistics.\n";
+  print "\nUpdating local BPL Library Statistics.\n";
   do $ENV{WEBWORK_ROOT}.'/bin/update-BPL-statistics.pl';
 
-  #print "\nLoading global statistics (if possible).\n";
-  #do $ENV{WEBWORK_ROOT}.'/bin/load-OPL-global-statistics.pl';
+  print "\nLoading global BPL statistics (if possible).\n";
+  do $ENV{WEBWORK_ROOT}.'/bin/load-BPL-global-statistics.pl';
 }
 
 $dbh->disconnect;

@@ -49,11 +49,13 @@ sub new {
     my $localselectbplstm = $dbh->prepare("SELECT * FROM BPL_local_statistics WHERE source_file = ?");
 
     my $globalselectstm = $dbh->prepare("SELECT * FROM OPL_global_statistics WHERE source_file = ?");
+    my $globalselectbplstm = $dbh->prepare("SELECT * FROM BPL_global_statistics WHERE source_file = ?");
     
     my $self = { dbh => $dbh,
 		 localselectstm => $localselectstm,
 		 localselectbplstm => $localselectbplstm,
 		 globalselectstm => $globalselectstm,
+		 globalselectbplstm => $globalselectbplstm,
     };
 
     bless($self,$class);
@@ -106,6 +108,7 @@ sub getGlobalStats {
     my $source_file = shift;
 
     my $selectstm = $self->{globalselectstm};
+    my $selectbplstm = $self->{globalselectbplstm};
 
     unless ($selectstm->execute($source_file)) {
       if ($selectstm->errstr =~ /Table .* doesn't exist/) {
@@ -113,8 +116,16 @@ sub getGlobalStats {
       }
       die $selectstm->errstr;
     }
+    
+    unless ($selectbplstm->execute($source_file)) {
+      if ($selectbplstm->errstr =~ /Table .* doesn't exist/) {
+	warn "Couldn't find the BPL global statistics table.  Did you download the latest BPL and run load-BPL-global-statistics.pl?"
+      }
+      die $selectbplstm->errstr;
+    }
 
     my $result = $selectstm->fetchrow_arrayref();
+    my $resultbpl = $selectbplstm->fetchrow_arrayref();
 
     if ($result) {
 	return {source_file => $source_file,
@@ -122,6 +133,12 @@ sub getGlobalStats {
 		average_attempts => $$result[2],
 		average_status => $$result[3],
 	};
+    } elsif ($resultbpl) {
+	return {source_file => $source_file,
+		students_attempted => $$resultbpl[1],
+		average_attempts => $$resultbpl[2],
+		average_status => $$resultbpl[3],
+	};    
     } else {
 	return {source_file => $source_file};
     }
