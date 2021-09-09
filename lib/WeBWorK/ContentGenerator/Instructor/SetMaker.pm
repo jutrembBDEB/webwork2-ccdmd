@@ -862,7 +862,7 @@ sub browse_library_panel2t {
         
         $btnText = $r->maketext("Basic Search") if($defAdv == 2);
         
-        my $noshow = 'display: none';
+        my $noshow = 'display:none;';
 	$noshow = '' if ($defAdv == 2);
         
         my $right_button_style = "width: 18ex";
@@ -876,7 +876,7 @@ sub browse_library_panel2t {
                CGI::Tr({},
                     CGI::td({-colspan=>"3",-width=>"60%",-align=>"left",-style=>"font-weight:bold;"}, $r->maketext('All Selected Constraints Joined by "And"')),
                     CGI::td({-colspan=>"1",-width=>"40%", -align=>"right"},
-                                "<span class='opladvsrch'>".CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),-style=> $right_button_style)."</span>".
+                                "<span class='opladvsrch' style=".$noshow." >".CGI::submit(-name=>"lib_select_subject", -value=>$r->maketext("Update Menus"),-style=> $right_button_style)."</span>".
 				CGI::submit(-id=>"library_advanced",-class=>"OPLAdvSearch",-name=>"library_advanced", -value=>$btnText))
                ),
 	       CGI::Tr({},
@@ -1589,7 +1589,7 @@ sub make_top_row {
                                                 -values=>$list_of_local_sets,
                                                 -default=> $set_selected,
                                                 -onchange=> "return markinset()",
-                                                -override=>1),
+                                                -override=>1).
                                     CGI::submit(-name=>"edit_local", -value=>$r->maketext("Edit Target Set")),
                                     CGI::hidden(-name=>"selfassign", -default=>0,-override=>1),
                                 ])),
