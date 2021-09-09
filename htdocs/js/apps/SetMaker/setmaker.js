@@ -107,14 +107,14 @@
 	        adv = $('[name="library_adv_btn"]').val();
 	        if(adv == 2) {
 	            $(this).val(maketext('Advanced Search'));
-	            $('[name="library_adv_btn"]').val('1');
+	            $('[name="library_adv_btn"]').val(1);
 	            //change index
 	            $('[name="library_textbook"]').prop("selectedIndex",0);
 	            $('#opladv tr.opladvsrch').toggle(false);
 	            $('#opladv span.opladvsrch').toggle(false);
 	            lib_update('count','clear');
 	        } else {
-	            $('[name="library_adv_btn"]').val('2');
+	            $('[name="library_adv_btn"]').val(2);
 	            $(this).val(maketext('Basic Search'));
 	            $('#opladv tr.opladvsrch').toggle(true);
 	            $('#opladv span.opladvsrch').toggle(true);
@@ -122,13 +122,13 @@
 	        event.preventDefault();
 	   });
 	   
-	   $('.nav-tabs a').on('show.bs.tab', function(e) {
+   	   $('.nav-tabs a').on('show.bs.tab', function(e) {
 	   	localStorage.setItem('activeTab', $(e.target).attr('href'));
 	   	k = $(e.target).closest('li').index();
 	   	$('[name="lib_deftab"]').val(k);
+	   	f_reset(k);
 	   	setBrowseWhich(k);
 	   	toggleAdvSrch();
-	   	f_reset(k);
 	   });  
 	});
 
@@ -190,7 +190,6 @@
 	       lib_top20keywords();
 
 	       $("#library_defkeywordsen").val(20);
-	       $("#lib_deftab").val(v);
 	       enlib_top20keywords();
 
 	       $('[name="library_lib"]').prop("selectedIndex",0);

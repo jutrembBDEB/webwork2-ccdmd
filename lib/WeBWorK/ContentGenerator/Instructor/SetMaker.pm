@@ -796,8 +796,8 @@ sub browse_library_panel2t {
 	} else {
 		$count_line = $r->maketext("There are [_1] matching WeBWorK problems", $count_line);
 	}
-
-        my $texts = WeBWorK::Utils::ListingDB::getDBTextbooks($r);
+	
+	my $texts = WeBWorK::Utils::ListingDB::getDBTextbooks($r);
 	my @textarray = map { $_->[0] }  @{$texts};
 	my %textlabels = ();
 	for my $ta (@{$texts}) {
@@ -857,17 +857,21 @@ sub browse_library_panel2t {
 	}
 	$mylevelline .= "<td>".$self->helpMacro("Levels")."</td>";
 	$mylevelline .= '</tr></table>';
-        my $defAdv = $r->param('library_adv_btn') || '1';
+        my $defAdv = $r->param('library_adv_btn') || 1;
         my $btnText = $r->maketext("Advanced Search");
         
         $btnText = $r->maketext("Basic Search") if($defAdv == 2);
+        
+        my $noshow = 'display: none';
+	$noshow = '' if ($defAdv == 2);
+        
         my $right_button_style = "width: 18ex";
 
         return CGI::start_table({-align=>"left",-width=>"80%",-id=>"opladv"}),
 	       CGI::Tr({},
 	       CGI::td({-class=>"InfoPanel",-width=>"80%", -align=>"left"}, 
 	       CGI::hidden(-name=>"library_is_basic", -default=>1,-override=>1),
-	       CGI::hidden(-name=>"library_adv_btn", -default=>$defAdv),
+	       CGI::hidden(-name=>"library_adv_btn", -default=>$defAdv, -override=>1),
 	       CGI::start_table({-width=>"100%"}),
                CGI::Tr({},
                     CGI::td({-colspan=>"3",-width=>"60%",-align=>"left",-style=>"font-weight:bold;"}, $r->maketext('All Selected Constraints Joined by "And"')),
@@ -900,11 +904,11 @@ sub browse_library_panel2t {
 					)),
 		 ),
 
-                 CGI::Tr({-class=>'opladvsrch'},
+                 CGI::Tr({-class=>'opladvsrch', style => $noshow},
 			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Textbook:")), 
                         CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},$text_popup),
 		 ),
-		 CGI::Tr({-class=>'opladvsrch'},
+		 CGI::Tr({-class=>'opladvsrch', style => $noshow},
 			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Text chapter:")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_textchapter', 
 					        -values=>\@textchaps,
@@ -913,7 +917,7 @@ sub browse_library_panel2t {
 					        -onchange=>"submit();return true"
 					)),
 		 ),
-		 CGI::Tr({-class=>'opladvsrch'},
+		 CGI::Tr({-class=>'opladvsrch', style => $noshow},
 			CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Text section:")),
 			CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},CGI::popup_menu(-name=> 'library_textsection', 
 					        -values=>\@textsecs,
@@ -922,11 +926,11 @@ sub browse_library_panel2t {
 					        -onchange=>"submit();return true"
 					)),
 		 ),
-		 CGI::Tr({-class=>'opladvsrch'},
+		 CGI::Tr({-class=>'opladvsrch', style => $noshow},
 				 CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Level:")),
 				 "<td colspan='3' align='left' width='85%'>$mylevelline</td>"
 		 ),
-		 CGI::Tr({-class=>'opladvsrch'},
+		 CGI::Tr({-class=>'opladvsrch', style => $noshow},
 		     CGI::td({-colspan=>"1",-width=>"25%"},$r->maketext("Keywords:")),
 		     CGI::td({-colspan=>"3",-align=>"left",-width=>"85%"},
 			 CGI::textfield(-name=>"library_keywords",
