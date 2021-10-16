@@ -132,9 +132,12 @@ table.library-browser-table td {
 table.library-browser-table input[type="submit"],
 table.library-browser-table input[type="reset"],
 table.library-browser-table input[type="button"],
-table.library-browser-table input[type="text"],
 table.library-browser-table select {
 	margin-right: 5px;
+}
+table.library-browser-table input[type="text"] {
+	margin-right: 5px;
+	position: relative;
 }
 table.library-browser-table input[type="checkbox"] {
 	margin-bottom:4px;

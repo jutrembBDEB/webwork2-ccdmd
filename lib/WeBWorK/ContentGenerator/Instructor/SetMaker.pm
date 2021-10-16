@@ -2647,6 +2647,7 @@ sub output_JS {
 	print CGI::script({ src => "$webwork_htdocs_url/node_modules/iframe-resizer/js/iframeResizer.min.js" }, "");
 	print CGI::script({ src => "$webwork_htdocs_url/js/apps/ActionTabs/actiontabs.js", defer => undef }, "");
 	print CGI::script({ src => "$webwork_htdocs_url/js/apps/SetMaker/setmaker.js", defer => "" }, "");
+	print CGI::start_script({type=>"text/javascript", src=>"$webwork_htdocs_url/js/legacy/vendor/tabbert.js"}), CGI::end_script();
 		
 	if ($self->r->authz->hasPermissions(scalar($self->r->param('user')), "modify_tags")) {
 		my $site_url = $ce->{webworkURLs}->{htdocs};
