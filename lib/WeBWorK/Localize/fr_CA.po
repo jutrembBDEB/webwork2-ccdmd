@@ -5375,6 +5375,10 @@ msgstr "Devoirs attribués à un utilisateur"
 msgid "Sets assigned to %1"
 msgstr "Devoirs attribués à %1"
 
+#: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:1351
+msgid "Sets were selected for export."
+msgstr "Les devoirs sélectionnés sont prêts à être exporter."
+
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Config.pm:683
 msgid "Setting"
 msgstr "Paramètre"
@@ -9408,9 +9412,6 @@ msgstr ""
 #~ "how close the student answer has to be in order to be marked correct.<p>A "
 #~ "value such as 0.1 means 0.1 percent error is allowed."
 
-#~ msgid "%1 (old editor)"
-#~ msgstr "%1 (ancien éditeur)"
-
 # Gateway (test 3)
 #~ msgid "%1 (test %2)"
 #~ msgstr "%1 (test %2)"
@@ -9472,9 +9473,6 @@ msgstr "Indiquer les mots clés"
 #~ msgstr ""
 #~ "Numéroter les problèmes de manière consécutive en débutant par 1 "
 #~ "(toujours fait lors de la renumérotation des problèmes)."
-
-#~ msgid "Give new password to"
-#~ msgstr "Donner un nouveau mot de passe à"
 
 msgid "Hint"
 msgstr "Indice"

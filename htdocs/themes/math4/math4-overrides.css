@@ -428,11 +428,11 @@ margin-left: 10px;
 	height:30px;
 
 }
-#loginstatus a {
-    /*color:black;*/
-}
+/*#loginstatus a {
+    color:black;
+}*/
 
-/*#loginstatus a.btn {
+#loginstatus a.btn {
 	margin-left:0.5em;
 	background-color: #212121;
 	background-image:none;
@@ -444,7 +444,7 @@ margin-left: 10px;
 #loginstatus a.btn:focus,
 #loginstatus a.btn:active {
 	text-decoration:underline;
-}*/
+}
 
 
 /* --- MENU DE GAUCHE ---*/
