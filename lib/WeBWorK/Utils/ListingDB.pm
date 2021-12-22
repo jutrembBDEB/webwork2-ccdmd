@@ -24,7 +24,6 @@ use File::Basename;
 use WeBWorK::Debug;
 use File::Find::Rule;
 use Encode::Encoder qw(encoder);
-use Encode qw( decode encode );
 
 use constant LIBRARY_STRUCTURE => {
 	textbook => { select => 'tbk.textbook_id,tbk.title,tbk.author,tbk.edition',
@@ -154,6 +153,19 @@ sub getTables {
 
 sub getDB {
 	my $ce = shift;
+	my $ENABLE_UTF8MB4 = ($ce->{ENABLE_UTF8MB4})?1:0;
+        my %utf8_parameters = ();
+
+        if ( $ce->{database_driver} =~ /^mysql$/i ) {
+        # Only needed for older DBI:mysql driver
+                if ( $ENABLE_UTF8MB4 ) {
+                        $utf8_parameters{mysql_enable_utf8mb4} = 1;
+                } else {
+                        $utf8_parameters{mysql_enable_utf8} = 1;
+                }
+        }
+
+
 	my $dbh = DBI->connect(
 		$ce->{problemLibrary_db}->{dbsource},
 		$ce->{problemLibrary_db}->{user},
@@ -161,6 +173,7 @@ sub getDB {
 		{
 			PrintError => 0,
 			RaiseError => 1,
+			%utf8_parameters,
 		},
 	);
 	die "Cannot connect to problem library database" unless $dbh;
@@ -416,7 +429,7 @@ sub getAllDBsubjects {
 	$sth->execute();
 
 	while (@row = $sth->fetchrow_array()) {
-		push @results, Encode::decode_utf8($row[0]);
+		push @results, $row[0];
 	}
 	# @results = sortByName(undef, @results);
 	return @results;
@@ -537,10 +550,6 @@ sub getAllKeyWords {
 	my $chapter = $r->param('library_chapters');
         $subject = "" if($subject eq $r->maketext("All Subjects"));
         $chapter = "" if($chapter eq $r->maketext("All Chapters"));
-        
-        # for comparison in the db with utf8 characters
-	$subject = Encode::encode_utf8($subject);
-	$chapter = Encode::encode_utf8($chapter);
 
 	my $keywords =  $r->param('library_keywords') || "";
         my $limit = $r->param('library_defkeywords') || 10000;
@@ -623,7 +632,6 @@ sub getAllKeyWords {
  
         my @kws;
         foreach (keys %$AllKeyWords) {
-            $_ = Encode::decode_utf8( $_ );
             push @kws, $_;
             push @kws, "-".$_;
         }
@@ -735,10 +743,6 @@ sub getTop20KeyWords {
         $subject = "" if($subject eq $r->maketext("All Subjects"));
         $chapter = "" if($chapter eq $r->maketext("All Chapters"));
         
-	# for comparison in the db with utf8 characters
-	$subject = Encode::encode_utf8($subject);
-	$chapter = Encode::encode_utf8($chapter);
-
 	my $keywords =  $r->param('library_keywords') || "";
         my $limit = $r->param('library_defkeywords') || 20;
         my $row;
@@ -816,7 +820,7 @@ sub getTop20KeyWords {
         
         my @kws;
         foreach (@$keywords) {
-            push @kws, Encode::decode_utf8( $_ );
+           push @kws, $_ ;
 	}
 	
         return @kws;
@@ -845,8 +849,7 @@ sub getAllDBchapters {
         $subject = $r->param('blibrary_subjects') if($typ eq 'BPL');
         $subject = $r->param('benlibrary_subjects') if($typ eq 'BPLEN');
         
-        #utf8::upgrade($subject);
-        $subject = Encode::encode_utf8($subject);
+        utf8::upgrade($subject);
         
 	return () unless($subject);
 	my $dbh = getDB($r->ce);
@@ -863,7 +866,7 @@ sub getAllDBchapters {
                  t.name = ? ORDER BY c.name";
        
 	my $all_chaps_ref = $dbh->selectall_arrayref($query, {},$subject);
- 	my @results = map { Encode::decode_utf8($_->[0]) } @{$all_chaps_ref};
+ 	my @results = map { $_->[0] } @{$all_chaps_ref};
 	#@results = sortByName(undef, @results);
 	return @results;
 }
@@ -1078,15 +1081,12 @@ sub getBPLENDBListings {
 	my $sec = "";
 
 	# Make sure these strings are internally encoded in UTF-8
-	#utf8::upgrade($subj);
-	#utf8::upgrade($chap);
-	#utf8::upgrade($sec);	
-	$subj = Encode::encode_utf8($subj);
-	$chap = Encode::encode_utf8($chap);
-	
+	utf8::upgrade($subj);
+	utf8::upgrade($chap);	
 	
 	my $keywords =  $r->param('library_keywords') || $r->param('search_bplen') || "";
 	my $dbh = getDB($ce);
+	
 
 	# Next could be an array, an array reference, or nothing
 	my @levels = $r->param('level');
@@ -1113,8 +1113,7 @@ sub getBPLENDBListings {
                 $t=~s/^\s+//g;
                 $k++;
                 # Make sure these strings are internally encoded in UTF-8
-		 #utf8::upgrade($t);
-                $t = Encode::encode_utf8($t);
+		 utf8::upgrade($t);
                 if($t=~/^-/) {
                     $t =~s/^-//;
                     $kw2 .= " AND NOT EXISTS (select 1 from  `$tables{keyword}` kw$k,`$tables{pgfile_keyword}` pgkey$k where kw$k.keyword = \"$t\" and kw$k.keyword_id=pgkey$k.keyword_id AND pgkey$k.pgfile_id = pgkey.pgfile_id ) \n";
@@ -1150,6 +1149,8 @@ sub getBPLENDBListings {
 		push @select_parameters, $sec;
 	}
 
+	$dbh->do(qq{SET NAMES 'utf8mb4';}) if $ce->{ENABLE_UTF8MB4};
+	
 	my $selectwhat = 'DISTINCT pgf.pgfile_id';
 	$selectwhat = 'COUNT(' . $selectwhat . ')' if ($amcounter);
 	
@@ -1201,11 +1202,8 @@ sub getBPLDBListings {
 	my $sec = "";
 	
 	# Make sure these strings are internally encoded in UTF-8
-	#utf8::upgrade($subj);
-	#utf8::upgrade($chap);
-	#utf8::upgrade($sec);
-	$subj = Encode::encode_utf8($subj);
-	$chap = Encode::encode_utf8($chap);
+	utf8::upgrade($subj);
+	utf8::upgrade($chap);
 	
 	my $keywords =  $r->param('library_keywords') || $r->param('search_bpl') || "";
 	my $dbh = getDB($ce);      
@@ -1234,8 +1232,7 @@ sub getBPLDBListings {
                 $t=~s/\s+$//g;
                 $t=~s/^\s+//g;
                 # Make sure these strings are internally encoded in UTF-8
-		#utf8::upgrade($t);
-               $t = Encode::encode_utf8($t);
+		utf8::upgrade($t);
                 $k++;
                 if($t=~/^-/) {
                     $t =~s/^-//;
