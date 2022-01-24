@@ -871,7 +871,7 @@ sub browse_library_panel2t {
 	       CGI::Tr({},
 	       CGI::td({-class=>"InfoPanel",-width=>"80%", -align=>"left"}, 
 	       CGI::hidden(-name=>"library_is_basic", -default=>1,-override=>1),
-	       CGI::hidden(-name=>"library_adv_btn", -default=>$defAdv, -override=>1),
+	       CGI::hidden(-name=>"library_adv_btn", -default=>$defAdv),
 	       CGI::start_table({-width=>"100%"}),
                CGI::Tr({},
                     CGI::td({-colspan=>"3",-width=>"60%",-align=>"left",-style=>"font-weight:bold;"}, $r->maketext('All Selected Constraints Joined by "And"')),

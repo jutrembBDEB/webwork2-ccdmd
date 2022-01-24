@@ -299,7 +299,7 @@ tabberObj.prototype.init = function(e)
   //}
 
   this.tabShow(defaultTab);
-  toggleAdvSrch();
+  //toggleAdvSrch();
 
   //$('#opladv tr.opladvsrch').toggle(0);
   /* If the user specified an onLoad function, call it now. */
@@ -357,10 +357,6 @@ tabberObj.prototype.navClick = function(event)
     rVal = self.onClick(onClickArgs);
     if (rVal === false) { return false; }
   }
-
-  //settabprops(tabberIndex);
-
-
 
   self.tabShow(tabberIndex);
 
@@ -566,87 +562,4 @@ function radioSelect(){
         if (radio.onclick) {
            radio.onclick();
         }
-}
-
-function settabprops(i) {
-
-    var c = 'tabber';
-    //setCookie(c, i);
-
-    //f_reset(i);
-
-    setBrowseWhich(i);
-
-    return;
-
-}
-
-
-//function setCookie(name, value, expires, path, domain, secure) {
-//    document.cookie= name + "=" + escape(value) +
-//        ((expires) ? "; expires=" + expires.toGMTString() : "") +
-//        ((path) ? "; path=" + path : "") +
-//        ((domain) ? "; domain=" + domain : "") +
-//        ((secure) ? "; secure" : "");
-//}
-
-//function getCookie(name) {
-//    var dc = document.cookie;
-//    var prefix = name + "=";
-//    var begin = dc.indexOf("; " + prefix);
-//    if (begin == -1) {
-//        begin = dc.indexOf(prefix);
-//        if (begin != 0) return null;
-//    } else {
-//        begin += 2;
-//    }
-//    var end = document.cookie.indexOf(";", begin);
-//    if (end == -1) {
-//        end = dc.length;
-//    }
-//    return unescape(dc.substring(begin + prefix.length, end));
-//}
-//function deleteCookie(name, path, domain) {
-//    if (getCookie(name)) {
- //       document.cookie = name + "=" +
- //           ((path) ? "; path=" + path : "") +
-//            ((domain) ? "; domain=" + domain : "") +
-//            "; expires=Thu, 01-Jan-70 00:00:01 GMT";
-//    }
-//}
-
-//function setBrowseWhich(i) {
-
-//    if(i == 0)
-//      document.getElementsByName('bbrowse_which')[0].value = 'browse_bpl_library';
-//    if(i == 1)
-//      document.getElementsByName('bbrowse_which')[0].value = 'browse_bplen_library';
-//    if(i == 2)
- //     document.getElementsByName('bbrowse_which')[0].value = 'browse_npl_library';
- //   if(i == 3)
- //     document.getElementsByName('bbrowse_which')[0].value = 'browse_local';
-  //  if(i == 4)
-  //    document.getElementsByName('bbrowse_which')[0].value = 'browse_mysets';
-  //  if(i == 5)
-  //    document.getElementsByName('bbrowse_which')[0].value = 'browse_setdefs';
-  //  if(i == 6)
-  //    document.getElementsByName('bbrowse_which')[0].value  = 'browse_spcf_library';
-
-//    document.getElementsByName('lib_deftab')[0].value = i;
-//    return;
-
-//}
-function toggleAdvSrch() {
-  var advbt = $('[name="library_adv_btn"]').val();
-  if(advbt == 1) {
-       $("#library_advanced").val(maketext('Basic Search'));
-       $('#opladv tr.opladvsrch').toggle(true);
-       $('#opladv td.opladvsrch').toggle(true);
-       $('#opladv span.opladvsrch').toggle(true);
-  } else {
-       $("#library_advanced").val(maketext('Advanced Search'));
-       $('#opladv tr.opladvsrch').toggle(false);
-       $('#opladv td.opladvsrch').toggle(false);
-       $('#opladv span.opladvsrch').toggle(false);
-  }
 }

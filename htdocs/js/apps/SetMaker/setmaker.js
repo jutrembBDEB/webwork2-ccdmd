@@ -9,6 +9,7 @@
 
 	$(document).ready(function(){
 
+	  toggleAdvSrch();
 	  $('[name="search_bplen"]').tagsinput({typeahead: { source: function(query) { return []; }, freeInput: false }});
 	  $('[name="search_bpl"]').tagsinput({typeahead: { source: function(query) { return []; }, freeInput: false }});
 
@@ -104,7 +105,7 @@
 
 	  //OPL Advanced search handle
 	  $("#library_advanced").click(function (event) {
-	        adv = $('[name="library_adv_btn"]').val();
+	        var adv = $('[name="library_adv_btn"]').val();
 	        if(adv == 2) {
 	            $(this).val(maketext('Advanced Search'));
 	            $('[name="library_adv_btn"]').val(1);
@@ -128,7 +129,6 @@
 	   	$('[name="lib_deftab"]').val(k);
 	   	f_reset(k);
 	   	setBrowseWhich(k);
-	   	toggleAdvSrch();
 	   });  
 	});
 
@@ -169,11 +169,14 @@
 	       $('[name="library_textbook"]').prop("selectedIndex",0);
 	       $('[name="library_textchapter"]').prop("selectedIndex",0);
 	       $('[name="library_textsection"]').prop("selectedIndex",0);
+	       $('[name="level"]').prop('checked', 0);
 	       $('[name="llibrary_sets"]').prop("selectedIndex",0);
 	       $('[name="mlibrary_sets"]').prop("selectedIndex",0);
 	       $('[name="slibrary_sets"]').prop("selectedIndex",0);
        
-	       if(v != 2) {$('[name="library_adv_btn"]').val(1);}
+	       $('[name="library_adv_btn"]').val(1);
+	       $("#library_advanced").val(maketext('Advanced Search'));
+	       toggleAdvSrch();
 
 	       $('[name="blibrary_subjects"]').prop("selectedIndex",0);
 	       blib_update('chapters', 'clear');
@@ -229,11 +232,9 @@
 	function toggleAdvSrch() {
 		var advbt = $('[name="library_adv_btn"]').val();
 		if(advbt == 2) {
-			$("#library_advanced").val(maketext('Basic Search'));
 			$('#opladv tr.opladvsrch').toggle(true);
 			$('#opladv span.opladvsrch').toggle(true);
 		} else {
-			$("#library_advanced").val(maketext('Advanced Search'));
 			$('#opladv tr.opladvsrch').toggle(false);
 			$('#opladv span.opladvsrch').toggle(false);
 		}
