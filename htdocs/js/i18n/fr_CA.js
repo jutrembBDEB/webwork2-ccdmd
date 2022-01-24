@@ -34,5 +34,6 @@ var translate = {
 	"Advanced Search" : "Recherche avancée",
 	"There was an error rendering this problem!" : "Une erreur s'est produite lors de l'affichage de ce problème!",
 	"Score saved." : "Note enregistrée.",
+	"Score and comment saved." : "Note totale et commentaire enregistrés.",
         
 }

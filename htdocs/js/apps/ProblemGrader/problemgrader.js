@@ -87,7 +87,7 @@ $(function(){
 						timeout: 10000,
 						success: function (data) {
 							messageArea.addClass('ResultsWithoutError');
-							messageArea.text("Score and comment saved.");
+							messageArea.text(maketext("Score and comment saved."));
 							messageArea.removeClass('ResultsWithoutError', 3000);
 						},
 						error: function (data) {

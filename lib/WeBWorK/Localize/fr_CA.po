@@ -4504,7 +4504,7 @@ msgstr "Ce problème est tiré d'un regroupement de plusieurs problèmes."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Problem.pm:1507
 msgid "ProblemGrader"
-msgstr "Notation du problème"
+msgstr "Noter le problème"
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Grades.pm:465
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:2323
@@ -6096,11 +6096,11 @@ msgid ""
 "shown.  If this is modified, it will be used to compute the total problem "
 "score below.  This score is not saved, and will reset to the score for the "
 "shown answer if the page is reloaded."
-msgstr ""
+msgstr "Cette valeur est le résultat, en pourcentage, de la réponse qui est présentement affichée. Si elle est modifiée, elle sera appliquée au calcul de la note totale ci-dessous, en cliquant sur Enregistrer. Cependant, cette nouvelle valeur ne sera pas enregistrée et elle sera réinitialisée au résultat de la réponse de l'étudiant si la page est actualisée."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SingleProblemGrader.pm:135
 msgid "The initial value is the currently saved score for this student."
-msgstr ""
+msgstr "Cette valeur est la note finale en pourcentage actuellement enregistrée pour cet étudiant."
 
 #. ($rename_oldCourseID, $rename_oldCourseInstitution, $rename_newCourseInstitution)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/CourseAdmin.pm:1286
@@ -6682,7 +6682,7 @@ msgid ""
 "from the answer sub scores above using the weights shown if they are "
 "modified.  Alternatively, enter the score you want saved here (the above sub "
 "scores will be ignored)."
-msgstr ""
+msgstr "Il s'agit de l'unique résultat réellement enregistré. Il est calculé à partir des résultats aux réponses ci-dessus, selon la pondération indiquée. Vous pouvez également entrer la note finale de l'étudiant ici (les résultats des réponses ci-dessus seront ignorés)."
 
 #: /opt/webwork/webwork2/lib/WeBWorK/Localize.pm:110
 msgid ""

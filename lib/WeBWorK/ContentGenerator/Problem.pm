@@ -2001,7 +2001,7 @@ sub output_comments{
 			$comment = CGI::escapeHTML($comment);
 			my $formFields = { WeBWorK::Form->new_from_paramable($r)->Vars };
 			print CGI::start_div({id=>"answerComment", class=>"answerComments"});
-			print CGI::b("Instructor Comment:"),  CGI::br();
+			print CGI::b($r->maketext("Instructor Comment:")),  CGI::br();
 			print $comment;
 		}
 	}
