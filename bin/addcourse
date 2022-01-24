@@ -78,6 +78,7 @@ BEGIN {
 use strict;
 use warnings;
 use Getopt::Long;
+use Encode;
 
 
 BEGIN {
@@ -305,6 +306,7 @@ if ($templates_from ne "") {
 }
 
 if ($courseTitle ne "") {
+	$courseTitle = Encode::decode_utf8($courseTitle);
 	$optional_arguments{courseTitle} = $courseTitle;
 }
 
